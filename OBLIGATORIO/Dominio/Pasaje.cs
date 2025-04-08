@@ -19,10 +19,25 @@ namespace Dominio
         #endregion
 
         #region Constructor
+        public Pasaje()
+        {
+
+        }
+        public Pasaje(Vuelo vuelo, DateTime fechaDeVuelo, Cliente pasajero, double precioPasaje)
+        {
+            this.IdPasaje = UltimoIdPasaje++;
+            this.Vuelo = vuelo;
+            this.FechaDeVuelo = fechaDeVuelo;
+            this.Pasajero = pasajero;
+            this.PrecioPasaje = precioPasaje;
+        }
         #endregion
 
         #region Metodos
-
+        public override string ToString()
+        {
+            return $"Id del Pasaje: {this.IdPasaje}, Vuelo: {this.Vuelo}, Fecha del vuelo: {this.FechaDeVuelo}, Pasajero: {this.Pasajero} y Precio del pasaje: {this.PrecioPasaje} ";
+        }
         #endregion
     }
 }

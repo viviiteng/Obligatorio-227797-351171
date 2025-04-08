@@ -31,7 +31,10 @@ namespace Dominio
         #endregion
 
         #region Metodos
-
+        public override string ToString()
+        {
+            return $"Numero de Vuelo: {this.NumVuelo}, Ruta: {this.Ruta}, Avion: {this.Avion}, Frecuencia: {this.Frecuencia}, Nacionalidad: {this.Nacionalidad} y Tipo de cliente: {this.TipoDeCliente} ";
+        }
         #endregion
     }
 }
