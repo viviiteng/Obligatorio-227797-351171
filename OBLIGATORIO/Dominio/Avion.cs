@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Dominio
+{
+    public class Avion
+    {
+        #region Atributo
+        public string Fabricante { get; set; }
+        public string Modelo { get; set; }
+        public int CantAsientos { get; set; }
+        public double Alcance { get; set; }
+        public double CostoOperacion { get; set; }
+        #endregion
+
+        #region Constructor
+        public Avion() { 
+            
+        }
+        public Avion(string fabricante, string modelo, int cantAsientos, double alcance, double costoOperacion)
+        {
+            this.Fabricante = fabricante;
+            this.Modelo = modelo;
+            this.CantAsientos = cantAsientos;
+            this.Alcance = alcance; 
+            this.CostoOperacion = costoOperacion;
+
+        }
+        #endregion
+
+        #region Metodos
+        public override string ToString()
+        {
+            return $"Fabricante: {this.Fabricante}, Modelo: {this.Modelo}, Cantidad de asientos: {this.CantAsientos}, Alcance: {this.Alcance}, Costo de operacion: {this.CostoOperacion}. "; 
+        }
+        #endregion
+    }
+}
