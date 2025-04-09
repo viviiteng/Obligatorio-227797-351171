@@ -12,13 +12,13 @@ namespace Dominio
         public string NumVuelo { get; set; }
         public Ruta Ruta { get; set; }
         public Avion Avion { get; set; }
-        public Frecuencia Frecuencia { get; set; }
+        public Frecuencia[] Frecuencia { get; set; }
         #endregion
 
         #region Constructor
         public Vuelo() { }
 
-        public Vuelo(string numVuelo, Ruta ruta, Avion avion, Frecuencia frecuencia) { 
+        public Vuelo(string numVuelo, Ruta ruta, Avion avion, Frecuencia[] frecuencia) { 
             this.NumVuelo = numVuelo;
             this.Ruta = ruta;
             this.Avion = avion;
