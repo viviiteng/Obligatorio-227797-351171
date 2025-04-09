@@ -13,27 +13,23 @@ namespace Dominio
         public Ruta Ruta { get; set; }
         public Avion Avion { get; set; }
         public Frecuencia Frecuencia { get; set; }
-        public string Nacionalidad { get; set; }
-        public string TipoDeCliente { get; set; }
         #endregion
 
         #region Constructor
         public Vuelo() { }
 
-        public Vuelo(string numVuelo, Ruta ruta, Avion avion, Frecuencia frecuencia, string nacionalidad, string tipoDeCliente) { 
+        public Vuelo(string numVuelo, Ruta ruta, Avion avion, Frecuencia frecuencia) { 
             this.NumVuelo = numVuelo;
             this.Ruta = ruta;
             this.Avion = avion;
             this.Frecuencia = frecuencia;
-            this.Nacionalidad = nacionalidad;
-            this.TipoDeCliente = tipoDeCliente;
         }
         #endregion
 
         #region Metodos
         public override string ToString()
         {
-            return $"Numero de Vuelo: {this.NumVuelo}, Ruta: {this.Ruta}, Avion: {this.Avion}, Frecuencia: {this.Frecuencia}, Nacionalidad: {this.Nacionalidad} y Tipo de cliente: {this.TipoDeCliente} ";
+            return $"Numero de Vuelo: {this.NumVuelo}, Ruta: {this.Ruta}, Avion: {this.Avion} y Frecuencia: {this.Frecuencia}";
         }
         #endregion
     }

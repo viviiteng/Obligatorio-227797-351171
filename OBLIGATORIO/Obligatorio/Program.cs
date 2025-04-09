@@ -88,8 +88,8 @@ namespace Obligatorio
                 Console.WriteLine("1- Listado de Administradores.");
                 Console.WriteLine("2- Listado de Aeropuertos.");
                 Console.WriteLine("3- Listado de Aviones.");
-                Console.WriteLine("4- Listado de .");
-                Console.WriteLine("5- Listado de .");
+                Console.WriteLine("4- Listado de Rutas.");
+                Console.WriteLine("5- Listado de Vuelos.");
                 Console.WriteLine("6- Listado de .");
                 Console.WriteLine("7- Listado de .");
                 Console.WriteLine("8- Listado de .");
@@ -123,9 +123,18 @@ namespace Obligatorio
                         Console.ReadKey();
                         break;
                     case "4":
-
+                        foreach (Ruta unaRuta in sistema.Rutas)
+                        {
+                            Console.WriteLine(unaRuta);
+                        }
+                        Console.ReadKey();
                         break;
                     case "5":
+                        foreach (Vuelo unVuelo in sistema.Vuelos)
+                        {
+                            Console.WriteLine(unVuelo);
+                        }
+                        Console.ReadKey();
                         break;
                     case "0":
                         salir = true;
