@@ -29,7 +29,7 @@ namespace Dominio
         #region Metodos
         public override string ToString()
         {
-            return $"Numero de Vuelo: {this.NumVuelo}, Ruta: {this.Ruta}, Avion: {this.Avion} y Frecuencia: {this.Frecuencia}";
+            return $"Numero de Vuelo: {this.NumVuelo}, Avion: {this.Avion.Modelo}, Ruta: {this.Ruta.AeropuertoSalida.CodigoIATA}-{this.Ruta.AeropuertoLlegada.CodigoIATA}, Frecuencia: {this.Frecuencia}";
         }
         #endregion
     }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    class @enum
+    public enum TipoEquipaje
     {
+        LIGHT,
+        CABINA,
+        BODEGA
     }
 }

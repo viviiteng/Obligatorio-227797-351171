@@ -14,14 +14,26 @@ namespace Dominio
         public string Correo { get; set; }
         public string Pass { get; set; }
         public string Nacionalidad { get; set; }
-        public string TipoDeCliente { get; set; }
         #endregion
 
         #region Constructor
+        public Cliente() { }
+        public Cliente (string cedula, string nombre, string correo, string pass, string nacionalidad) 
+        {
+            this.Cedula = cedula;
+            this.Nombre = nombre;
+            this.Correo = correo;
+            this.Pass = pass;
+            this.Nacionalidad = nacionalidad;
+        }
+
         #endregion
 
         #region Metodos
-
+        public override string ToString()
+        {
+            return $"Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Password: {this.Pass}, Nacionalidad: {this.Nacionalidad},";
+        }
         #endregion
     }
 }

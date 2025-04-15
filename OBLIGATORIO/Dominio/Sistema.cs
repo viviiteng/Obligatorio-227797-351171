@@ -21,31 +21,47 @@
             Pasajes = new List<Pasaje>();
             Vuelos = new List<Vuelo>();
 
-            PrecargarDatos();
+            precargarDatos();
         }
 
         
 
         #region Precargas
-        public void PrecargarDatos()
+        private void precargarDatos()
         {
 
-            PrecargarAdministradores();
-            PrecargarAviones();
-            PrecargaAeropuertos();
-            PrecargarRutas(); 
-            PrecargarVuelos();
-            
+            precargarAdministradores();
+            precargarAviones();
+            precargaAeropuertos();
+            precargarRutas(); 
+            precargarVuelos();
+            precargarClientes();
+            precagarPasajes();
 
         }
 
-        private void PrecargarAdministradores()
+        private void precargarClientes()
+        {
+            AgregarNuevoCliente(new ClientePremium("12345678", "Martín Pérez", "martin.perez@gmail.com", "pass123", "Uruguaya", 1500));
+            AgregarNuevoCliente(new ClientePremium("23456789", "Laura Gómez", "laura.gomez@hotmail.com", "laura456", "Argentina", 3200));
+            AgregarNuevoCliente(new ClientePremium("34567890", "Carlos Silva", "carlos.silva@yahoo.com", "silva2023", "Chilena", 2100));
+            AgregarNuevoCliente(new ClientePremium("45678901", "Ana Torres", "ana.torres@gmail.com", "torres321", "Uruguaya", 2750));
+            AgregarNuevoCliente(new ClientePremium("56789012", "Diego Fernández", "diego.fernandez@outlook.com", "dfpass789", "Brasilera", 3900));
+
+            AgregarNuevoCliente(new ClienteOcasional("67890123", "Valentina Suárez", "valesuarez@gmail.com", "vale123", "Paraguaya", true));
+            AgregarNuevoCliente(new ClienteOcasional("78901234", "Rodrigo López", "rodrilopez@hotmail.com", "rodri456", "Uruguaya", false));
+            AgregarNuevoCliente(new ClienteOcasional("89012345", "María Rivas", "maria.rivas@yahoo.com", "rivas789", "Peruana", true));
+            AgregarNuevoCliente(new ClienteOcasional("90123456", "Nicolás Méndez", "nico.mendez@gmail.com", "nicolas321", "Colombiana", false));
+            AgregarNuevoCliente(new ClienteOcasional("01234567", "Lucía Figueroa", "lucia.fig@outlook.com", "figpass852", "Boliviana", true));
+        
+        }
+        private void precargarAdministradores()
         {
             AgregarNuevoAdministrador(new Administrador("Agustin", "agustin@gmail.com", "1234"));
             AgregarNuevoAdministrador(new Administrador("Viviana", "viviana@gmail.com", "4321"));
         }
 
-        private void PrecargarAviones()
+        private void precargarAviones()
         {
             AgregarNuevoAvion(new Avion("Boeing", "737 MAX", 178, 6570.0, 8500.00));
             AgregarNuevoAvion(new Avion("Airbus", "A320neo", 180, 6300.0, 8200.00));
@@ -54,7 +70,7 @@
 
         }
 
-        private void PrecargaAeropuertos()
+        private void precargaAeropuertos()
         {
             AgregarNuevoAeropuerto(new Aeropuerto("MVD", "Montevideo", 1200.50, 300.75));
             AgregarNuevoAeropuerto(new Aeropuerto("SCL", "Santiago", 1350.00, 280.40));
@@ -79,7 +95,7 @@
   
         }
 
-        private void PrecargarRutas()
+        private void precargarRutas()
         {
             AgregarNuevaRuta(new Ruta(Aeropuertos[0], Aeropuertos[1], 1500.0));     // MVD -> SCL
             AgregarNuevaRuta(new Ruta(Aeropuertos[0], Aeropuertos[2], 2100.0));     // MVD -> EZE
@@ -112,7 +128,7 @@
             AgregarNuevaRuta(new Ruta(Aeropuertos[11], Aeropuertos[14], 11700.0));  // BCN -> NRT
             AgregarNuevaRuta(new Ruta(Aeropuertos[18], Aeropuertos[0], 3200.0));    // LIM -> MVD   
         }
-        private void PrecargarVuelos()
+        private void precargarVuelos()
         {
             AgregarNuevoVuelo(new Vuelo("AR101", Rutas[0], Aviones[0], new Frecuencia[] { Frecuencia.lunes, Frecuencia.viernes }));
             AgregarNuevoVuelo(new Vuelo("LA203", Rutas[1], Aviones[1], new Frecuencia[] { Frecuencia.martes, Frecuencia.sabado }));
@@ -145,13 +161,55 @@
             AgregarNuevoVuelo(new Vuelo("QF878", Rutas[28], Aviones[0], new Frecuencia[] { Frecuencia.martes, Frecuencia.sabado }));
             AgregarNuevoVuelo(new Vuelo("EK301", Rutas[29], Aviones[1], new Frecuencia[] { Frecuencia.domingo, Frecuencia.jueves }));
         }
+
+        private void precagarPasajes()
+        {
+            AgregarNuevoPasaje(new Pasaje(Vuelos[0], new DateTime(2025, 5, 10), Clientes[0], TipoEquipaje.CABINA, 350.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[1], new DateTime(2025, 5, 12), Clientes[5], TipoEquipaje.LIGHT, 280.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[2], new DateTime(2025, 5, 13), Clientes[1], TipoEquipaje.BODEGA, 410.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[3], new DateTime(2025, 5, 14), Clientes[6], TipoEquipaje.CABINA, 360.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[4], new DateTime(2025, 5, 15), Clientes[2], TipoEquipaje.LIGHT, 290.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[5], new DateTime(2025, 5, 16), Clientes[7], TipoEquipaje.BODEGA, 430.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[6], new DateTime(2025, 5, 17), Clientes[3], TipoEquipaje.CABINA, 375.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[7], new DateTime(2025, 5, 18), Clientes[8], TipoEquipaje.LIGHT, 300.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[8], new DateTime(2025, 5, 19), Clientes[4], TipoEquipaje.BODEGA, 450.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[9], new DateTime(2025, 5, 20), Clientes[9], TipoEquipaje.CABINA, 360.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[10], new DateTime(2025, 5, 21),Clientes[0], TipoEquipaje.LIGHT, 320.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[11], new DateTime(2025, 5, 22),Clientes[5], TipoEquipaje.BODEGA, 390.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[12], new DateTime(2025, 5, 23),Clientes[1], TipoEquipaje.CABINA, 355.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[13], new DateTime(2025, 5, 24),Clientes[6], TipoEquipaje.LIGHT, 295.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[14], new DateTime(2025, 5, 25),Clientes[2], TipoEquipaje.BODEGA, 460.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[15], new DateTime(2025, 5, 26),Clientes[7], TipoEquipaje.CABINA, 370.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[16], new DateTime(2025, 5, 27),Clientes[3], TipoEquipaje.LIGHT, 310.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[17], new DateTime(2025, 5, 28),Clientes[8], TipoEquipaje.BODEGA, 440.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[18], new DateTime(2025, 5, 29),Clientes[4], TipoEquipaje.CABINA, 385.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[19], new DateTime(2025, 5, 30),Clientes[9], TipoEquipaje.LIGHT, 305.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[20], new DateTime(2025, 6, 1), Clientes[0], TipoEquipaje.BODEGA, 470.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[21], new DateTime(2025, 6, 2), Clientes[5], TipoEquipaje.CABINA, 365.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[22], new DateTime(2025, 6, 3), Clientes[1], TipoEquipaje.LIGHT, 315.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[23], new DateTime(2025, 6, 4), Clientes[6], TipoEquipaje.BODEGA, 425.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[24], new DateTime(2025, 6, 5), Clientes[2], TipoEquipaje.CABINA, 380.00));
+        }
+
         #endregion
 
         #region Cliente
-        public void AgregarNuevoCliente()
+        public void AgregarNuevoCliente(Cliente unCliente)
         {
-            Cliente unCliente = new Cliente();
             Clientes.Add(unCliente);
+        }
+
+        public bool GenerarBoolRandom()
+        {
+            Random random = new Random();
+            int numero = random.Next(0, 2);
+            bool resultado = false;
+            if (numero == 1) 
+            {
+                resultado = true;
+            }
+
+            return resultado;
         }
         #endregion
 
@@ -159,7 +217,6 @@
         #region Administrador
         public void AgregarNuevoAdministrador(Administrador administrador)
         {
-            Administrador unAdministrador = new Administrador();
             this.Administradores.Add(administrador);
         }
         #endregion
@@ -178,6 +235,21 @@
         {
 
             Vuelos.Add(unVuelo);
+        }
+
+        public List<Vuelo> ListarVueloSegunIATA(string codigoIata)
+        {
+            string codigoMayus = codigoIata.ToUpper();
+            List<Vuelo> listaSegunIata = new List<Vuelo>();
+
+            foreach (Vuelo unVuelo in Vuelos)
+            {
+                if (codigoMayus == unVuelo.Ruta.AeropuertoSalida.CodigoIATA || codigoMayus == unVuelo.Ruta.AeropuertoLlegada.CodigoIATA)
+                {
+                    listaSegunIata.Add(unVuelo);
+                }
+            }
+            return listaSegunIata;
         }
         #endregion
 
@@ -205,6 +277,22 @@
         }
         #endregion
 
+        #region Pasajes
+        public List<Pasaje> FlitraPasajesSegunFecha(DateTime fechaIngresada)
+        {
+            List<Vuelo> listaSeguFecha = new List<Vuelo>();
+
+            foreach (Pasaje unPasaje in Pasajes)
+            {
+                if (fechaIngresada == unVuelo.Ruta.AeropuertoSalida.CodigoIATA || codigoMayus == unVuelo.Ruta.AeropuertoLlegada.CodigoIATA)
+                {
+                    listaSegunIata.Add(unVuelo);
+                }
+            }
+            return listaSegunIata;
+        }
+
+        #endregion
 
 
 
