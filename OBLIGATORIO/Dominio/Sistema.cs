@@ -1,4 +1,6 @@
-﻿namespace Dominio
+﻿using System.Linq.Expressions;
+
+namespace Dominio
 {
     public class Sistema
     {
@@ -196,6 +198,7 @@
         #region Cliente
         public void AgregarNuevoCliente(Cliente unCliente)
         {
+
             Clientes.Add(unCliente);
         }
 
@@ -233,7 +236,6 @@
         #region Vuelo
         public void AgregarNuevoVuelo(Vuelo unVuelo)
         {
-
             Vuelos.Add(unVuelo);
         }
 
@@ -278,18 +280,18 @@
         #endregion
 
         #region Pasajes
-        public List<Pasaje> FlitraPasajesSegunFecha(DateTime fechaIngresada)
+        public List<Pasaje> FlitraPasajesSegunFechas(DateTime fechaUno, DateTime fechaDos )
         {
-            List<Vuelo> listaSeguFecha = new List<Vuelo>();
+            List<Pasaje> listaSegunFecha = new List<Pasaje>();
 
             foreach (Pasaje unPasaje in Pasajes)
             {
-                if (fechaIngresada == unVuelo.Ruta.AeropuertoSalida.CodigoIATA || codigoMayus == unVuelo.Ruta.AeropuertoLlegada.CodigoIATA)
+                if (fechaUno <= unPasaje.FechaDeVuelo && fechaDos >= unPasaje.FechaDeVuelo)
                 {
-                    listaSegunIata.Add(unVuelo);
+                    listaSegunFecha.Add(unPasaje);
                 }
             }
-            return listaSegunIata;
+            return listaSegunFecha;
         }
 
         #endregion

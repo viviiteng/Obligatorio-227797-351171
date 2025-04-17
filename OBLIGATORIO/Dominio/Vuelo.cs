@@ -31,6 +31,14 @@ namespace Dominio
         {
             return $"Numero de Vuelo: {this.NumVuelo}, Avion: {this.Avion.Modelo}, Ruta: {this.Ruta.AeropuertoSalida.CodigoIATA}-{this.Ruta.AeropuertoLlegada.CodigoIATA}, Frecuencia: {this.Frecuencia}";
         }
+
+        public void ValidarAlcanceDelAvion()
+        {
+            if(this.Ruta.Distancia > this.Avion.Alcance)
+            {
+                throw new Exception("El alance del avion no es suficiente para cubrir la distancia de ruta.");
+            }
+        }
         #endregion
     }
 }

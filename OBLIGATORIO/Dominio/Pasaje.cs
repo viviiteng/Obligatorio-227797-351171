@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic;
 
 namespace Dominio
 {
@@ -10,7 +11,7 @@ namespace Dominio
     {
         #region Atributo
         public int IdPasaje { get; set; }
-        public int UltimoIdPasaje { get; set; }
+        public static int UltimoIdPasaje { get; set; }
         public Vuelo Vuelo { get; set; }
         public DateTime FechaDeVuelo { get; set; }
         public Cliente Pasajero { get; set; }
@@ -37,7 +38,7 @@ namespace Dominio
         #region Metodos
         public override string ToString()
         {
-            return $"Id del Pasaje: {this.IdPasaje}, Vuelo: {this.Vuelo}, Fecha del vuelo: {this.FechaDeVuelo}, Pasajero: {this.Pasajero} Tipo de equipaje: {this.Equipaje} y Precio del pasaje: {this.PrecioPasaje} ";
+            return $"Id del Pasaje: {this.IdPasaje}, Pasajero: {this.Pasajero.Nombre}, Precio del pasaje: {this.PrecioPasaje}, Fecha del vuelo: {this.FechaDeVuelo.ToString("dd/MM/yyyy")}, Vuelo: {this.Vuelo.NumVuelo}. ";
         }
         #endregion
     }

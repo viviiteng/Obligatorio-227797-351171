@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,15 @@ namespace Dominio
         public override string ToString()
         {
             return $"Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Password: {this.Pass}, Nacionalidad: {this.Nacionalidad},";
+        }
+
+        public void ValidarFormatoCliente(string cedula, string nombre, string correo, string pass, string nacionalidad)
+        {
+            if(cedula == "" && nombre == "" && correo == "" && pass == "" && nacionalidad == "")
+            {
+                throw new Exception("Error: Ninguno de los campos puede estar vacío");
+            }
+            
         }
         #endregion
     }
