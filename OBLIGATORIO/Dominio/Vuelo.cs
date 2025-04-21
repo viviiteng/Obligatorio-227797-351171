@@ -12,24 +12,29 @@ namespace Dominio
         public string NumVuelo { get; set; }
         public Ruta Ruta { get; set; }
         public Avion Avion { get; set; }
-        public Frecuencia[] Frecuencia { get; set; }
+        public List <Frecuencia> frecuencias { get; set; }
         #endregion
 
         #region Constructor
         public Vuelo() { }
 
-        public Vuelo(string numVuelo, Ruta ruta, Avion avion, Frecuencia[] frecuencia) { 
+        public Vuelo(string numVuelo, Ruta ruta, Avion avion, List<Frecuencia> frecuencias) { 
             this.NumVuelo = numVuelo;
             this.Ruta = ruta;
             this.Avion = avion;
-            this.Frecuencia = frecuencia;
+            this.frecuencias = frecuencias;
         }
         #endregion
 
         #region Metodos
         public override string ToString()
         {
-            return $"Numero de Vuelo: {this.NumVuelo}, Avion: {this.Avion.Modelo}, Ruta: {this.Ruta.AeropuertoSalida.CodigoIATA}-{this.Ruta.AeropuertoLlegada.CodigoIATA}, Frecuencia: {this.Frecuencia}";
+            string frencuencia = "";
+            foreach (Frecuencia dia in this.frecuencias)
+            {
+                frencuencia  += $"{dia} ";
+            }
+            return $"Numero de Vuelo: {this.NumVuelo}, Avion: {this.Avion.Modelo}, Ruta: {this.Ruta.AeropuertoSalida.CodigoIATA}-{this.Ruta.AeropuertoLlegada.CodigoIATA}, Frecuencia: {frencuencia}";
         }
 
         public void ValidarAlcanceDelAvion()

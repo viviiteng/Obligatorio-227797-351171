@@ -31,6 +31,18 @@ namespace Dominio
         {
             return $"Codigo IATA: {this.CodigoIATA}, Ciudad: {this.Ciudad}, Costo de operacion: {this.CostoOperacion}, Costo de tasas: {this.CostoTasas}.";
         }
+
+        public bool ValidarCodigoIATA()
+        {
+            bool esCodigo = false;
+            if (this.CodigoIATA.Length == 3)
+            {
+                esCodigo = true;
+            }
+
+            return esCodigo ;
+            
+        }
         #endregion
     }
 }

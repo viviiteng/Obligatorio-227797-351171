@@ -36,6 +36,11 @@ namespace Dominio
         #endregion
 
         #region Metodos
+
+        public void ValidarFecha()
+        {
+
+        }
         public override string ToString()
         {
             return $"Id del Pasaje: {this.IdPasaje}, Pasajero: {this.Pasajero.Nombre}, Precio del pasaje: {this.PrecioPasaje}, Fecha del vuelo: {this.FechaDeVuelo.ToString("dd/MM/yyyy")}, Vuelo: {this.Vuelo.NumVuelo}. ";

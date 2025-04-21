@@ -8,7 +8,14 @@ namespace Obligatorio
         private static Sistema sistema = new Sistema();
         static void Main(string[] args)
         {
-            //sistema.PrecargarDatos();
+            try
+            {
+                sistema.PrecargarDatos();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             bool salir = false;
             while (!salir)
             {
