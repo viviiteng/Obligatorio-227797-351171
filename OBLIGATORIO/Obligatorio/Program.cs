@@ -27,7 +27,7 @@ namespace Obligatorio
                 Console.WriteLine("2- Listado de vuelos.");
                 Console.WriteLine("3- Alta de cliente ocasional.");
                 Console.WriteLine("4- Listado de pasajes emitidos.");
-                Console.WriteLine("5-");
+                Console.WriteLine("5- Emitir pasaje");
                 Console.WriteLine("6- ");
                 Console.WriteLine("7- ");
                 Console.WriteLine("8- ");
@@ -55,7 +55,7 @@ namespace Obligatorio
                         MostrarListaPasajesSegunFecha();
                         break;
                     case "5":
-                        
+                        EmitirNuevoPasaje();
                         break;
                     case "6":
 
@@ -195,6 +195,53 @@ namespace Obligatorio
             Console.ReadKey();
         }
 
+        public static void EmitirNuevoPasaje()
+        {
+            Console.Clear();
+            Console.WriteLine("Emitir nuevo pasaje:");
+            
+            bool salir = false;
+            while (!salir) {
+                Console.WriteLine($"Ingrese un numero del 1 al {sistema.Vuelos.Count} para seleccionar un vuelo:");
+                for (int i = 0; i < sistema.Vuelos.Count; i++)
+                {
+                    Vuelo unVuelo = sistema.Vuelos[i];
+                    Console.WriteLine($"{i + 1}. {unVuelo.NumVuelo}: Origen: {unVuelo.Ruta.AeropuertoSalida.Ciudad}, Destino: {unVuelo.Ruta.AeropuertoLlegada.Ciudad}");
+              
+                }                
+                bool esNum = int.TryParse(Console.ReadLine(), out int opcionIngresada);
+                Vuelo vueloSeleccionado = sistema.Vuelos[opcionIngresada - 1];
+
+                Console.WriteLine($"Ingrese una fecha (AAAA/MM/DD):");
+                bool esDateTime = false;
+                DateTime fechaIngresada = new DateTime();
+                while (!esDateTime)
+                {
+                    bool esFecha = DateTime.TryParse(Console.ReadLine(), out fechaIngresada);
+                    if (esFecha)
+                    {
+                        esDateTime = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Formato ingresado incorrecto. Vuelve a internarlo.");
+                    }
+
+                }
+                Pasaje.ValidarFecha();
+
+
+                if (esNum && esDateTime) { 
+
+                Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Clientes[0], TipoEquipaje equipaje, double precioPasaje);
+                sistema.AgregarNuevoPasaje(nuevoPasaje);
+                }
+                Console.ReadKey();
+                
+
+            }
+        }
+
         public static void ListarPruebas()
         {
 
@@ -272,7 +319,10 @@ namespace Obligatorio
                         break;
                     default:
                         break;
+                       
                 }
+
+                
             }
         }
     }
