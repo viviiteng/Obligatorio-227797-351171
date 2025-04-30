@@ -13,7 +13,7 @@ namespace Dominio
         public string Modelo { get; set; }
         public int CantAsientos { get; set; }
         public double Alcance { get; set; }
-        public double CostoOperacion { get; set; }
+        public double CostoOperacionPorKm { get; set; }
         #endregion
 
         #region Constructor
@@ -26,15 +26,14 @@ namespace Dominio
             this.Modelo = modelo;
             this.CantAsientos = cantAsientos;
             this.Alcance = alcance; 
-            this.CostoOperacion = costoOperacion;
-
+            this.CostoOperacionPorKm = costoOperacion;
         }
         #endregion
 
         #region Metodos
         public override string ToString()
         {
-            return $"Fabricante: {this.Fabricante}, Modelo: {this.Modelo}, Cantidad de asientos: {this.CantAsientos}, Alcance: {this.Alcance}, Costo de operacion: {this.CostoOperacion}. "; 
+            return $"Fabricante: {this.Fabricante}, Modelo: {this.Modelo}, Cantidad de asientos: {this.CantAsientos}, Alcance: {this.Alcance}, Costo de operacion: {this.CostoOperacionPorKm}. "; 
         }
         #endregion
     }

@@ -15,6 +15,7 @@ namespace Obligatorio
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                Console.ReadKey();
             }
             bool salir = false;
             while (!salir)
@@ -228,14 +229,14 @@ namespace Obligatorio
                     }
 
                 }
-                Pasaje.ValidarFecha();
+                //Pasaje.ValidarFecha();
 
 
-                if (esNum && esDateTime) { 
+                //if (esNum && esDateTime) { 
 
-                Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Clientes[0], TipoEquipaje equipaje, double precioPasaje);
-                sistema.AgregarNuevoPasaje(nuevoPasaje);
-                }
+                //Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Clientes[0], TipoEquipaje equipaje, double precioPasaje);
+                //sistema.AgregarNuevoPasaje(nuevoPasaje);
+                //}
                 Console.ReadKey();
                 
 

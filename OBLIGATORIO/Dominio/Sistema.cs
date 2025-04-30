@@ -65,10 +65,10 @@ namespace Dominio
 
         private void precargarAviones()
         {
-            AgregarNuevoAvion(new Avion("Boeing", "737 MAX", 178, 6570.0, 8500.00));
-            AgregarNuevoAvion(new Avion("Airbus", "A320neo", 180, 6300.0, 8200.00));
-            AgregarNuevoAvion(new Avion("Embraer", "E195-E2", 132, 4800.0, 7200.00));
-            AgregarNuevoAvion(new Avion("Bombardier", "CRJ900", 90, 2956.0, 5400.00));
+            AgregarNuevoAvion(new Avion("Boeing", "737 MAX", 178, 65700.0, 8500.00));
+            AgregarNuevoAvion(new Avion("Airbus", "A320neo", 180, 63000.0, 8200.00));
+            AgregarNuevoAvion(new Avion("Embraer", "E195-E2", 132, 48000.0, 7200.00));
+            AgregarNuevoAvion(new Avion("Bombardier", "CRJ900", 90, 29560.0, 5400.00));
 
         }
 
@@ -138,36 +138,43 @@ namespace Dominio
         }
         private void precargarVuelos()
         {
-            AgregarNuevoVuelo(new Vuelo("AR101", Rutas[0], Aviones[0], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("UX309", Rutas[2], Aviones[2], new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("AF450", Rutas[3], Aviones[3], new List<Frecuencia> { Frecuencia.jueves, Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("IB333", Rutas[4], Aviones[0], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.martes }));
-            AgregarNuevoVuelo(new Vuelo("DL220", Rutas[5], Aviones[1], new List<Frecuencia> { Frecuencia.viernes, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("UA875", Rutas[6], Aviones[2], new List<Frecuencia> { Frecuencia.jueves, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("LA203", Rutas[1], Aviones[1], new List<Frecuencia> { Frecuencia.martes, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("LH708", Rutas[7], Aviones[3], new List<Frecuencia> { Frecuencia.miercoles }));
-            AgregarNuevoVuelo(new Vuelo("KL110", Rutas[8], Aviones[0], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.martes, Frecuencia.jueves }));
-            AgregarNuevoVuelo(new Vuelo("AZ556", Rutas[9], Aviones[1], new List<Frecuencia> { Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("AC990", Rutas[10], Aviones[2], new List<Frecuencia> { Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("JJ777", Rutas[11], Aviones[3], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.miercoles }));
-            AgregarNuevoVuelo(new Vuelo("NH852", Rutas[12], Aviones[0], new List<Frecuencia> { Frecuencia.martes, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("QF908", Rutas[13], Aviones[1], new List<Frecuencia> { Frecuencia.lunes }));
-            AgregarNuevoVuelo(new Vuelo("EK202", Rutas[14], Aviones[2], new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("QR118", Rutas[15], Aviones[3], new List<Frecuencia> { Frecuencia.jueves }));
-            AgregarNuevoVuelo(new Vuelo("LA515", Rutas[16], Aviones[0], new List<Frecuencia> { Frecuencia.viernes, Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("AV300", Rutas[17], Aviones[1], new List<Frecuencia> { Frecuencia.lunes }));
-            AgregarNuevoVuelo(new Vuelo("AR132", Rutas[18], Aviones[2], new List<Frecuencia> { Frecuencia.martes }));
-            AgregarNuevoVuelo(new Vuelo("IB440", Rutas[19], Aviones[3], new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("DL155", Rutas[20], Aviones[0], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("AF621", Rutas[21], Aviones[1], new List<Frecuencia> { Frecuencia.jueves, Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("KL205", Rutas[22], Aviones[2], new List<Frecuencia> { Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("BA775", Rutas[23], Aviones[3], new List<Frecuencia> { Frecuencia.martes, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("JJ803", Rutas[24], Aviones[0], new List<Frecuencia> { Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("AZ313", Rutas[25], Aviones[1], new List<Frecuencia> { Frecuencia.miercoles }));
-            AgregarNuevoVuelo(new Vuelo("AC499", Rutas[26], Aviones[2], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.jueves }));
-            AgregarNuevoVuelo(new Vuelo("NH404", Rutas[27], Aviones[3], new List<Frecuencia> { Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("QF878", Rutas[28], Aviones[0], new List<Frecuencia> { Frecuencia.martes, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("EK301", Rutas[29], Aviones[1], new List<Frecuencia> { Frecuencia.domingo, Frecuencia.jueves }));
+            try
+            {
+                AgregarNuevoVuelo(new Vuelo("AR101", Rutas[0], Aviones[0], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.viernes }));
+                AgregarNuevoVuelo(new Vuelo("UX309", Rutas[2], Aviones[2], new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.domingo }));
+                AgregarNuevoVuelo(new Vuelo("AF450", Rutas[3], Aviones[1], new List<Frecuencia> { Frecuencia.jueves, Frecuencia.domingo }));
+                AgregarNuevoVuelo(new Vuelo("IB333", Rutas[4], Aviones[0], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.martes }));
+                AgregarNuevoVuelo(new Vuelo("DL220", Rutas[5], Aviones[1], new List<Frecuencia> { Frecuencia.viernes, Frecuencia.sabado }));
+                AgregarNuevoVuelo(new Vuelo("UA875", Rutas[6], Aviones[2], new List<Frecuencia> { Frecuencia.jueves, Frecuencia.viernes }));
+                AgregarNuevoVuelo(new Vuelo("LA203", Rutas[1], Aviones[1], new List<Frecuencia> { Frecuencia.martes, Frecuencia.sabado }));
+                AgregarNuevoVuelo(new Vuelo("LH708", Rutas[7], Aviones[3], new List<Frecuencia> { Frecuencia.miercoles }));
+                AgregarNuevoVuelo(new Vuelo("KL110", Rutas[8], Aviones[0], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.martes, Frecuencia.jueves }));
+                AgregarNuevoVuelo(new Vuelo("AZ556", Rutas[9], Aviones[1], new List<Frecuencia> { Frecuencia.sabado }));
+                AgregarNuevoVuelo(new Vuelo("AC990", Rutas[10], Aviones[2], new List<Frecuencia> { Frecuencia.domingo }));
+                AgregarNuevoVuelo(new Vuelo("JJ777", Rutas[11], Aviones[3], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.miercoles }));
+                AgregarNuevoVuelo(new Vuelo("NH852", Rutas[12], Aviones[0], new List<Frecuencia> { Frecuencia.martes, Frecuencia.viernes }));
+                AgregarNuevoVuelo(new Vuelo("QF908", Rutas[13], Aviones[1], new List<Frecuencia> { Frecuencia.lunes }));
+                AgregarNuevoVuelo(new Vuelo("EK202", Rutas[14], Aviones[2], new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.sabado }));
+                AgregarNuevoVuelo(new Vuelo("QR118", Rutas[15], Aviones[3], new List<Frecuencia> { Frecuencia.jueves }));
+                AgregarNuevoVuelo(new Vuelo("LA515", Rutas[16], Aviones[0], new List<Frecuencia> { Frecuencia.viernes, Frecuencia.domingo }));
+                AgregarNuevoVuelo(new Vuelo("AV300", Rutas[17], Aviones[1], new List<Frecuencia> { Frecuencia.lunes }));
+                AgregarNuevoVuelo(new Vuelo("AR132", Rutas[18], Aviones[2], new List<Frecuencia> { Frecuencia.martes }));
+                AgregarNuevoVuelo(new Vuelo("IB440", Rutas[19], Aviones[3], new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.sabado }));
+                AgregarNuevoVuelo(new Vuelo("DL155", Rutas[20], Aviones[0], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.viernes }));
+                AgregarNuevoVuelo(new Vuelo("AF621", Rutas[21], Aviones[1], new List<Frecuencia> { Frecuencia.jueves, Frecuencia.domingo }));
+                AgregarNuevoVuelo(new Vuelo("KL205", Rutas[22], Aviones[2], new List<Frecuencia> { Frecuencia.sabado }));
+                AgregarNuevoVuelo(new Vuelo("BA775", Rutas[23], Aviones[3], new List<Frecuencia> { Frecuencia.martes, Frecuencia.viernes }));
+                AgregarNuevoVuelo(new Vuelo("JJ803", Rutas[24], Aviones[0], new List<Frecuencia> { Frecuencia.domingo }));
+                AgregarNuevoVuelo(new Vuelo("AZ313", Rutas[25], Aviones[1], new List<Frecuencia> { Frecuencia.miercoles }));
+                AgregarNuevoVuelo(new Vuelo("AC499", Rutas[26], Aviones[2], new List<Frecuencia> { Frecuencia.lunes, Frecuencia.jueves }));
+                AgregarNuevoVuelo(new Vuelo("NH404", Rutas[27], Aviones[3], new List<Frecuencia> { Frecuencia.viernes }));
+                AgregarNuevoVuelo(new Vuelo("QF878", Rutas[28], Aviones[0], new List<Frecuencia> { Frecuencia.martes, Frecuencia.sabado }));
+                AgregarNuevoVuelo(new Vuelo("EK301", Rutas[29], Aviones[1], new List<Frecuencia> { Frecuencia.domingo, Frecuencia.jueves }));
+            }
+            catch (Exception ex) 
+            {
+                throw;
+            }
         }
 
         private void precagarPasajes()
@@ -244,6 +251,7 @@ namespace Dominio
         #region Vuelo
         public void AgregarNuevoVuelo(Vuelo unVuelo)
         {
+            unVuelo.ValidarVuelo();
             Vuelos.Add(unVuelo);
         }
 
@@ -283,10 +291,7 @@ namespace Dominio
         #region Aeropuerto
         public void AgregarNuevoAeropuerto(Aeropuerto unAeropuerto)
         {
-            if (!unAeropuerto.ValidarCodigoIATA())
-            {
-                throw new Exception("Codigo IATA ingresado no cumple con el formato de 3 letras");
-            }
+            unAeropuerto.ValidarAeropuerto();
             Aeropuertos.Add(unAeropuerto);
         }
         #endregion

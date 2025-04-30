@@ -32,16 +32,51 @@ namespace Dominio
             return $"Codigo IATA: {this.CodigoIATA}, Ciudad: {this.Ciudad}, Costo de operacion: {this.CostoOperacion}, Costo de tasas: {this.CostoTasas}.";
         }
 
-        public bool ValidarCodigoIATA()
+        public void ValidarAeropuerto()
         {
-            bool esCodigo = false;
-            if (this.CodigoIATA.Length == 3)
-            {
-                esCodigo = true;
-            }
+            validarCodigoIATA();
+            validarContenido();
+        }
+        private void validarCodigoIATA()
+        {
+            validarCantLetras();
 
-            return esCodigo ;
-            
+            foreach (char digito in this.CodigoIATA)
+            {
+                if (!esLetra(digito))
+                {
+                    throw new Exception("Los tres digitos tienen que ser Letras");
+                }
+            }
+        }
+        private void validarCantLetras()
+        {           
+            if (this.CodigoIATA.Length != 3)
+            {
+                throw new Exception("Codigo IATA ingresado no cumple con el formato de 3 letras");
+            }
+        }
+
+        private bool esLetra(char digito)
+        {
+            string letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            foreach (char letra in letras)
+            {
+                if (letra==digito)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void validarContenido()
+        {
+            if (this.Ciudad=="" && this.CodigoIATA=="")
+            {
+                throw new Exception("Las secciones no pueden quedar vacios");
+            }
         }
         #endregion
     }
