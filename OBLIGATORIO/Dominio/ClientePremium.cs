@@ -15,10 +15,17 @@ namespace Dominio
             this.PuntosAcumulados = puntos;
         }
 
-        public override string ToString()
+        public override void ValidarContenidos()
         {
+            if (this.Cedula == "" || this.Nombre == "" || this.Correo == "" || this.Pass == "" || this.Nacionalidad == "" || this.PuntosAcumulados<0)
+            {
+                throw new Exception("Los valores para cada atributo del cliente premium no pueden estar vacios");
+            }
+        }
+        public override string ObtenerDatosCliente()
+        {
+            return $"CLIENTE PREMIUM: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Contrasena: {this.Pass}, Nacionalidad: {this.Nacionalidad}, Puntos: {this.PuntosAcumulados}";
 
-            return base.ToString() + $" Cliente premium con sus puntos: {this.PuntosAcumulados} ";
         }
 
     }

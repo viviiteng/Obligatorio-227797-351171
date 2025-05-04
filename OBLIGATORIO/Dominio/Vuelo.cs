@@ -113,7 +113,10 @@ namespace Dominio
             }
         }
 
-        
+        public double CalcularCostaPorAsiento()
+        {
+        return (this.Avion.CostoOperacionPorKm * this.Ruta.Distancia + this.Ruta.AeropuertoSalida.CostoOperacion + this.Ruta.AeropuertoLlegada.CostoOperacion) / this.Avion.CantAsientos;
+        }
         #endregion
     }
 }

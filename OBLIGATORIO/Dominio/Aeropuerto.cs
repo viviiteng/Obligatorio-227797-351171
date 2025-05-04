@@ -73,10 +73,15 @@ namespace Dominio
 
         private void validarContenido()
         {
-            if (this.Ciudad=="" && this.CodigoIATA=="")
+            if (this.Ciudad=="" || this.CodigoIATA=="")
             {
-                throw new Exception("Las secciones no pueden quedar vacios");
+                throw new Exception("Las secciones no pueden quedar vacias");
             }
+        }
+        public override bool Equals(object? obj)
+        {
+            Aeropuerto otro = (Aeropuerto)obj;
+            return this.CodigoIATA.ToUpper() == otro.CodigoIATA.ToUpper();
         }
         #endregion
     }

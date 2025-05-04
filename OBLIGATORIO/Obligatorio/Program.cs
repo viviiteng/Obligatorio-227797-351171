@@ -39,12 +39,7 @@ namespace Obligatorio
                 switch (opcionIngresada)
                 {
                     case "1":
-                        foreach (Cliente unCliente in sistema.Clientes)
-                        {
-                            Console.WriteLine(unCliente);
-                        }
-                        Console.ReadKey(); 
-
+                        MostrarListaDeClientes();
                         break;
                     case "2":
                         MostrarListaVuelosSegunCodigo();
@@ -72,6 +67,7 @@ namespace Obligatorio
                         break;
                     case "0":
                         salir = true;
+                        Console.ReadKey();
                         break;
                     default:
                         break;
@@ -83,33 +79,59 @@ namespace Obligatorio
 
 
         }
-        //metodod polimorfico?
         public static void MostrarListaDeClientes()
         {
+            Console.Clear();
+            Console.WriteLine("Clientes Registrados:\n");
+            foreach (Cliente unCliente in sistema.ObtenerListadoDeClientes())
+            {
+                Console.WriteLine(unCliente.ObtenerDatosCliente());
+            }
+            Console.WriteLine("\n Presione cualquier tecla para volver.");
 
+            Console.ReadKey();
 
         }
 
         public static void MostrarListaVuelosSegunCodigo()
         {
-            Console.Clear();
-            Console.WriteLine("Ingrese un codigo IATA:");
-            string codigoIngresado = Console.ReadLine();
-            List<Vuelo> listaFiltrada = sistema.ListarVueloSegunIATA(codigoIngresado);
-
-            foreach (Vuelo unVuelo in listaFiltrada)
+            bool salir = false;
+            while (!salir)
             {
-                Console.WriteLine(unVuelo);
+                Console.Clear();
+                Console.WriteLine("Ingrese un codigo IATA:\n");
+                string codigoIngresado = Console.ReadLine();
+                List<Vuelo> listaFiltrada = new List<Vuelo>();
+                try { 
+                    listaFiltrada = sistema.ListarVueloSegunIATA(codigoIngresado);
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                
+                }
+
+                foreach (Vuelo unVuelo in listaFiltrada)
+                {
+                    Console.WriteLine(unVuelo);
+                }
+
+                Console.WriteLine("\nPresione cualquier tecla para volver.");
+                if (listaFiltrada.Count != 0)
+                {
+                    salir = true;
+                }
+                Console.ReadKey();
+                
             }
-            Console.ReadKey();
 
         }
 
         public static void IngresarClienteOcasional()
         {
             Console.Clear();
-            Console.WriteLine("Alta de cliente ocasional.");
-            Console.WriteLine("");
+            Console.WriteLine("Alta de cliente ocasional.\n");
             Console.WriteLine("Ingrese numero de cedula (sin punto ni guion):");
             string cedula = Console.ReadLine();
 
@@ -129,14 +151,17 @@ namespace Obligatorio
 
             try
             {
-                Cliente clienteOcasional = new ClienteOcasional(cedula, nombre, correo, pass, nacionalidad, esClienteOcasional);
-                sistema.AgregarNuevoCliente(clienteOcasional);
+                Usuario clienteOcasional = new ClienteOcasional(cedula, nombre, correo, pass, nacionalidad, esClienteOcasional);
+
+                sistema.AgregarNuevoUsuario(clienteOcasional);
 
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 Console.WriteLine(error.Message);
             }
+            Console.WriteLine("\n Presione cualquier tecla para volver.");
+
             Console.ReadKey();
 
         }
@@ -145,7 +170,7 @@ namespace Obligatorio
         {
             Console.Clear();
 
-            Console.WriteLine("Buscar pasaje dentro de un rango de fechas:");
+            Console.WriteLine("Buscar pasaje dentro de un rango de fechas:\n");
             Console.WriteLine("Ingrese fecha inicial (AAAA/MM/DD):");
             DateTime fechaIngresadaUno = new DateTime();
             DateTime fechaIngresadaDos = new DateTime();
@@ -163,17 +188,20 @@ namespace Obligatorio
                 }
                 else
                 {
-                    Console.WriteLine("Formato ingresado incorrecto");
+                    Console.WriteLine("Formato ingresado incorrecto. Presione cualquier tecla para intentarlo de nuevo.");
+                   
                 }
-                
+
             }
             List<Pasaje> pasajesFiltrados = new List<Pasaje>();
             pasajesFiltrados = sistema.FlitraPasajesSegunFechas(fechaIngresadaUno, fechaIngresadaDos);
-            Console.WriteLine($"Pasajes comprendidos entre {fechaIngresadaUno.ToString("dd/MM/yyyy")} - {fechaIngresadaDos.ToString("dd/MM/yyyy")}:");
+            Console.WriteLine($"\n Pasajes comprendidos entre {fechaIngresadaUno.ToString("dd/MM/yyyy")} - {fechaIngresadaDos.ToString("dd/MM/yyyy")}:\n");
             foreach (Pasaje unPasaje in pasajesFiltrados)
             {
                 Console.WriteLine(unPasaje);
             }
+            Console.WriteLine("Presiones cualquier tecla para volver.\n");
+
             Console.ReadKey();
 
         }
@@ -181,7 +209,7 @@ namespace Obligatorio
         public static void MostrarListaFiltradaAeropuertos()
         {
             Console.Clear();
-            Console.WriteLine("Ingrese un codigo de aeropuerto que desee filtrar:");
+            Console.WriteLine("Ingrese un codigo de aeropuerto que desee filtrar:\n");
             string codigoIngresado = Console.ReadLine().ToUpper();
             try
             {
@@ -193,138 +221,172 @@ namespace Obligatorio
             {
                 Console.WriteLine(error.Message);
             }
+            Console.WriteLine("\nPresiones cualquier tecla para volver.");
+
             Console.ReadKey();
         }
 
         public static void EmitirNuevoPasaje()
         {
             Console.Clear();
-            Console.WriteLine("Emitir nuevo pasaje:");
-            
+            Console.WriteLine("Emitir nuevo pasaje:\n");
+            Vuelo vueloSeleccionado = null;
             bool salir = false;
-            while (!salir) {
+            while (!salir)
+            {
                 Console.WriteLine($"Ingrese un numero del 1 al {sistema.Vuelos.Count} para seleccionar un vuelo:");
                 for (int i = 0; i < sistema.Vuelos.Count; i++)
                 {
                     Vuelo unVuelo = sistema.Vuelos[i];
                     Console.WriteLine($"{i + 1}. {unVuelo.NumVuelo}: Origen: {unVuelo.Ruta.AeropuertoSalida.Ciudad}, Destino: {unVuelo.Ruta.AeropuertoLlegada.Ciudad}");
-              
-                }                
+
+                }
                 bool esNum = int.TryParse(Console.ReadLine(), out int opcionIngresada);
-                Vuelo vueloSeleccionado = sistema.Vuelos[opcionIngresada - 1];
-
-                Console.WriteLine($"Ingrese una fecha (AAAA/MM/DD):");
-                bool esDateTime = false;
-                DateTime fechaIngresada = new DateTime();
-                while (!esDateTime)
+                vueloSeleccionado = sistema.Vuelos[opcionIngresada - 1];
+                if (opcionIngresada > 0 && opcionIngresada < sistema.Vuelos.Count)
                 {
-                    bool esFecha = DateTime.TryParse(Console.ReadLine(), out fechaIngresada);
-                    if (esFecha)
-                    {
-                        esDateTime = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Formato ingresado incorrecto. Vuelve a internarlo.");
-                    }
-
+                    salir = true;
                 }
-                //Pasaje.ValidarFecha();
-
-
-                //if (esNum && esDateTime) { 
-
-                //Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Clientes[0], TipoEquipaje equipaje, double precioPasaje);
-                //sistema.AgregarNuevoPasaje(nuevoPasaje);
-                //}
-                Console.ReadKey();
-                
-
+                else
+                {
+                    Console.WriteLine("\n Ingrese un numero dentro del rango. Vuelve a intentarlo.");
+                }
             }
-        }
 
-        public static void ListarPruebas()
-        {
-
-            bool salir = false;
-            while (!salir)
+            bool esDateTime = false;
+            DateTime fechaIngresada = new DateTime();
+            while (!esDateTime)
             {
-                Console.Clear();
-                Console.WriteLine("1- Listado de Administradores.");
-                Console.WriteLine("2- Listado de Aeropuertos.");
-                Console.WriteLine("3- Listado de Aviones.");
-                Console.WriteLine("4- Listado de Rutas.");
-                Console.WriteLine("5- Listado de Vuelos.");
-                Console.WriteLine("6- Listado de Clientes.");
-                Console.WriteLine("7- Listado de Pasajes.");
-                Console.WriteLine("8- Listado de .");
-                Console.WriteLine("9- Listado de .");
-                Console.WriteLine("0- Salir");
-
-                string opcionIngresada = Console.ReadLine();
-                switch (opcionIngresada)
+                Console.WriteLine($"Ingrese una fecha (AAAA/MM/DD):");
+                bool esFecha = DateTime.TryParse(Console.ReadLine(), out fechaIngresada);
+                if (esFecha)
                 {
-                    case "1":
-
-                        foreach (Administrador unAdmin in sistema.Administradores)
-                        {
-                            Console.WriteLine(unAdmin);
-                        }
-                        Console.ReadKey();
-
-                        break;
-                    case "2":
-                        foreach (Aeropuerto unAeropuerto in sistema.Aeropuertos)
-                        {
-                            Console.WriteLine(unAeropuerto);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "3":
-                        foreach (Avion unAvion in sistema.Aviones)
-                        {
-                            Console.WriteLine(unAvion);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "4":
-                        foreach (Ruta unaRuta in sistema.Rutas)
-                        {
-                            Console.WriteLine(unaRuta);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "5":
-                        foreach (Vuelo unVuelo in sistema.Vuelos)
-                        {
-                            Console.WriteLine(unVuelo);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "6":
-                        foreach (Cliente unCliente in sistema.Clientes)
-                        {
-                            Console.WriteLine(unCliente);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "7":
-                        foreach (Pasaje unPasaje in sistema.Pasajes)
-                        {
-                            Console.WriteLine(unPasaje);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "0":
-                        salir = true;
-                        break;
-                    default:
-                        break;
-                       
+                    esDateTime = true;
                 }
+                else
+                {
+                    Console.WriteLine("\n Formato ingresado incorrecto. Vuelve a intentarlo.");
+                }
+            }
 
+            Console.WriteLine($"Ingrese un numero del 1 al 3 para seleccionar un tipo de equipaje:");
+            
+            TipoEquipaje[] equipajes = (TipoEquipaje[])Enum.GetValues(typeof(TipoEquipaje));
+            
+            for (int i = 0; i < equipajes.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}. {equipajes[i]}");
                 
             }
+            bool esNumEquipaje = false;
+            int equipajeIngresado;
+            TipoEquipaje equipajeSeleccionado = 0;
+            while (!esNumEquipaje)
+            {
+                bool esNumero = int.TryParse(Console.ReadLine(), out equipajeIngresado);
+                if (esNumero && equipajeIngresado > 0 && equipajeIngresado <= 3)
+                {
+                    equipajeSeleccionado = equipajes[equipajeIngresado - 1];
+                    esNumEquipaje = true;
+                    Console.WriteLine(equipajeSeleccionado);
+                }
+                else
+                {
+                    Console.WriteLine("\n Formato ingresado incorrecto. Vuelve a internarlo.");
+                }
+            }
+
+            try
+            {
+                Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Usuarios[0], equipajeSeleccionado, 15000);
+                nuevoPasaje.ValidarPasaje();
+                Console.WriteLine(nuevoPasaje);
+                sistema.AgregarNuevoPasaje(nuevoPasaje);
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            Console.WriteLine("Presiones cualquier tecla para volver.\n");
+
+            Console.ReadKey();
+
+
+        
+    }
+
+
+public static void ListarPruebas()
+{
+
+    bool salir = false;
+    while (!salir)
+    {
+        Console.Clear();
+        Console.WriteLine("1- Listado de Usuarios.");
+        Console.WriteLine("2- Listado de Aeropuertos.");
+        Console.WriteLine("3- Listado de Aviones.");
+        Console.WriteLine("4- Listado de Rutas.");
+        Console.WriteLine("5- Listado de Vuelos.");
+        Console.WriteLine("6- Listado de Pasajes.");
+        Console.WriteLine("7- Listado de Clientes.");
+        Console.WriteLine("8- Listado de .");
+        Console.WriteLine("0- Salir");
+
+        string opcionIngresada = Console.ReadLine();
+        switch (opcionIngresada)
+        {
+            case "1":
+
+                foreach (Usuario unAdmin in sistema.Usuarios)
+                {
+                    Console.WriteLine(unAdmin);
+                }
+                Console.ReadKey();
+
+                break;
+            case "2":
+                foreach (Aeropuerto unAeropuerto in sistema.Aeropuertos)
+                {
+                    Console.WriteLine(unAeropuerto);
+                }
+                Console.ReadKey();
+                break;
+            case "3":
+                foreach (Avion unAvion in sistema.Aviones)
+                {
+                    Console.WriteLine(unAvion);
+                }
+                Console.ReadKey();
+                break;
+            case "4":
+                foreach (Ruta unaRuta in sistema.Rutas)
+                {
+                    Console.WriteLine(unaRuta);
+                }
+                Console.ReadKey();
+                break;
+            case "5":
+                foreach (Vuelo unVuelo in sistema.Vuelos)
+                {
+                    Console.WriteLine(unVuelo);
+                }
+                Console.ReadKey();
+                break;
+            case "6":
+                foreach (Pasaje unPasaje in sistema.Pasajes)
+                {
+                    Console.WriteLine(unPasaje);
+                }
+                Console.ReadKey();
+                break;
+            case "0":
+                salir = true;
+                break;
+            default:
+                break;
+
         }
+
+
+    }
+}
     }
 }

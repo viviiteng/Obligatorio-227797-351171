@@ -6,29 +6,31 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Administrador
+    public class Administrador : Usuario
     {
         #region Atributo
         public string Apodo { get; set; }
-        public string Correo { get; set; }
-        public string Pass { get; set; }
         #endregion
 
         #region Constructor
 
         public Administrador() { }
-        public Administrador(string apodo, string correo, string pass) {
+        public Administrador(string apodo, string correo, string pass) : base (correo, pass){
             this.Apodo = apodo;
-            this.Correo = correo;   
-            this.Pass = pass;
         }
         #endregion
 
         #region Metodos
-
+        public override void ValidarContenidos()
+        {
+            if (this.Correo == "" || this.Pass == "" || this.Apodo=="")
+            {
+                throw new Exception("Los valores para cada atributo del administrador no pueden estar vacios");
+            }
+        }
         public override string ToString()
         {
-            return $"Apodo: {this.Apodo}, Correo: {this.Correo}, Contrasena: {this.Pass}";
+            return $"ADMINISTRADOR: Apodo: {this.Apodo}, Correo: {this.Correo}, Contrasena: {this.Pass}";
             
         }
 

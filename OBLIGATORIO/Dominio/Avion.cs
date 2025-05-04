@@ -35,6 +35,20 @@ namespace Dominio
         {
             return $"Fabricante: {this.Fabricante}, Modelo: {this.Modelo}, Cantidad de asientos: {this.CantAsientos}, Alcance: {this.Alcance}, Costo de operacion: {this.CostoOperacionPorKm}. "; 
         }
+
+        public void ValidarAvion()
+        {
+
+        }
+
+        public override bool Equals(object? obj)
+        {
+            Avion otro = (Avion)obj;
+            return this.Fabricante.ToUpper() == otro.Fabricante.ToUpper()
+            && this.Modelo.ToUpper() == otro.Modelo.ToUpper()
+            && this.CantAsientos == otro.CantAsientos
+            && this.Alcance == otro.Alcance;
+        }
         #endregion
     }
 }

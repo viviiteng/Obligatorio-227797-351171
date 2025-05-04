@@ -4,46 +4,33 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Dominio
 {
-    public class Cliente
+    public abstract class Cliente : Usuario
     {
         #region Atributo
         public string Cedula { get; set; }
         public string Nombre { get; set; }
-        public string Correo { get; set; }
-        public string Pass { get; set; }
         public string Nacionalidad { get; set; }
         #endregion
 
         #region Constructor
         public Cliente() { }
-        public Cliente (string cedula, string nombre, string correo, string pass, string nacionalidad) 
+        public Cliente (string cedula, string nombre, string correo, string pass, string nacionalidad) : base(correo, pass)
         {
             this.Cedula = cedula;
             this.Nombre = nombre;
-            this.Correo = correo;
-            this.Pass = pass;
             this.Nacionalidad = nacionalidad;
         }
 
         #endregion
 
         #region Metodos
-        public override string ToString()
-        {
-            return $"Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Password: {this.Pass}, Nacionalidad: {this.Nacionalidad},";
-        }
 
-        public void ValidarFormatoCliente(string cedula, string nombre, string correo, string pass, string nacionalidad)
-        {
-            if(cedula == "" && nombre == "" && correo == "" && pass == "" && nacionalidad == "")
-            {
-                throw new Exception("Error: Ninguno de los campos puede estar vacío");
-            }
-            
-        }
+        public abstract string ObtenerDatosCliente();
+
         #endregion
     }
 }
