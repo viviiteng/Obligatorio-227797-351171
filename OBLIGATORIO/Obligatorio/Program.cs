@@ -70,6 +70,9 @@ namespace Obligatorio
                         Console.ReadKey();
                         break;
                     default:
+                        Console.WriteLine("Error: Ingrese un valor del 0 al 5.");
+                        Console.WriteLine("Pulse cualquier tecla para intentarlo otra vez...");
+                        Console.ReadKey();
                         break;
                 }
 
@@ -87,7 +90,7 @@ namespace Obligatorio
             {
                 Console.WriteLine(unCliente.ObtenerDatosCliente());
             }
-            Console.WriteLine("\n Presione cualquier tecla para volver.");
+            Console.WriteLine("\nPresione cualquier tecla para volver.");
 
             Console.ReadKey();
 
@@ -102,14 +105,15 @@ namespace Obligatorio
                 Console.WriteLine("Ingrese un codigo IATA:\n");
                 string codigoIngresado = Console.ReadLine();
                 List<Vuelo> listaFiltrada = new List<Vuelo>();
-                try { 
+                try
+                {
                     listaFiltrada = sistema.ListarVueloSegunIATA(codigoIngresado);
-                    
+
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                
+
                 }
 
                 foreach (Vuelo unVuelo in listaFiltrada)
@@ -123,13 +127,15 @@ namespace Obligatorio
                     salir = true;
                 }
                 Console.ReadKey();
-                
+
             }
 
         }
 
         public static void IngresarClienteOcasional()
         {
+
+
             Console.Clear();
             Console.WriteLine("Alta de cliente ocasional.\n");
             Console.WriteLine("Ingrese numero de cedula (sin punto ni guion):");
@@ -154,56 +160,71 @@ namespace Obligatorio
                 Usuario clienteOcasional = new ClienteOcasional(cedula, nombre, correo, pass, nacionalidad, esClienteOcasional);
 
                 sistema.AgregarNuevoUsuario(clienteOcasional);
+                Console.WriteLine("Cliente creado exitosamente. Presione cualquier tecla para volver...");
+
 
             }
             catch (Exception error)
             {
                 Console.WriteLine(error.Message);
             }
-            Console.WriteLine("\n Presione cualquier tecla para volver.");
+            Console.WriteLine("\nPresione cualquier tecla para volver.");
 
             Console.ReadKey();
+
 
         }
 
         public static void MostrarListaPasajesSegunFecha()
         {
-            Console.Clear();
-
-            Console.WriteLine("Buscar pasaje dentro de un rango de fechas:\n");
-            Console.WriteLine("Ingrese fecha inicial (AAAA/MM/DD):");
-            DateTime fechaIngresadaUno = new DateTime();
-            DateTime fechaIngresadaDos = new DateTime();
-
-            bool esDateTime = false;
-            while (!esDateTime)
+            bool salir = false;
+            while (!salir)
             {
+                Console.Clear();
+
+                Console.WriteLine("Buscar pasaje dentro de un rango de fechas:\n");
+
+                DateTime fechaIngresadaUno = new DateTime();
+                DateTime fechaIngresadaDos = new DateTime();
+
+
+                Console.WriteLine("Ingrese fecha inicial (AAAA/MM/DD):");
                 bool esFechaUno = DateTime.TryParse(Console.ReadLine(), out fechaIngresadaUno);
 
                 Console.WriteLine("Ingrese fecha final (AAAA/MM/DD):");
                 bool esFechaDos = DateTime.TryParse(Console.ReadLine(), out fechaIngresadaDos);
                 if (esFechaUno && esFechaDos)
                 {
-                    esDateTime = true;
+
+                    salir = true;
+                    List<Pasaje> pasajesFiltrados = new List<Pasaje>();
+                    try
+                    {
+
+                        pasajesFiltrados = sistema.FlitrarPasajesSegunFechas(fechaIngresadaUno, fechaIngresadaDos);
+                        Console.WriteLine($"\nPasajes comprendidos entre {fechaIngresadaUno.ToString("dd/MM/yyyy")} - {fechaIngresadaDos.ToString("dd/MM/yyyy")}:\n");
+                        foreach (Pasaje unPasaje in pasajesFiltrados)
+                        {
+                            Console.WriteLine(unPasaje);
+                        }
+                        Console.WriteLine("\nPresiones cualquier tecla para volver.");
+                        Console.ReadKey();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        salir = false;
+                        Console.ReadKey();
+                    }
+
+
                 }
                 else
                 {
                     Console.WriteLine("Formato ingresado incorrecto. Presione cualquier tecla para intentarlo de nuevo.");
-                   
+                    Console.ReadKey();
                 }
-
             }
-            List<Pasaje> pasajesFiltrados = new List<Pasaje>();
-            pasajesFiltrados = sistema.FlitraPasajesSegunFechas(fechaIngresadaUno, fechaIngresadaDos);
-            Console.WriteLine($"\n Pasajes comprendidos entre {fechaIngresadaUno.ToString("dd/MM/yyyy")} - {fechaIngresadaDos.ToString("dd/MM/yyyy")}:\n");
-            foreach (Pasaje unPasaje in pasajesFiltrados)
-            {
-                Console.WriteLine(unPasaje);
-            }
-            Console.WriteLine("Presiones cualquier tecla para volver.\n");
-
-            Console.ReadKey();
-
         }
 
         public static void MostrarListaFiltradaAeropuertos()
@@ -270,13 +291,13 @@ namespace Obligatorio
             }
 
             Console.WriteLine($"Ingrese un numero del 1 al 3 para seleccionar un tipo de equipaje:");
-            
+
             TipoEquipaje[] equipajes = (TipoEquipaje[])Enum.GetValues(typeof(TipoEquipaje));
-            
+
             for (int i = 0; i < equipajes.Length; i++)
             {
                 Console.WriteLine($"{i + 1}. {equipajes[i]}");
-                
+
             }
             bool esNumEquipaje = false;
             int equipajeIngresado;
@@ -309,84 +330,84 @@ namespace Obligatorio
             Console.ReadKey();
 
 
-        
-    }
-
-
-public static void ListarPruebas()
-{
-
-    bool salir = false;
-    while (!salir)
-    {
-        Console.Clear();
-        Console.WriteLine("1- Listado de Usuarios.");
-        Console.WriteLine("2- Listado de Aeropuertos.");
-        Console.WriteLine("3- Listado de Aviones.");
-        Console.WriteLine("4- Listado de Rutas.");
-        Console.WriteLine("5- Listado de Vuelos.");
-        Console.WriteLine("6- Listado de Pasajes.");
-        Console.WriteLine("7- Listado de Clientes.");
-        Console.WriteLine("8- Listado de .");
-        Console.WriteLine("0- Salir");
-
-        string opcionIngresada = Console.ReadLine();
-        switch (opcionIngresada)
-        {
-            case "1":
-
-                foreach (Usuario unAdmin in sistema.Usuarios)
-                {
-                    Console.WriteLine(unAdmin);
-                }
-                Console.ReadKey();
-
-                break;
-            case "2":
-                foreach (Aeropuerto unAeropuerto in sistema.Aeropuertos)
-                {
-                    Console.WriteLine(unAeropuerto);
-                }
-                Console.ReadKey();
-                break;
-            case "3":
-                foreach (Avion unAvion in sistema.Aviones)
-                {
-                    Console.WriteLine(unAvion);
-                }
-                Console.ReadKey();
-                break;
-            case "4":
-                foreach (Ruta unaRuta in sistema.Rutas)
-                {
-                    Console.WriteLine(unaRuta);
-                }
-                Console.ReadKey();
-                break;
-            case "5":
-                foreach (Vuelo unVuelo in sistema.Vuelos)
-                {
-                    Console.WriteLine(unVuelo);
-                }
-                Console.ReadKey();
-                break;
-            case "6":
-                foreach (Pasaje unPasaje in sistema.Pasajes)
-                {
-                    Console.WriteLine(unPasaje);
-                }
-                Console.ReadKey();
-                break;
-            case "0":
-                salir = true;
-                break;
-            default:
-                break;
 
         }
 
 
-    }
-}
+        public static void ListarPruebas()
+        {
+
+            bool salir = false;
+            while (!salir)
+            {
+                Console.Clear();
+                Console.WriteLine("1- Listado de Usuarios.");
+                Console.WriteLine("2- Listado de Aeropuertos.");
+                Console.WriteLine("3- Listado de Aviones.");
+                Console.WriteLine("4- Listado de Rutas.");
+                Console.WriteLine("5- Listado de Vuelos.");
+                Console.WriteLine("6- Listado de Pasajes.");
+                Console.WriteLine("7- Listado de Clientes.");
+                Console.WriteLine("8- Listado de .");
+                Console.WriteLine("0- Salir");
+
+                string opcionIngresada = Console.ReadLine();
+                switch (opcionIngresada)
+                {
+                    case "1":
+
+                        foreach (Usuario unAdmin in sistema.Usuarios)
+                        {
+                            Console.WriteLine(unAdmin);
+                        }
+                        Console.ReadKey();
+
+                        break;
+                    case "2":
+                        foreach (Aeropuerto unAeropuerto in sistema.Aeropuertos)
+                        {
+                            Console.WriteLine(unAeropuerto);
+                        }
+                        Console.ReadKey();
+                        break;
+                    case "3":
+                        foreach (Avion unAvion in sistema.Aviones)
+                        {
+                            Console.WriteLine(unAvion);
+                        }
+                        Console.ReadKey();
+                        break;
+                    case "4":
+                        foreach (Ruta unaRuta in sistema.Rutas)
+                        {
+                            Console.WriteLine(unaRuta);
+                        }
+                        Console.ReadKey();
+                        break;
+                    case "5":
+                        foreach (Vuelo unVuelo in sistema.Vuelos)
+                        {
+                            Console.WriteLine(unVuelo);
+                        }
+                        Console.ReadKey();
+                        break;
+                    case "6":
+                        foreach (Pasaje unPasaje in sistema.Pasajes)
+                        {
+                            Console.WriteLine(unPasaje);
+                        }
+                        Console.ReadKey();
+                        break;
+                    case "0":
+                        salir = true;
+                        break;
+                    default:
+                        break;
+
+                }
+
+
+            }
+        }
     }
 }

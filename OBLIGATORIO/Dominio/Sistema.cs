@@ -239,6 +239,31 @@ namespace Dominio
             Pasajes.Add(unPasaje);
         }
 
+        public List<Pasaje> FlitrarPasajesSegunFechas(DateTime fechaUno, DateTime fechaDos)
+        {
+            List<Pasaje> listaSegunFecha = new List<Pasaje>();
+
+            if (fechaUno > fechaDos)
+            {
+                throw new Exception("Error: la fecha final debe ser mayor o igual a inicial. Intente de nuevo...");
+            }
+
+            foreach (Pasaje unPasaje in Pasajes)
+            {
+                if (fechaUno <= unPasaje.FechaDeVuelo && fechaDos >= unPasaje.FechaDeVuelo)
+                {
+                    listaSegunFecha.Add(unPasaje);
+                }
+            }
+            
+            if(listaSegunFecha.Count == 0)
+            {
+                throw new Exception("No se ha encontrado ningun pasaje dentro de las fechas ingresadas. Intente de nuevo...");
+            }
+            return listaSegunFecha;
+        }
+
+
 
         #endregion
 
@@ -296,22 +321,7 @@ namespace Dominio
         }
         #endregion
 
-        #region Pasajes
-        public List<Pasaje> FlitraPasajesSegunFechas(DateTime fechaUno, DateTime fechaDos )
-        {
-            List<Pasaje> listaSegunFecha = new List<Pasaje>();
-
-            foreach (Pasaje unPasaje in Pasajes)
-            {
-                if (fechaUno <= unPasaje.FechaDeVuelo && fechaDos >= unPasaje.FechaDeVuelo)
-                {
-                    listaSegunFecha.Add(unPasaje);
-                }
-            }
-            return listaSegunFecha;
-        }
-
-        #endregion
+        
 
 
 
