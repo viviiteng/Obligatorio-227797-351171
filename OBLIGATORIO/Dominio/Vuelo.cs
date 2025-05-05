@@ -40,10 +40,17 @@ namespace Dominio
 
         public void ValidarVuelo()
         {
+            validarContenido();
             validarNumVuelo();
             validarAlcanceDelAvion();            
         }
-
+        private void validarContenido()
+        {
+            if (this.Ruta == null || this.Avion == null || this.frecuencias.Count < 0)
+            {
+                throw new Exception("Error al validar los datos del Vuelo.");
+            }
+        }
         private void validarNumVuelo()
         {
             validarCantDigitos();
@@ -111,6 +118,12 @@ namespace Dominio
             {
                 throw new Exception("El alance del avion no es suficiente para cubrir la distancia de ruta.");
             }
+        }
+
+        public override bool Equals(object? obj)
+        {
+            Vuelo otro = (Vuelo)obj;
+            return this.NumVuelo == otro.NumVuelo;
         }
 
         public double CalcularCostaPorAsiento()

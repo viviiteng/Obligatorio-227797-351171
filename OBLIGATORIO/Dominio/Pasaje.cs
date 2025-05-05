@@ -17,7 +17,7 @@ namespace Dominio
         public Usuario Pasajero { get; set; }
         public TipoEquipaje Equipaje { get; set; }
         public double PrecioPasaje { get; set; }
-        #endregion
+        #endregion 
 
         #region Constructor
         public Pasaje()
@@ -40,14 +40,13 @@ namespace Dominio
         public void ValidarPasaje()
         {
             validarFecha();
-            validarAtributos();
+            validarContenido();
         }
-
-        private void validarAtributos()
+        private void validarContenido()
         {
-            if (this.Vuelo==null || this.Pasajero==null || this.PrecioPasaje<0)
+            if (this.Vuelo == null || this.Pasajero == null || this.PrecioPasaje < 0)
             {
-                throw new Exception("Las secciones no pueden quedar vacias");
+                throw new Exception("Error al validar los datos del pasaje.");
             }
         }
         private void validarFecha()

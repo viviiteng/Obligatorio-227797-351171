@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Linq;
+using System.Linq.Expressions;
 
 namespace Dominio
 {
@@ -194,8 +195,15 @@ namespace Dominio
         public void AgregarNuevoUsuario(Usuario unUsuario)
         {
             unUsuario.ValidarContenidos();
-            existeUsuario(unUsuario);
+            validarexistenciaUsuario(unUsuario);
             this.Usuarios.Add(unUsuario);
+        }
+        private void validarexistenciaUsuario(Usuario unUsuario)
+        {
+            if (Usuarios.Contains(unUsuario))
+            {
+                throw new Exception("El usuario ya existe.");
+            }
         }
         public bool GenerarBoolRandom()
         {
@@ -209,7 +217,6 @@ namespace Dominio
 
             return resultado;
         }
-
         public List<Cliente> ObtenerListadoDeClientes()
         {
             List <Cliente> clientes = new List <Cliente>();
@@ -222,23 +229,24 @@ namespace Dominio
             }
             return clientes;
         }
-
-        private void existeUsuario(Usuario unUsuario)
-        {
-            if (Usuarios.Contains(unUsuario))
-            {
-                throw new Exception("El usuario ya existe.");
-            }
-        }
         #endregion
 
 
         #region Pasaje
         public void AgregarNuevoPasaje(Pasaje unPasaje)
         {
+            unPasaje.ValidarPasaje();
+            validarexistenciaPasaje(unPasaje);
             Pasajes.Add(unPasaje);
         }
 
+        private void validarexistenciaPasaje(Pasaje unPasaje)
+        {
+            if (Pasajes.Contains(unPasaje))
+            {
+                throw new Exception("El pasaje ingresado ya existe.");
+            }
+        }
         public List<Pasaje> FlitrarPasajesSegunFechas(DateTime fechaUno, DateTime fechaDos)
         {
             List<Pasaje> listaSegunFecha = new List<Pasaje>();
@@ -272,9 +280,16 @@ namespace Dominio
         public void AgregarNuevoVuelo(Vuelo unVuelo)
         {
             unVuelo.ValidarVuelo();
+            validarexistenciaVuelo(unVuelo);
             Vuelos.Add(unVuelo);
         }
-
+        private void validarexistenciaVuelo(Vuelo unVuelo)
+        {
+            if (Vuelos.Contains(unVuelo))
+            {
+                throw new Exception("El vuelo ingresado ya existe.");
+            }
+        }
         public List<Vuelo> ListarVueloSegunIATA(string codigoIata)
         {
             string codigoMayus = codigoIata.ToUpper();
@@ -300,7 +315,17 @@ namespace Dominio
         #region Avion
         public void AgregarNuevoAvion(Avion unAvion)
         {
+            unAvion.ValidarAvion();
+            validarexistenciaAvion(unAvion);
             Aviones.Add(unAvion);
+        }
+
+        private void validarexistenciaAvion(Avion unAvion)
+        {
+            if (Aviones.Contains(unAvion))
+            {
+                throw new Exception("El avion ingresado ya existe.");
+            }
         }
         #endregion
 
@@ -308,7 +333,16 @@ namespace Dominio
         #region Ruta
         public void AgregarNuevaRuta(Ruta unaRuta)
         {
+            validarexistenciaRuta(unaRuta);
+            unaRuta.ValidarRuta();
             Rutas.Add(unaRuta);
+        }
+        private void validarexistenciaRuta(Ruta unaRuta)
+        {
+            if (Rutas.Contains(unaRuta))
+            {
+                throw new Exception("La ruta ingresado ya existe.");
+            }
         }
         #endregion
 
@@ -317,14 +351,17 @@ namespace Dominio
         public void AgregarNuevoAeropuerto(Aeropuerto unAeropuerto)
         {
             unAeropuerto.ValidarAeropuerto();
+            validarexistenciaAeropuerto(unAeropuerto);
             Aeropuertos.Add(unAeropuerto);
         }
+        private void validarexistenciaAeropuerto(Aeropuerto unAeropuerto)
+        {
+            if (Aeropuertos.Contains(unAeropuerto))
+            {
+                throw new Exception("El aeropuerto ingresado ya existe.");
+            }
+        }
         #endregion
-
-        
-
-
-
     }
 
 }

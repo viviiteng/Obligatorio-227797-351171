@@ -9,12 +9,12 @@ namespace Dominio
 {
     public class ClienteOcasional : Cliente
     {
-        public bool EsClienteOcasional { get; set; }
+        public bool EsElegibleRegalo { get; set; }
 
 
-        public ClienteOcasional(string cedula, string nombre, string correo, string pass, string nacionalidad, bool esClienteOcasional) : base (cedula, nombre, correo, pass, nacionalidad)
+        public ClienteOcasional(string cedula, string nombre, string correo, string pass, string nacionalidad, bool esElegibleRegalo) : base (cedula, nombre, correo, pass, nacionalidad)
         {
-            this.EsClienteOcasional = esClienteOcasional;       
+            this.EsElegibleRegalo = esElegibleRegalo;       
         }
 
         public override void ValidarContenidos()
@@ -26,9 +26,10 @@ namespace Dominio
         }
         public override string ObtenerDatosCliente()
         {
-            return $"CLIENTE OCASIONAL: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Contrasena: {this.Pass}, Nacionalidad: {this.Nacionalidad}, esClienteOcasional: {this.EsClienteOcasional}";
+            return $"CLIENTE OCASIONAL: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Contrasena: {this.Pass}, Nacionalidad: {this.Nacionalidad}, Regalo: {this.EsElegibleRegalo}";
 
         }
+
     }
 
     

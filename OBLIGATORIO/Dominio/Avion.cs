@@ -38,12 +38,16 @@ namespace Dominio
 
         public void ValidarAvion()
         {
-
+            if (this.Fabricante == "" || this.Modelo == "" || this.CantAsientos < 0 || this.Alcance < 0 || this.CostoOperacionPorKm < 0)
+            {
+                throw new Exception("Error al validar los datos del avion.");
+            }        
         }
 
         public override bool Equals(object? obj)
         {
             Avion otro = (Avion)obj;
+
             return this.Fabricante.ToUpper() == otro.Fabricante.ToUpper()
             && this.Modelo.ToUpper() == otro.Modelo.ToUpper()
             && this.CantAsientos == otro.CantAsientos

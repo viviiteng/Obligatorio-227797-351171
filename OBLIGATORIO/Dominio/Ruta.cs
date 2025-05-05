@@ -29,6 +29,18 @@ namespace Dominio
         #endregion
 
         #region Metodos
+        public void ValidarRuta()
+        {
+            if (this.AeropuertoLlegada == null || this.AeropuertoSalida == null || this.Distancia < 0 )
+            {
+                throw new Exception("Error al validar los datos de la ruta.");
+            }
+        }
+        public override bool Equals(object? obj)
+        {
+            Ruta otro = (Ruta)obj;
+            return this.IdRuta == otro.IdRuta;
+        }
         public override string ToString()
         {
             return $"Id: {this.IdRuta}, Aeropuerto de salida: {this.AeropuertoSalida}, Aeropuerto de llegada: {this.AeropuertoLlegada}, Distancia: {this.Distancia}. ";

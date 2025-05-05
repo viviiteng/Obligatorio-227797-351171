@@ -134,8 +134,6 @@ namespace Obligatorio
 
         public static void IngresarClienteOcasional()
         {
-
-
             Console.Clear();
             Console.WriteLine("Alta de cliente ocasional.\n");
             Console.WriteLine("Ingrese numero de cedula (sin punto ni guion):");
@@ -153,16 +151,13 @@ namespace Obligatorio
             Console.WriteLine("Ingrese nacionalidad:");
             string nacionalidad = Console.ReadLine();
 
-            bool esClienteOcasional = sistema.GenerarBoolRandom();
+            bool esElegibleRegalo = sistema.GenerarBoolRandom();
 
             try
             {
-                Usuario clienteOcasional = new ClienteOcasional(cedula, nombre, correo, pass, nacionalidad, esClienteOcasional);
-
+                Usuario clienteOcasional = new ClienteOcasional(cedula, nombre, correo, pass, nacionalidad, esElegibleRegalo);
                 sistema.AgregarNuevoUsuario(clienteOcasional);
                 Console.WriteLine("Cliente creado exitosamente. Presione cualquier tecla para volver...");
-
-
             }
             catch (Exception error)
             {
@@ -171,8 +166,6 @@ namespace Obligatorio
             Console.WriteLine("\nPresione cualquier tecla para volver.");
 
             Console.ReadKey();
-
-
         }
 
         public static void MostrarListaPasajesSegunFecha()

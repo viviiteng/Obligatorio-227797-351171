@@ -73,9 +73,9 @@ namespace Dominio
 
         private void validarContenido()
         {
-            if (this.Ciudad=="" || this.CodigoIATA=="")
+            if (this.Ciudad=="" || this.CodigoIATA=="" || this.CostoTasas<0 || this.CostoOperacion<0)
             {
-                throw new Exception("Las secciones no pueden quedar vacias");
+                throw new Exception("Error al validar los datos del aeropuerto.");
             }
         }
         public override bool Equals(object? obj)
