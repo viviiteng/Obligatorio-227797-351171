@@ -21,17 +21,17 @@ namespace Dominio
         #endregion
 
         #region Metodos
-        public override void ValidarContenidos()
+        public override void Validar()
         {
             if (this.Correo == "" || this.Pass == "" || this.Apodo=="")
             {
                 throw new Exception("Los valores para cada atributo del administrador no pueden estar vacios");
             }
         }
-        public override string ToString()
+
+        public override string ObtenerDatosUsuario()
         {
-            return $"ADMINISTRADOR: Apodo: {this.Apodo}, Correo: {this.Correo}, Contrasena: {this.Pass}";
-            
+            return $"Apodo: {this.Apodo}, Correo: {this.Correo}, Contrasena {this.Pass}.";
         }
 
         #endregion

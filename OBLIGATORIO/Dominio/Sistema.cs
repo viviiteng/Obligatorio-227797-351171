@@ -161,31 +161,31 @@ namespace Dominio
 
         private void precagarPasajes()
         {
-            AgregarNuevoPasaje(new Pasaje(Vuelos[0], new DateTime(2025, 5, 10), Usuarios[0], TipoEquipaje.CABINA, 350.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[1], new DateTime(2025, 5, 12), Usuarios[5], TipoEquipaje.LIGHT, 280.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[2], new DateTime(2025, 5, 13), Usuarios[1], TipoEquipaje.BODEGA, 410.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[3], new DateTime(2025, 5, 14), Usuarios[6], TipoEquipaje.CABINA, 360.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[4], new DateTime(2025, 5, 15), Usuarios[2], TipoEquipaje.LIGHT, 290.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[0], new DateTime(2025, 5, 5), Usuarios[0], TipoEquipaje.CABINA, 350.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[1], new DateTime(2025, 5, 11), Usuarios[5], TipoEquipaje.LIGHT, 280.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[2], new DateTime(2025, 5, 8), Usuarios[1], TipoEquipaje.BODEGA, 410.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[3], new DateTime(2025, 5, 13), Usuarios[6], TipoEquipaje.CABINA, 360.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[4], new DateTime(2025, 5, 16), Usuarios[2], TipoEquipaje.LIGHT, 290.00));
             AgregarNuevoPasaje(new Pasaje(Vuelos[5], new DateTime(2025, 5, 16), Usuarios[7], TipoEquipaje.BODEGA, 430.00));
             AgregarNuevoPasaje(new Pasaje(Vuelos[6], new DateTime(2025, 5, 17), Usuarios[3], TipoEquipaje.CABINA, 375.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[7], new DateTime(2025, 5, 18), Usuarios[8], TipoEquipaje.LIGHT, 300.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[7], new DateTime(2025, 5, 14), Usuarios[8], TipoEquipaje.LIGHT, 300.00));
             AgregarNuevoPasaje(new Pasaje(Vuelos[8], new DateTime(2025, 5, 19), Usuarios[4], TipoEquipaje.BODEGA, 450.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[9], new DateTime(2025, 5, 20), Usuarios[9], TipoEquipaje.CABINA, 360.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[10], new DateTime(2025, 5, 21), Usuarios[0], TipoEquipaje.LIGHT, 320.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[11], new DateTime(2025, 5, 22), Usuarios[5], TipoEquipaje.BODEGA, 390.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[9], new DateTime(2025, 5, 17), Usuarios[9], TipoEquipaje.CABINA, 360.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[10], new DateTime(2025, 5, 18), Usuarios[0], TipoEquipaje.LIGHT, 320.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[11], new DateTime(2025, 5, 21), Usuarios[5], TipoEquipaje.BODEGA, 390.00));
             AgregarNuevoPasaje(new Pasaje(Vuelos[12], new DateTime(2025, 5, 23), Usuarios[1], TipoEquipaje.CABINA, 355.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[13], new DateTime(2025, 5, 24), Usuarios[6], TipoEquipaje.LIGHT, 295.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[14], new DateTime(2025, 5, 25), Usuarios[2], TipoEquipaje.BODEGA, 460.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[15], new DateTime(2025, 5, 26), Usuarios[7], TipoEquipaje.CABINA, 370.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[16], new DateTime(2025, 5, 27), Usuarios[3], TipoEquipaje.LIGHT, 310.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[17], new DateTime(2025, 5, 28), Usuarios[8], TipoEquipaje.BODEGA, 440.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[18], new DateTime(2025, 5, 29), Usuarios[4], TipoEquipaje.CABINA, 385.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[19], new DateTime(2025, 5, 30), Usuarios[9], TipoEquipaje.LIGHT, 305.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[20], new DateTime(2025, 6, 1), Usuarios[0], TipoEquipaje.BODEGA, 470.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[21], new DateTime(2025, 6, 2), Usuarios[5], TipoEquipaje.CABINA, 365.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[22], new DateTime(2025, 6, 3), Usuarios[1], TipoEquipaje.LIGHT, 315.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[23], new DateTime(2025, 6, 4), Usuarios[6], TipoEquipaje.BODEGA, 425.00));
-            AgregarNuevoPasaje(new Pasaje(Vuelos[24], new DateTime(2025, 6, 5), Usuarios[2], TipoEquipaje.CABINA, 380.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[13], new DateTime(2025, 5, 26), Usuarios[6], TipoEquipaje.LIGHT, 295.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[14], new DateTime(2025, 5, 24), Usuarios[2], TipoEquipaje.BODEGA, 460.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[15], new DateTime(2025, 5, 22), Usuarios[7], TipoEquipaje.CABINA, 370.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[16], new DateTime(2025, 5, 25), Usuarios[3], TipoEquipaje.LIGHT, 310.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[17], new DateTime(2025, 5, 26), Usuarios[8], TipoEquipaje.BODEGA, 440.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[18], new DateTime(2025, 5, 27), Usuarios[4], TipoEquipaje.CABINA, 385.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[19], new DateTime(2025, 5, 31), Usuarios[9], TipoEquipaje.LIGHT, 305.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[20], new DateTime(2025, 6, 2), Usuarios[0], TipoEquipaje.BODEGA, 470.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[21], new DateTime(2025, 6, 1), Usuarios[5], TipoEquipaje.CABINA, 365.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[22], new DateTime(2025, 6, 7), Usuarios[1], TipoEquipaje.LIGHT, 315.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[23], new DateTime(2025, 6, 3), Usuarios[6], TipoEquipaje.BODEGA, 425.00));
+            AgregarNuevoPasaje(new Pasaje(Vuelos[24], new DateTime(2025, 6, 8), Usuarios[2], TipoEquipaje.CABINA, 380.00));
         }
 
         #endregion
@@ -194,7 +194,7 @@ namespace Dominio
         #region Usuario
         public void AgregarNuevoUsuario(Usuario unUsuario)
         {
-            unUsuario.ValidarContenidos();
+            unUsuario.Validar();
             validarexistenciaUsuario(unUsuario);
             this.Usuarios.Add(unUsuario);
         }
@@ -227,6 +227,10 @@ namespace Dominio
                     clientes.Add(unCliente);
                 }
             }
+            if(clientes.Count == 0)
+            {
+                throw new Exception("Error: no existe ningun cliente registrado.");
+            }
             return clientes;
         }
         #endregion
@@ -235,12 +239,12 @@ namespace Dominio
         #region Pasaje
         public void AgregarNuevoPasaje(Pasaje unPasaje)
         {
-            unPasaje.ValidarPasaje();
-            validarexistenciaPasaje(unPasaje);
+            unPasaje.Validar();
+            validarExistenciaPasaje(unPasaje);
             Pasajes.Add(unPasaje);
         }
 
-        private void validarexistenciaPasaje(Pasaje unPasaje)
+        private void validarExistenciaPasaje(Pasaje unPasaje)
         {
             if (Pasajes.Contains(unPasaje))
             {
@@ -279,11 +283,11 @@ namespace Dominio
         #region Vuelo
         public void AgregarNuevoVuelo(Vuelo unVuelo)
         {
-            unVuelo.ValidarVuelo();
-            validarexistenciaVuelo(unVuelo);
+            unVuelo.Validar();
+            validarExistenciaVuelo(unVuelo);
             Vuelos.Add(unVuelo);
         }
-        private void validarexistenciaVuelo(Vuelo unVuelo)
+        private void validarExistenciaVuelo(Vuelo unVuelo)
         {
             if (Vuelos.Contains(unVuelo))
             {
@@ -315,12 +319,12 @@ namespace Dominio
         #region Avion
         public void AgregarNuevoAvion(Avion unAvion)
         {
-            unAvion.ValidarAvion();
-            validarexistenciaAvion(unAvion);
+            unAvion.Validar();
+            validarExistenciaAvion(unAvion);
             Aviones.Add(unAvion);
         }
 
-        private void validarexistenciaAvion(Avion unAvion)
+        private void validarExistenciaAvion(Avion unAvion)
         {
             if (Aviones.Contains(unAvion))
             {
@@ -333,11 +337,11 @@ namespace Dominio
         #region Ruta
         public void AgregarNuevaRuta(Ruta unaRuta)
         {
-            validarexistenciaRuta(unaRuta);
-            unaRuta.ValidarRuta();
+            validarExistenciaRuta(unaRuta);
+            unaRuta.Validar();
             Rutas.Add(unaRuta);
         }
-        private void validarexistenciaRuta(Ruta unaRuta)
+        private void validarExistenciaRuta(Ruta unaRuta)
         {
             if (Rutas.Contains(unaRuta))
             {
@@ -350,11 +354,11 @@ namespace Dominio
         #region Aeropuerto
         public void AgregarNuevoAeropuerto(Aeropuerto unAeropuerto)
         {
-            unAeropuerto.ValidarAeropuerto();
-            validarexistenciaAeropuerto(unAeropuerto);
+            unAeropuerto.Validar();
+            validarExistenciaAeropuerto(unAeropuerto);
             Aeropuertos.Add(unAeropuerto);
         }
-        private void validarexistenciaAeropuerto(Aeropuerto unAeropuerto)
+        private void validarExistenciaAeropuerto(Aeropuerto unAeropuerto)
         {
             if (Aeropuertos.Contains(unAeropuerto))
             {

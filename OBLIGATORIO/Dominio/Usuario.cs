@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.interfaces;
 
 namespace Dominio
 {
-    public abstract class Usuario
+    public abstract class Usuario : IValidable
     {
         public string Correo { get; set; }
         public string Pass { get; set; }
@@ -19,12 +20,15 @@ namespace Dominio
             this.Correo = correo;
             this.Pass = pass;
         }
-        public abstract void ValidarContenidos();
+        public abstract void Validar();
+
+        public abstract string ObtenerDatosUsuario();
 
         public override bool Equals(object? obj)
         {
             Usuario otro = (Usuario)obj;
             return this.Correo == otro.Correo && this.Pass == otro.Pass;
         }
+
     }
 }

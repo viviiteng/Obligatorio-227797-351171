@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.interfaces;
 
 namespace Dominio
 {
-    public class Ruta
+    public class Ruta : IValidable
     {
         #region Atributo
         public int IdRuta { get; set; }
@@ -29,7 +30,7 @@ namespace Dominio
         #endregion
 
         #region Metodos
-        public void ValidarRuta()
+        public void Validar()
         {
             if (this.AeropuertoLlegada == null || this.AeropuertoSalida == null || this.Distancia < 0 )
             {
@@ -40,10 +41,6 @@ namespace Dominio
         {
             Ruta otro = (Ruta)obj;
             return this.IdRuta == otro.IdRuta;
-        }
-        public override string ToString()
-        {
-            return $"Id: {this.IdRuta}, Aeropuerto de salida: {this.AeropuertoSalida}, Aeropuerto de llegada: {this.AeropuertoLlegada}, Distancia: {this.Distancia}. ";
         }
         #endregion
     }

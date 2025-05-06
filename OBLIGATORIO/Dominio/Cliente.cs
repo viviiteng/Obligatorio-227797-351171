@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.interfaces;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Dominio
@@ -28,8 +29,10 @@ namespace Dominio
         #endregion
 
         #region Metodos
-
-        public abstract string ObtenerDatosCliente();
+        public override string ToString()
+        {
+            return this.Nombre;
+        }
 
         #endregion
     }

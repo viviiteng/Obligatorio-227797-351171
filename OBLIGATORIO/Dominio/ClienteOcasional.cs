@@ -17,18 +17,20 @@ namespace Dominio
             this.EsElegibleRegalo = esElegibleRegalo;       
         }
 
-        public override void ValidarContenidos()
+        public override void Validar()
         {
             if (this.Cedula == "" || this.Nombre == "" || this.Correo == "" || this.Pass == "" || this.Nacionalidad == "")
             {
                 throw new Exception("Los valores para cada atributo del cliente ocasional no pueden estar vacios");
             }
         }
-        public override string ObtenerDatosCliente()
+        public override string ObtenerDatosUsuario()
         {
             return $"CLIENTE OCASIONAL: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Contrasena: {this.Pass}, Nacionalidad: {this.Nacionalidad}, Regalo: {this.EsElegibleRegalo}";
 
         }
+        
+
 
     }
 

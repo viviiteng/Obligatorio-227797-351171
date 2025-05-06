@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.interfaces;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Dominio
 {
-    public class Vuelo
+    public class Vuelo : IValidable
     {
         #region Atributo
         public string NumVuelo { get; set; }
@@ -28,17 +29,9 @@ namespace Dominio
         #endregion
 
         #region Metodos
-        public override string ToString()
-        {
-            string frencuencia = "";
-            foreach (Frecuencia dia in this.frecuencias)
-            {
-                frencuencia  += $"{dia} ";
-            }
-            return $"Numero de Vuelo: {this.NumVuelo}, Avion: {this.Avion.Modelo}, Ruta: {this.Ruta.AeropuertoSalida.CodigoIATA}-{this.Ruta.AeropuertoLlegada.CodigoIATA}, Frecuencia: {frencuencia}";
-        }
+        
 
-        public void ValidarVuelo()
+        public void Validar()
         {
             validarContenido();
             validarNumVuelo();
@@ -129,6 +122,16 @@ namespace Dominio
         public double CalcularCostaPorAsiento()
         {
         return (this.Avion.CostoOperacionPorKm * this.Ruta.Distancia + this.Ruta.AeropuertoSalida.CostoOperacion + this.Ruta.AeropuertoLlegada.CostoOperacion) / this.Avion.CantAsientos;
+        }
+
+        public override string ToString()
+        {
+            string frencuencia = "";
+            foreach (Frecuencia dia in this.frecuencias)
+            {
+                frencuencia += $"{dia} ";
+            }
+            return $"Numero de Vuelo: {this.NumVuelo}, Avion: {this.Avion.Modelo}, Ruta: {this.Ruta.AeropuertoSalida.CodigoIATA}-{this.Ruta.AeropuertoLlegada.CodigoIATA}, Frecuencia: {frencuencia}";
         }
         #endregion
     }

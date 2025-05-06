@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.interfaces;
 
 namespace Dominio
 {
-    public class Aeropuerto
+    public class Aeropuerto : IValidable
     {
         #region Atributo
         public string CodigoIATA { get; set; }
@@ -27,12 +28,9 @@ namespace Dominio
         #endregion
 
         #region Metodos
-        public override string ToString()
-        {
-            return $"Codigo IATA: {this.CodigoIATA}, Ciudad: {this.Ciudad}, Costo de operacion: {this.CostoOperacion}, Costo de tasas: {this.CostoTasas}.";
-        }
+        
 
-        public void ValidarAeropuerto()
+        public void Validar()
         {
             validarCodigoIATA();
             validarContenido();
@@ -83,6 +81,8 @@ namespace Dominio
             Aeropuerto otro = (Aeropuerto)obj;
             return this.CodigoIATA.ToUpper() == otro.CodigoIATA.ToUpper();
         }
+
+        
         #endregion
     }
 }

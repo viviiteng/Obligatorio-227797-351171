@@ -29,9 +29,6 @@ namespace Obligatorio
                 Console.WriteLine("3- Alta de cliente ocasional.");
                 Console.WriteLine("4- Listado de pasajes emitidos.");
                 Console.WriteLine("5- Emitir pasaje");
-                Console.WriteLine("6- ");
-                Console.WriteLine("7- ");
-                Console.WriteLine("8- ");
                 Console.WriteLine("9- Consulta de listas.");
                 Console.WriteLine("0- Salir");
 
@@ -53,15 +50,6 @@ namespace Obligatorio
                     case "5":
                         EmitirNuevoPasaje();
                         break;
-                    case "6":
-
-                        break;
-                    case "7":
-
-                        break;
-                    case "8":
-
-                        break;
                     case "9":
                         ListarPruebas();
                         break;
@@ -71,27 +59,32 @@ namespace Obligatorio
                         break;
                     default:
                         Console.WriteLine("Error: Ingrese un valor del 0 al 5.");
-                        Console.WriteLine("Pulse cualquier tecla para intentarlo otra vez...");
+                        Console.WriteLine("Presione cualquier tecla para intentarlo de nuevo...");
                         Console.ReadKey();
                         break;
                 }
 
             }
-
-
-
-
         }
         public static void MostrarListaDeClientes()
         {
             Console.Clear();
             Console.WriteLine("Clientes Registrados:\n");
-            foreach (Cliente unCliente in sistema.ObtenerListadoDeClientes())
+            List<Cliente> clientes = new List<Cliente>();
+            try
             {
-                Console.WriteLine(unCliente.ObtenerDatosCliente());
+                clientes = sistema.ObtenerListadoDeClientes();
+                foreach (Cliente unCliente in clientes)
+                {
+                    Console.WriteLine(unCliente.ObtenerDatosUsuario());
+                }
             }
-            Console.WriteLine("\nPresione cualquier tecla para volver.");
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
+            Console.WriteLine("\nPresione cualquier tecla para volver...");
             Console.ReadKey();
 
         }
@@ -108,28 +101,20 @@ namespace Obligatorio
                 try
                 {
                     listaFiltrada = sistema.ListarVueloSegunIATA(codigoIngresado);
-
+                    foreach (Vuelo unVuelo in listaFiltrada)
+                    {
+                        Console.WriteLine(unVuelo);
+                    }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-
-                }
-
-                foreach (Vuelo unVuelo in listaFiltrada)
-                {
-                    Console.WriteLine(unVuelo);
-                }
-
-                Console.WriteLine("\nPresione cualquier tecla para volver.");
-                if (listaFiltrada.Count != 0)
-                {
                     salir = true;
                 }
+
+                Console.WriteLine("\nPresione cualquier tecla para volver...");
                 Console.ReadKey();
-
             }
-
         }
 
         public static void IngresarClienteOcasional()
@@ -163,7 +148,7 @@ namespace Obligatorio
             {
                 Console.WriteLine(error.Message);
             }
-            Console.WriteLine("\nPresione cualquier tecla para volver.");
+            Console.WriteLine("\nPresione cualquier tecla para volver...");
 
             Console.ReadKey();
         }
@@ -200,7 +185,7 @@ namespace Obligatorio
                         {
                             Console.WriteLine(unPasaje);
                         }
-                        Console.WriteLine("\nPresiones cualquier tecla para volver.");
+                        Console.WriteLine("\nPresiones cualquier tecla para volver...");
                         Console.ReadKey();
                     }
                     catch (Exception ex)
@@ -214,30 +199,10 @@ namespace Obligatorio
                 }
                 else
                 {
-                    Console.WriteLine("Formato ingresado incorrecto. Presione cualquier tecla para intentarlo de nuevo.");
+                    Console.WriteLine("Formato ingresado incorrecto. Presione cualquier tecla para intentarlo de nuevo...");
                     Console.ReadKey();
                 }
             }
-        }
-
-        public static void MostrarListaFiltradaAeropuertos()
-        {
-            Console.Clear();
-            Console.WriteLine("Ingrese un codigo de aeropuerto que desee filtrar:\n");
-            string codigoIngresado = Console.ReadLine().ToUpper();
-            try
-            {
-
-
-                //sistema.FiltrarListaAeropuertos(codigoIngresado);
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error.Message);
-            }
-            Console.WriteLine("\nPresiones cualquier tecla para volver.");
-
-            Console.ReadKey();
         }
 
         public static void EmitirNuevoPasaje()
@@ -290,7 +255,6 @@ namespace Obligatorio
             for (int i = 0; i < equipajes.Length; i++)
             {
                 Console.WriteLine($"{i + 1}. {equipajes[i]}");
-
             }
             bool esNumEquipaje = false;
             int equipajeIngresado;
@@ -312,21 +276,18 @@ namespace Obligatorio
 
             try
             {
-                Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Usuarios[0], equipajeSeleccionado, 15000);
-                nuevoPasaje.ValidarPasaje();
-                Console.WriteLine(nuevoPasaje);
+                Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Usuarios[0], equipajeSeleccionado, 15000);   
+                
                 sistema.AgregarNuevoPasaje(nuevoPasaje);
+                Console.WriteLine("Pasaje emitido exitosamente.");
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
+
             Console.WriteLine("Presiones cualquier tecla para volver.\n");
-
             Console.ReadKey();
-
-
-
         }
 
-
+        //----------------------BORRAR VV
         public static void ListarPruebas()
         {
 
@@ -349,9 +310,9 @@ namespace Obligatorio
                 {
                     case "1":
 
-                        foreach (Usuario unAdmin in sistema.Usuarios)
+                        foreach (Usuario unUsuario in sistema.Usuarios)
                         {
-                            Console.WriteLine(unAdmin);
+                            Console.WriteLine(unUsuario);
                         }
                         Console.ReadKey();
 

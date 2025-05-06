@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.interfaces;
 
 namespace Dominio
 {
-    public class Avion
+    public class Avion :  IValidable
     {
         #region Atributo
         public string Fabricante { get; set; }
@@ -31,12 +32,7 @@ namespace Dominio
         #endregion
 
         #region Metodos
-        public override string ToString()
-        {
-            return $"Fabricante: {this.Fabricante}, Modelo: {this.Modelo}, Cantidad de asientos: {this.CantAsientos}, Alcance: {this.Alcance}, Costo de operacion: {this.CostoOperacionPorKm}. "; 
-        }
-
-        public void ValidarAvion()
+        public void Validar()
         {
             if (this.Fabricante == "" || this.Modelo == "" || this.CantAsientos < 0 || this.Alcance < 0 || this.CostoOperacionPorKm < 0)
             {

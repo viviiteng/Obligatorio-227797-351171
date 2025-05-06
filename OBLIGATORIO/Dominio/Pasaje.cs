@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.interfaces;
 using Microsoft.VisualBasic;
 
 namespace Dominio
 {
-    public class Pasaje
+    public class Pasaje : IValidable
     {
         #region Atributo
         public int IdPasaje { get; set; }
@@ -37,7 +38,7 @@ namespace Dominio
 
         #region Metodos
 
-        public void ValidarPasaje()
+        public void Validar()
         {
             validarFecha();
             validarContenido();
