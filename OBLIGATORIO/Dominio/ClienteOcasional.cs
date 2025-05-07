@@ -12,9 +12,9 @@ namespace Dominio
         public bool EsElegibleRegalo { get; set; }
 
 
-        public ClienteOcasional(string cedula, string nombre, string correo, string pass, string nacionalidad, bool esElegibleRegalo) : base (cedula, nombre, correo, pass, nacionalidad)
+        public ClienteOcasional(string cedula, string nombre, string correo, string pass, string nacionalidad) : base (cedula, nombre, correo, pass, nacionalidad)
         {
-            this.EsElegibleRegalo = esElegibleRegalo;       
+            this.EsElegibleRegalo = generarBoolRandom();       
         }
 
         public override void Validar()
@@ -29,8 +29,19 @@ namespace Dominio
             return $"CLIENTE OCASIONAL: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Contrasena: {this.Pass}, Nacionalidad: {this.Nacionalidad}, Regalo: {this.EsElegibleRegalo}";
 
         }
-        
 
+        private bool generarBoolRandom()
+        {
+            Random random = new Random();
+            int numero = random.Next(0, 2);
+            bool resultado = false;
+            if (numero == 1)
+            {
+                resultado = true;
+            }
+
+            return resultado;
+        }
 
     }
 

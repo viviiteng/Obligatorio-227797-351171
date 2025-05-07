@@ -21,7 +21,7 @@ namespace Obligatorio
             while (!salir)
             {
                 Console.Clear();
-                Console.WriteLine("Bienvenidos a ORT airlines");
+                Console.WriteLine("Bienvenidos a ORT airlines\n");
                 Console.WriteLine("Ingrese el numero corresponiente para las siguientes opciones:");
 
                 Console.WriteLine("1- Listado de clientes.");
@@ -49,9 +49,6 @@ namespace Obligatorio
                         break;
                     case "5":
                         EmitirNuevoPasaje();
-                        break;
-                    case "9":
-                        ListarPruebas();
                         break;
                     case "0":
                         salir = true;
@@ -136,11 +133,9 @@ namespace Obligatorio
             Console.WriteLine("Ingrese nacionalidad:");
             string nacionalidad = Console.ReadLine();
 
-            bool esElegibleRegalo = sistema.GenerarBoolRandom();
-
             try
             {
-                Usuario clienteOcasional = new ClienteOcasional(cedula, nombre, correo, pass, nacionalidad, esElegibleRegalo);
+                Usuario clienteOcasional = new ClienteOcasional(cedula, nombre, correo, pass, nacionalidad);
                 sistema.AgregarNuevoUsuario(clienteOcasional);
                 Console.WriteLine("Cliente creado exitosamente. Presione cualquier tecla para volver...");
             }
@@ -276,8 +271,8 @@ namespace Obligatorio
 
             try
             {
-                Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Usuarios[0], equipajeSeleccionado, 15000);   
-                
+                Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Usuarios[0], equipajeSeleccionado, 15000);
+
                 sistema.AgregarNuevoPasaje(nuevoPasaje);
                 Console.WriteLine("Pasaje emitido exitosamente.");
             }
@@ -287,81 +282,7 @@ namespace Obligatorio
             Console.ReadKey();
         }
 
-        //----------------------BORRAR VV
-        public static void ListarPruebas()
-        {
-
-            bool salir = false;
-            while (!salir)
-            {
-                Console.Clear();
-                Console.WriteLine("1- Listado de Usuarios.");
-                Console.WriteLine("2- Listado de Aeropuertos.");
-                Console.WriteLine("3- Listado de Aviones.");
-                Console.WriteLine("4- Listado de Rutas.");
-                Console.WriteLine("5- Listado de Vuelos.");
-                Console.WriteLine("6- Listado de Pasajes.");
-                Console.WriteLine("7- Listado de Clientes.");
-                Console.WriteLine("8- Listado de .");
-                Console.WriteLine("0- Salir");
-
-                string opcionIngresada = Console.ReadLine();
-                switch (opcionIngresada)
-                {
-                    case "1":
-
-                        foreach (Usuario unUsuario in sistema.Usuarios)
-                        {
-                            Console.WriteLine(unUsuario);
-                        }
-                        Console.ReadKey();
-
-                        break;
-                    case "2":
-                        foreach (Aeropuerto unAeropuerto in sistema.Aeropuertos)
-                        {
-                            Console.WriteLine(unAeropuerto);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "3":
-                        foreach (Avion unAvion in sistema.Aviones)
-                        {
-                            Console.WriteLine(unAvion);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "4":
-                        foreach (Ruta unaRuta in sistema.Rutas)
-                        {
-                            Console.WriteLine(unaRuta);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "5":
-                        foreach (Vuelo unVuelo in sistema.Vuelos)
-                        {
-                            Console.WriteLine(unVuelo);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "6":
-                        foreach (Pasaje unPasaje in sistema.Pasajes)
-                        {
-                            Console.WriteLine(unPasaje);
-                        }
-                        Console.ReadKey();
-                        break;
-                    case "0":
-                        salir = true;
-                        break;
-                    default:
-                        break;
-
-                }
 
 
-            }
-        }
     }
 }

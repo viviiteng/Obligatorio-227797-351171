@@ -39,7 +39,6 @@ namespace Dominio
             precagarPasajes();
 
         }
-
         private void precargarUsuarios()
         {
             AgregarNuevoUsuario(new ClientePremium("12345678", "Martín Pérez", "martin.perez@gmail.com", "pass123", "Uruguaya", 1500));
@@ -48,17 +47,15 @@ namespace Dominio
             AgregarNuevoUsuario(new ClientePremium("45678901", "Ana Torres", "ana.torres@gmail.com", "torres321", "Uruguaya", 2750));
             AgregarNuevoUsuario(new ClientePremium("56789012", "Diego Fernández", "diego.fernandez@outlook.com", "dfpass789", "Brasilera", 3900));
                         
-            AgregarNuevoUsuario(new ClienteOcasional("67890123", "Valentina Suárez", "valesuarez@gmail.com", "vale123", "Paraguaya", true));
-            AgregarNuevoUsuario(new ClienteOcasional("78901234", "Rodrigo López", "rodrilopez@hotmail.com", "rodri456", "Uruguaya", false));
-            AgregarNuevoUsuario(new ClienteOcasional("89012345", "María Rivas", "maria.rivas@yahoo.com", "rivas789", "Peruana", true));
-            AgregarNuevoUsuario(new ClienteOcasional("90123456", "Nicolás Méndez", "nico.mendez@gmail.com", "nicolas321", "Colombiana", false));
-            AgregarNuevoUsuario(new ClienteOcasional("01234567", "Lucía Figueroa", "lucia.fig@outlook.com", "figpass852", "Boliviana", true));
+            AgregarNuevoUsuario(new ClienteOcasional("67890123", "Valentina Suárez", "valesuarez@gmail.com", "vale123", "Paraguaya"));
+            AgregarNuevoUsuario(new ClienteOcasional("78901234", "Rodrigo López", "rodrilopez@hotmail.com", "rodri456", "Uruguaya"));
+            AgregarNuevoUsuario(new ClienteOcasional("89012345", "María Rivas", "maria.rivas@yahoo.com", "rivas789", "Peruana"));
+            AgregarNuevoUsuario(new ClienteOcasional("90123456", "Nicolás Méndez", "nico.mendez@gmail.com", "nicolas321", "Colombiana"));
+            AgregarNuevoUsuario(new ClienteOcasional("01234567", "Lucía Figueroa", "lucia.fig@outlook.com", "figpass852", "Boliviana"));
             
             AgregarNuevoUsuario(new Administrador("Agustin", "agustin@gmail.com", "1234"));
             AgregarNuevoUsuario(new Administrador("Viviana", "viviana@gmail.com", "4321"));
-        }
-        
-
+        }        
         private void precargarAviones()
         {
             AgregarNuevoAvion(new Avion("Boeing", "737 MAX", 178, 65700.0, 8500.00));
@@ -67,7 +64,6 @@ namespace Dominio
             AgregarNuevoAvion(new Avion("Bombardier", "CRJ900", 90, 29560.0, 5400.00));
 
         }
-
         private void precargaAeropuertos()
         {
             AgregarNuevoAeropuerto(new Aeropuerto("MVD", "Montevideo", 1200.50, 300.75));
@@ -91,7 +87,6 @@ namespace Dominio
             AgregarNuevoAeropuerto(new Aeropuerto("LIM", "Lima", 1400.00, 290.00));
             AgregarNuevoAeropuerto(new Aeropuerto("BOG", "Bogotá", 1380.90, 295.50));
         }
-
         private void precargarRutas()
         {
             AgregarNuevaRuta(new Ruta(Aeropuertos[0], Aeropuertos[1], 1500.0));     // MVD -> SCL
@@ -158,7 +153,6 @@ namespace Dominio
             AgregarNuevoVuelo(new Vuelo("QF878", Rutas[28], Aviones[0], new List<Frecuencia> { Frecuencia.martes, Frecuencia.sabado }));
             AgregarNuevoVuelo(new Vuelo("EK301", Rutas[29], Aviones[1], new List<Frecuencia> { Frecuencia.domingo, Frecuencia.jueves }));
         }
-
         private void precagarPasajes()
         {
             AgregarNuevoPasaje(new Pasaje(Vuelos[0], new DateTime(2025, 5, 5), Usuarios[0], TipoEquipaje.CABINA, 350.00));
@@ -195,28 +189,17 @@ namespace Dominio
         public void AgregarNuevoUsuario(Usuario unUsuario)
         {
             unUsuario.Validar();
-            validarexistenciaUsuario(unUsuario);
+            validarExistenciaUsuario(unUsuario);
             this.Usuarios.Add(unUsuario);
         }
-        private void validarexistenciaUsuario(Usuario unUsuario)
+        private void validarExistenciaUsuario(Usuario unUsuario)
         {
             if (Usuarios.Contains(unUsuario))
             {
                 throw new Exception("El usuario ya existe.");
             }
         }
-        public bool GenerarBoolRandom()
-        {
-            Random random = new Random();
-            int numero = random.Next(0, 2);
-            bool resultado = false;
-            if (numero == 1)
-            {
-                resultado = true;
-            }
-
-            return resultado;
-        }
+        
         public List<Cliente> ObtenerListadoDeClientes()
         {
             List <Cliente> clientes = new List <Cliente>();
@@ -274,7 +257,6 @@ namespace Dominio
             }
             return listaSegunFecha;
         }
-
 
 
         #endregion

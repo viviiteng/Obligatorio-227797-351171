@@ -92,7 +92,6 @@ namespace Dominio
             }
             return false;
         }
-
         private bool encontrarNumero(char numero)
         {
             string numeros = "0123456789";
@@ -112,18 +111,15 @@ namespace Dominio
                 throw new Exception("El alance del avion no es suficiente para cubrir la distancia de ruta.");
             }
         }
-
+        public double CalcularCostaPorAsiento()
+        {
+            return (this.Avion.CostoOperacionPorKm * this.Ruta.Distancia + this.Ruta.AeropuertoSalida.CostoOperacion + this.Ruta.AeropuertoLlegada.CostoOperacion) / this.Avion.CantAsientos;
+        }
         public override bool Equals(object? obj)
         {
             Vuelo otro = (Vuelo)obj;
             return this.NumVuelo == otro.NumVuelo;
         }
-
-        public double CalcularCostaPorAsiento()
-        {
-        return (this.Avion.CostoOperacionPorKm * this.Ruta.Distancia + this.Ruta.AeropuertoSalida.CostoOperacion + this.Ruta.AeropuertoLlegada.CostoOperacion) / this.Avion.CantAsientos;
-        }
-
         public override string ToString()
         {
             string frencuencia = "";
