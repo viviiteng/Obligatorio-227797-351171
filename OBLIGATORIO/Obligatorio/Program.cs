@@ -8,6 +8,7 @@ namespace Obligatorio
         private static Sistema sistema = new Sistema();
         static void Main(string[] args)
         {
+            #region Precarga
             try
             {
                 sistema.PrecargarDatos();
@@ -17,20 +18,23 @@ namespace Obligatorio
                 Console.WriteLine(ex.Message);
                 Console.ReadKey();
             }
+            #endregion
+
+            #region Menu
             bool salir = false;
             while (!salir)
             {
                 Console.Clear();
-                Console.WriteLine("Bienvenidos a ORT airlines\n");
-                Console.WriteLine("Ingrese el numero corresponiente para las siguientes opciones:");
+                Console.WriteLine("Bienvenido a ORT Airlines.\n");
+
+                Console.WriteLine("Ingrese el numero correspondiente para las siguientes opciones:");
 
                 Console.WriteLine("1- Listado de clientes.");
                 Console.WriteLine("2- Listado de vuelos.");
                 Console.WriteLine("3- Alta de cliente ocasional.");
                 Console.WriteLine("4- Listado de pasajes emitidos.");
-                Console.WriteLine("5- Emitir pasaje");
-                Console.WriteLine("9- Consulta de listas.");
-                Console.WriteLine("0- Salir");
+                Console.WriteLine("5- Emitir pasaje.");
+                Console.WriteLine("0- Salir.");
 
                 string opcionIngresada = Console.ReadLine();
                 switch (opcionIngresada)
@@ -62,7 +66,11 @@ namespace Obligatorio
                 }
 
             }
+            #endregion
+
         }
+
+        #region Metodos
         public static void MostrarListaDeClientes()
         {
             Console.Clear();
@@ -116,36 +124,42 @@ namespace Obligatorio
 
         public static void IngresarClienteOcasional()
         {
-            Console.Clear();
-            Console.WriteLine("Alta de cliente ocasional.\n");
-            Console.WriteLine("Ingrese numero de cedula (sin punto ni guion):");
-            string cedula = Console.ReadLine();
-
-            Console.WriteLine("Ingrese nombre completo:");
-            string nombre = Console.ReadLine();
-
-            Console.WriteLine("Ingrese correo electroinico:");
-            string correo = Console.ReadLine();
-
-            Console.WriteLine("Ingrese contraseña:");
-            string pass = Console.ReadLine();
-
-            Console.WriteLine("Ingrese nacionalidad:");
-            string nacionalidad = Console.ReadLine();
-
-            try
+            bool salir = false;
+            while (!salir)
             {
-                Usuario clienteOcasional = new ClienteOcasional(cedula, nombre, correo, pass, nacionalidad);
-                sistema.AgregarNuevoUsuario(clienteOcasional);
-                Console.WriteLine("Cliente creado exitosamente. Presione cualquier tecla para volver...");
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error.Message);
-            }
-            Console.WriteLine("\nPresione cualquier tecla para volver...");
+                Console.Clear();
+                Console.WriteLine("Alta de cliente ocasional.\n");
+                Console.WriteLine("Ingrese numero de cedula (sin punto ni guion):");
+                string cedula = Console.ReadLine();
 
-            Console.ReadKey();
+                Console.WriteLine("Ingrese nombre completo:");
+                string nombre = Console.ReadLine();
+
+                Console.WriteLine("Ingrese correo electroinico:");
+                string correo = Console.ReadLine();
+
+                Console.WriteLine("Ingrese contraseña:");
+                string pass = Console.ReadLine();
+
+                Console.WriteLine("Ingrese nacionalidad:");
+                string nacionalidad = Console.ReadLine();
+
+                try
+                {
+                    Usuario clienteOcasional = new ClienteOcasional(cedula, nombre, correo, pass, nacionalidad);
+                    sistema.AgregarNuevoUsuario(clienteOcasional);
+                    salir = true;
+                    Console.WriteLine("Cliente creado exitosamente. Presione cualquier tecla para volver...");
+                }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error.Message);
+                }
+                
+
+                Console.ReadKey();
+            }
+            
         }
 
         public static void MostrarListaPasajesSegunFecha()
@@ -157,8 +171,8 @@ namespace Obligatorio
 
                 Console.WriteLine("Buscar pasaje dentro de un rango de fechas:\n");
 
-                DateTime fechaIngresadaUno = new DateTime();
-                DateTime fechaIngresadaDos = new DateTime();
+                DateTime fechaIngresadaUno;
+                DateTime fechaIngresadaDos;
 
 
                 Console.WriteLine("Ingrese fecha inicial (AAAA/MM/DD):");
@@ -202,28 +216,31 @@ namespace Obligatorio
 
         public static void EmitirNuevoPasaje()
         {
-            Console.Clear();
-            Console.WriteLine("Emitir nuevo pasaje:\n");
+
             Vuelo vueloSeleccionado = null;
             bool salir = false;
             while (!salir)
             {
+                Console.Clear();
+                Console.WriteLine("Emitir nuevo pasaje:\n");
                 Console.WriteLine($"Ingrese un numero del 1 al {sistema.Vuelos.Count} para seleccionar un vuelo:");
                 for (int i = 0; i < sistema.Vuelos.Count; i++)
                 {
                     Vuelo unVuelo = sistema.Vuelos[i];
-                    Console.WriteLine($"{i + 1}. {unVuelo.NumVuelo}: Origen: {unVuelo.Ruta.AeropuertoSalida.Ciudad}, Destino: {unVuelo.Ruta.AeropuertoLlegada.Ciudad}");
+                    Console.WriteLine($"{i + 1}. Numero de vuelo: {unVuelo.NumVuelo}, Origen: {unVuelo.Ruta.AeropuertoSalida.Ciudad}, Destino: {unVuelo.Ruta.AeropuertoLlegada.Ciudad}");
 
                 }
                 bool esNum = int.TryParse(Console.ReadLine(), out int opcionIngresada);
-                vueloSeleccionado = sistema.Vuelos[opcionIngresada - 1];
-                if (opcionIngresada > 0 && opcionIngresada < sistema.Vuelos.Count)
+
+                if (opcionIngresada > 0 && opcionIngresada <= sistema.Vuelos.Count)
                 {
+                    vueloSeleccionado = sistema.Vuelos[opcionIngresada - 1];
                     salir = true;
                 }
                 else
                 {
-                    Console.WriteLine("\n Ingrese un numero dentro del rango. Vuelve a intentarlo.");
+                    Console.WriteLine("\nError: Ingreso fuera del rango. Vuelve a intentarlo...");
+                    Console.ReadKey();
                 }
             }
 
@@ -231,6 +248,8 @@ namespace Obligatorio
             DateTime fechaIngresada = new DateTime();
             while (!esDateTime)
             {
+                Console.Clear();
+                Console.WriteLine($"Vuelo seleccionado: {vueloSeleccionado}\n");
                 Console.WriteLine($"Ingrese una fecha (AAAA/MM/DD):");
                 bool esFecha = DateTime.TryParse(Console.ReadLine(), out fechaIngresada);
                 if (esFecha)
@@ -239,50 +258,62 @@ namespace Obligatorio
                 }
                 else
                 {
-                    Console.WriteLine("\n Formato ingresado incorrecto. Vuelve a intentarlo.");
+                    Console.WriteLine("\nError: Formato ingresado incorrectamente. Vuelve a intentarlo...");
+                    Console.ReadKey();
                 }
             }
 
-            Console.WriteLine($"Ingrese un numero del 1 al 3 para seleccionar un tipo de equipaje:");
-
-            TipoEquipaje[] equipajes = (TipoEquipaje[])Enum.GetValues(typeof(TipoEquipaje));
-
-            for (int i = 0; i < equipajes.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}. {equipajes[i]}");
-            }
-            bool esNumEquipaje = false;
-            int equipajeIngresado;
+            bool salirEquipaje = false;
             TipoEquipaje equipajeSeleccionado = 0;
-            while (!esNumEquipaje)
+            while (!salirEquipaje)
             {
+                Console.Clear();
+                Console.WriteLine($"Ingrese un numero del 1 al 3 para seleccionar un tipo de equipaje:");
+
+                TipoEquipaje[] equipajes = (TipoEquipaje[])Enum.GetValues(typeof(TipoEquipaje));
+
+                for (int i = 0; i < equipajes.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {equipajes[i]}");
+                }
+                
+                int equipajeIngresado;
+
                 bool esNumero = int.TryParse(Console.ReadLine(), out equipajeIngresado);
                 if (esNumero && equipajeIngresado > 0 && equipajeIngresado <= 3)
                 {
                     equipajeSeleccionado = equipajes[equipajeIngresado - 1];
-                    esNumEquipaje = true;
-                    Console.WriteLine(equipajeSeleccionado);
+                    
+                    salirEquipaje = true;
+                    Console.ReadKey();
+
                 }
                 else
                 {
-                    Console.WriteLine("\n Formato ingresado incorrecto. Vuelve a internarlo.");
+                    
+                    Console.WriteLine("\nError: Formato ingresado incorrectamente. Vuelve a intentarlo...");
+                    Console.ReadKey();
                 }
+
             }
 
+            Console.Clear();
             try
             {
                 Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Usuarios[0], equipajeSeleccionado, 15000);
 
                 sistema.AgregarNuevoPasaje(nuevoPasaje);
                 Console.WriteLine("Pasaje emitido exitosamente.");
+                Console.WriteLine($"Pasaje: [{nuevoPasaje}].");
+                Console.WriteLine("\nPresione cualquier tecla para volver al menu...");
+
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
-
-            Console.WriteLine("Presiones cualquier tecla para volver.\n");
             Console.ReadKey();
+
         }
 
 
-
+        #endregion
     }
 }

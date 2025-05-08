@@ -8,18 +8,23 @@ namespace Dominio
 {
     public class ClientePremium : Cliente
     {
+        #region Atributos
         public int PuntosAcumulados { get; set; }
+        #endregion
 
+        #region Constructor
         public ClientePremium(string cedula, string nombre, string correo, string pass, string nacionalidad, int puntos) : base(cedula, nombre, correo, pass, nacionalidad)
         {
             this.PuntosAcumulados = puntos;
         }
+        #endregion
 
+        #region Metodos
         public override void Validar()
         {
             if (this.Cedula == "" || this.Nombre == "" || this.Correo == "" || this.Pass == "" || this.Nacionalidad == "" || this.PuntosAcumulados < 0)
             {
-                throw new Exception("Los valores para cada atributo del cliente premium no pueden estar vacios");
+                throw new Exception("Error: Los valores para cada atributo del cliente premium no pueden estar vacios");
             }
         }
         public override string ObtenerDatosUsuario()
@@ -27,7 +32,9 @@ namespace Dominio
             return $"CLIENTE PREMIUM: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Contrasena: {this.Pass}, Nacionalidad: {this.Nacionalidad}, Puntos: {this.PuntosAcumulados}";
 
         }
-        
+        #endregion
+
+
 
     }
 }

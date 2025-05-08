@@ -35,6 +35,7 @@ namespace Dominio
             validarCodigoIATA();
             validarContenido();
         }
+
         private void validarCodigoIATA()
         {
             validarCantLetras();
@@ -43,7 +44,7 @@ namespace Dominio
             {
                 if (!esLetra(digito))
                 {
-                    throw new Exception("Los tres digitos tienen que ser Letras");
+                    throw new Exception("Error: Los tres digitos tienen que ser Letras");
                 }
             }
         }
@@ -51,7 +52,7 @@ namespace Dominio
         {           
             if (this.CodigoIATA.Length != 3)
             {
-                throw new Exception("Codigo IATA ingresado no cumple con el formato de 3 letras");
+                throw new Exception("Error: Codigo IATA ingresado no cumple con el formato de 3 letras");
             }
         }
 
@@ -76,11 +77,15 @@ namespace Dominio
                 throw new Exception("Error al validar los datos del aeropuerto.");
             }
         }
+
+        
         public override bool Equals(object? obj)
         {
             Aeropuerto otro = (Aeropuerto)obj;
             return this.CodigoIATA.ToUpper() == otro.CodigoIATA.ToUpper();
         }
+
+
 
         
         #endregion

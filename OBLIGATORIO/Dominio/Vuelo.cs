@@ -66,18 +66,18 @@ namespace Dominio
 
             if (contadorLetra != 2)
             {
-                throw new Exception("El número de vuelo es incorrecto. Tiene que tener 2 letras.");
+                throw new Exception("Error: El número de vuelo es incorrecto. Tiene que tener 2 letras.");
             }
             if (contadorNumero < 1 && contadorNumero > 4)
             {
-                throw new Exception("El número de vuelo es incorrecto. Tiene que tener entre 1 y 4 números.");
+                throw new Exception("Error: El número de vuelo es incorrecto. Tiene que tener entre 1 y 4 números.");
             }
         } 
         private void validarCantDigitos()
         {
             if (this.NumVuelo.Length < 3 && this.NumVuelo.Length > 7)
             {
-                throw new Exception("La cantidad de digitos tiene que ser de 3 a 7 digitos");
+                throw new Exception("Error: La cantidad de digitos tiene que ser de 3 a 7 digitos");
             }
         }
         private bool encontrarLetra(char letra)
@@ -108,7 +108,7 @@ namespace Dominio
         {
             if(this.Ruta.Distancia > this.Avion.Alcance)
             {
-                throw new Exception("El alance del avion no es suficiente para cubrir la distancia de ruta.");
+                throw new Exception("Error: El alance del avion no es suficiente para cubrir la distancia de ruta.");
             }
         }
         public double CalcularCostaPorAsiento()

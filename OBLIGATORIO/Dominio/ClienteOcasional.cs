@@ -9,19 +9,23 @@ namespace Dominio
 {
     public class ClienteOcasional : Cliente
     {
+        #region 
         public bool EsElegibleRegalo { get; set; }
+        #endregion
 
-
-        public ClienteOcasional(string cedula, string nombre, string correo, string pass, string nacionalidad) : base (cedula, nombre, correo, pass, nacionalidad)
+        #region Constructor
+        public ClienteOcasional(string cedula, string nombre, string correo, string pass, string nacionalidad) : base(cedula, nombre, correo, pass, nacionalidad)
         {
-            this.EsElegibleRegalo = generarBoolRandom();       
+            this.EsElegibleRegalo = generarBoolRandom();
         }
+        #endregion
 
+        #region Metodos
         public override void Validar()
         {
             if (this.Cedula == "" || this.Nombre == "" || this.Correo == "" || this.Pass == "" || this.Nacionalidad == "")
             {
-                throw new Exception("Los valores para cada atributo del cliente ocasional no pueden estar vacios");
+                throw new Exception("Error: Debe rellenar todos los campos. Intente de nuevo...");
             }
         }
         public override string ObtenerDatosUsuario()
@@ -42,6 +46,8 @@ namespace Dominio
 
             return resultado;
         }
+        #endregion
+
 
     }
 

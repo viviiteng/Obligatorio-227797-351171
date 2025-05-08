@@ -64,7 +64,7 @@ namespace Dominio
             }
             if(!coincide)
             {
-                throw new Exception("El dia de la fecha del pasaje no coincide con la frecuencia del vuelo");
+                throw new Exception("Error: El dia de la fecha del pasaje no coincide con la frecuencia del vuelo");
             }
         }
         public override bool Equals(object? obj)

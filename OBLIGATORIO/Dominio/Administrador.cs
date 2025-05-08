@@ -25,7 +25,7 @@ namespace Dominio
         {
             if (this.Correo == "" || this.Pass == "" || this.Apodo=="")
             {
-                throw new Exception("Los valores para cada atributo del administrador no pueden estar vacios");
+                throw new Exception("Error: Los valores para cada atributo del administrador no pueden estar vacios");
             }
         }
 
