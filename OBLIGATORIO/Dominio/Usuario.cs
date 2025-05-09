@@ -26,7 +26,13 @@ namespace Dominio
         #endregion
 
         #region Metodos
-        public abstract void Validar();
+        public virtual void Validar()
+        {
+            if (this.Correo == "" || this.Pass == "")
+            {
+                throw new Exception("Error: Debe rellenar todos los campos requeridos");
+            }
+        }
 
         public abstract string ObtenerDatosUsuario();
 

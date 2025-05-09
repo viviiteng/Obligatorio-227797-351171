@@ -23,9 +23,10 @@ namespace Dominio
         #region Metodos
         public override void Validar()
         {
-            if (this.Correo == "" || this.Pass == "" || this.Apodo=="")
+            base.Validar();
+            if (this.Apodo=="") 
             {
-                throw new Exception("Error: Los valores para cada atributo del administrador no pueden estar vacios");
+                throw new Exception("Error: Debe rellenar todos los campos requeridos");
             }
         }
 

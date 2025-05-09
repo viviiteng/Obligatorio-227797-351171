@@ -55,9 +55,9 @@ namespace Obligatorio
                         EmitirNuevoPasaje();
                         break;
                     case "0":
-                        salir = true;
                         Console.ReadKey();
                         break;
+                        salir = true;
                     default:
                         Console.WriteLine("Error: Ingrese un valor del 0 al 5.");
                         Console.WriteLine("Presione cualquier tecla para intentarlo de nuevo...");
@@ -102,22 +102,29 @@ namespace Obligatorio
                 Console.Clear();
                 Console.WriteLine("Ingrese un codigo IATA:\n");
                 string codigoIngresado = Console.ReadLine();
-                List<Vuelo> listaFiltrada = new List<Vuelo>();
-                try
+                if (codigoIngresado.Length != 3)
                 {
-                    listaFiltrada = sistema.ListarVueloSegunIATA(codigoIngresado);
-                    foreach (Vuelo unVuelo in listaFiltrada)
+                    Console.WriteLine("Error: Codigo IATA ingresado no cumple con el formato de 3 letras");
+                }
+                else
+                {                    
+                    List<Vuelo> listaFiltrada = new List<Vuelo>();
+                    try
                     {
-                        Console.WriteLine(unVuelo);
+                        listaFiltrada = sistema.ListarVueloSegunIATA(codigoIngresado);
+                        foreach (Vuelo unVuelo in listaFiltrada)
+                        {
+                            Console.WriteLine(unVuelo);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        salir = true;
                     }
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    salir = true;
-                }
 
-                Console.WriteLine("\nPresione cualquier tecla para volver...");
+                    Console.WriteLine("\nPresione cualquier tecla para volver...");
                 Console.ReadKey();
             }
         }
@@ -155,11 +162,11 @@ namespace Obligatorio
                 {
                     Console.WriteLine(error.Message);
                 }
-                
+
 
                 Console.ReadKey();
             }
-            
+
         }
 
         public static void MostrarListaPasajesSegunFecha()
@@ -276,21 +283,21 @@ namespace Obligatorio
                 {
                     Console.WriteLine($"{i + 1}. {equipajes[i]}");
                 }
-                
+
                 int equipajeIngresado;
 
                 bool esNumero = int.TryParse(Console.ReadLine(), out equipajeIngresado);
                 if (esNumero && equipajeIngresado > 0 && equipajeIngresado <= 3)
                 {
                     equipajeSeleccionado = equipajes[equipajeIngresado - 1];
-                    
+
                     salirEquipaje = true;
                     Console.ReadKey();
 
                 }
                 else
                 {
-                    
+
                     Console.WriteLine("\nError: Formato ingresado incorrectamente. Vuelve a intentarlo...");
                     Console.ReadKey();
                 }

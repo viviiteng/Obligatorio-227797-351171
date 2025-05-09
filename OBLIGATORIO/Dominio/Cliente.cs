@@ -29,12 +29,18 @@ namespace Dominio
         #endregion
 
         #region Metodos
+        public override void Validar()
+        {
+            base.Validar();
+            if (this.Cedula == "" || this.Nombre == "" || this.Nacionalidad == "")
+            {
+                throw new Exception("Error: Debe rellenar todos los campos requeridos");
+            }
+        }
         public override string ToString()
         {
             return this.Nombre;
         }
-
-
         #endregion
     }
 }

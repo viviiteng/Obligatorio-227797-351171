@@ -9,7 +9,7 @@ namespace Dominio
 {
     public class ClienteOcasional : Cliente
     {
-        #region 
+        #region Atributos
         public bool EsElegibleRegalo { get; set; }
         #endregion
 
@@ -21,17 +21,10 @@ namespace Dominio
         #endregion
 
         #region Metodos
-        public override void Validar()
-        {
-            if (this.Cedula == "" || this.Nombre == "" || this.Correo == "" || this.Pass == "" || this.Nacionalidad == "")
-            {
-                throw new Exception("Error: Debe rellenar todos los campos. Intente de nuevo...");
-            }
-        }
+        
         public override string ObtenerDatosUsuario()
         {
             return $"CLIENTE OCASIONAL: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Contrasena: {this.Pass}, Nacionalidad: {this.Nacionalidad}, Regalo: {this.EsElegibleRegalo}";
-
         }
 
         private bool generarBoolRandom()
@@ -47,8 +40,6 @@ namespace Dominio
             return resultado;
         }
         #endregion
-
-
     }
 
     

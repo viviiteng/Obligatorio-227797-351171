@@ -22,9 +22,10 @@ namespace Dominio
         #region Metodos
         public override void Validar()
         {
-            if (this.Cedula == "" || this.Nombre == "" || this.Correo == "" || this.Pass == "" || this.Nacionalidad == "" || this.PuntosAcumulados < 0)
+            base.Validar();
+            if (this.PuntosAcumulados < 0)
             {
-                throw new Exception("Error: Los valores para cada atributo del cliente premium no pueden estar vacios");
+                throw new Exception("Error: Debe rellenar todos los campos requeridos");
             }
         }
         public override string ObtenerDatosUsuario()
