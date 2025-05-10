@@ -24,7 +24,7 @@ namespace Dominio
         
         public override string ObtenerDatosUsuario()
         {
-            return $"CLIENTE OCASIONAL: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Contrasena: {this.Pass}, Nacionalidad: {this.Nacionalidad}, Regalo: {this.EsElegibleRegalo}";
+            return $"CLIENTE OCASIONAL: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Nacionalidad: {this.Nacionalidad}, Regalo: {this.EsElegibleRegalo}";
         }
 
         private bool generarBoolRandom()

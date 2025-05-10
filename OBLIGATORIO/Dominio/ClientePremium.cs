@@ -30,7 +30,7 @@ namespace Dominio
         }
         public override string ObtenerDatosUsuario()
         {
-            return $"CLIENTE PREMIUM: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Contrasena: {this.Pass}, Nacionalidad: {this.Nacionalidad}, Puntos: {this.PuntosAcumulados}";
+            return $"CLIENTE PREMIUM: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Nacionalidad: {this.Nacionalidad}, Puntos: {this.PuntosAcumulados}";
 
         }
         #endregion

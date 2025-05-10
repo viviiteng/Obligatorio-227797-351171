@@ -59,8 +59,7 @@ namespace Obligatorio
                         break;
                         salir = true;
                     default:
-                        Console.WriteLine("Error: Ingrese un valor del 0 al 5.");
-                        Console.WriteLine("Presione cualquier tecla para intentarlo de nuevo...");
+                        Console.WriteLine("Error: Ingrese un valor del 0 al 5. \n Presione cualquier tecla para intentarlo de nuevo...");
                         Console.ReadKey();
                         break;
                 }
@@ -75,11 +74,9 @@ namespace Obligatorio
         {
             Console.Clear();
             Console.WriteLine("Clientes Registrados:\n");
-            List<Cliente> clientes = new List<Cliente>();
             try
             {
-                clientes = sistema.ObtenerListadoDeClientes();
-                foreach (Cliente unCliente in clientes)
+                foreach (Usuario unCliente in sistema.ObtenerListadoDeClientes())
                 {
                     Console.WriteLine(unCliente.ObtenerDatosUsuario());
                 }
@@ -182,10 +179,10 @@ namespace Obligatorio
                 DateTime fechaIngresadaDos;
 
 
-                Console.WriteLine("Ingrese fecha inicial (AAAA/MM/DD):");
+                Console.WriteLine("Ingrese fecha inicial (AAAA/MM/DD) o (DD/MM/AAAA):");
                 bool esFechaUno = DateTime.TryParse(Console.ReadLine(), out fechaIngresadaUno);
 
-                Console.WriteLine("Ingrese fecha final (AAAA/MM/DD):");
+                Console.WriteLine("Ingrese fecha final (AAAA/MM/DD) o (DD/MM/AAAA):");
                 bool esFechaDos = DateTime.TryParse(Console.ReadLine(), out fechaIngresadaDos);
                 if (esFechaUno && esFechaDos)
                 {
@@ -210,8 +207,6 @@ namespace Obligatorio
                         salir = false;
                         Console.ReadKey();
                     }
-
-
                 }
                 else
                 {
@@ -246,7 +241,7 @@ namespace Obligatorio
                 }
                 else
                 {
-                    Console.WriteLine("\nError: Ingreso fuera del rango. Vuelve a intentarlo...");
+                    Console.WriteLine("\nError: Ingreso fuera del rango. Presione cualquier tecla para intentarlo de nuevo...");
                     Console.ReadKey();
                 }
             }
@@ -257,7 +252,7 @@ namespace Obligatorio
             {
                 Console.Clear();
                 Console.WriteLine($"Vuelo seleccionado: {vueloSeleccionado}\n");
-                Console.WriteLine($"Ingrese una fecha (AAAA/MM/DD):");
+                Console.WriteLine($"Ingrese una fecha (AAAA/MM/DD) o (DD/MM/AAAA):");
                 bool esFecha = DateTime.TryParse(Console.ReadLine(), out fechaIngresada);
                 if (esFecha)
                 {
@@ -265,7 +260,7 @@ namespace Obligatorio
                 }
                 else
                 {
-                    Console.WriteLine("\nError: Formato ingresado incorrectamente. Vuelve a intentarlo...");
+                    Console.WriteLine("\nError: Formato ingresado incorrectamente. Presione cualquier tecla para intentarlo de nuevo...");
                     Console.ReadKey();
                 }
             }
@@ -292,13 +287,14 @@ namespace Obligatorio
                     equipajeSeleccionado = equipajes[equipajeIngresado - 1];
 
                     salirEquipaje = true;
+                    Console.WriteLine("Emitiendo pasaje...Presione cualquier tecla para seguir.");
                     Console.ReadKey();
 
                 }
                 else
                 {
 
-                    Console.WriteLine("\nError: Formato ingresado incorrectamente. Vuelve a intentarlo...");
+                    Console.WriteLine("\nError: Formato ingresado incorrectamente. Presione cualquier tecla para intentarlo de nuevo...");
                     Console.ReadKey();
                 }
 

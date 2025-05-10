@@ -32,7 +32,7 @@ namespace Dominio
 
         public override string ObtenerDatosUsuario()
         {
-            return $"Apodo: {this.Apodo}, Correo: {this.Correo}, Contrasena {this.Pass}.";
+            return $"Apodo: {this.Apodo}, Correo: {this.Correo}.";
         }
 
         #endregion
