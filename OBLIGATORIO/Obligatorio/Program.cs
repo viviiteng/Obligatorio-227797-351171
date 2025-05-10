@@ -300,14 +300,14 @@ namespace Obligatorio
 
             }
 
-            Console.Clear();
             try
             {
+                Console.Clear();
                 Pasaje nuevoPasaje = new Pasaje(vueloSeleccionado, fechaIngresada, sistema.Usuarios[0], equipajeSeleccionado, 15000);
 
                 sistema.AgregarNuevoPasaje(nuevoPasaje);
-                Console.WriteLine("Pasaje emitido exitosamente.");
-                Console.WriteLine($"Pasaje: [{nuevoPasaje}].");
+                Console.WriteLine("\nPasaje emitido exitosamente.");
+                Console.WriteLine($"\nPasaje: [{nuevoPasaje}].");
                 Console.WriteLine("\nPresione cualquier tecla para volver al menu...");
 
             }
