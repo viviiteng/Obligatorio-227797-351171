@@ -77,12 +77,6 @@ namespace Dominio
             return $"Id del Pasaje: {this.IdPasaje}, Pasajero: {this.Pasajero}, Precio del pasaje: {this.PrecioPasaje}, Fecha del vuelo: {this.FechaDeVuelo.ToString("dd/MM/yyyy")}, Vuelo: {this.Vuelo.NumVuelo}. ";
         }
 
-        //public double CalcularPasaje()
-        //{
-        //    double precioPasaje;
-
-        //    precioPasaje = this.Vuelo.CalcularCostaPorAsiento() * (1 + (25 + this.Pasajero.ObtenerDescuento(equipaje) / 100) + this.Vuelo.Ruta.AeropuertoSalida.CostoOperacion + this.Vuelo.Ruta.AeropuertoLlegada.CostoOperacion);
-        //}
         #endregion
     }
 }
