@@ -56,8 +56,8 @@ namespace Obligatorio
                         break;
                     case "0":
                         Console.ReadKey();
-                        break;
                         salir = true;
+                        break;
                     default:
                         Console.WriteLine("Error: Ingrese un valor del 0 al 5. \n Presione cualquier tecla para intentarlo de nuevo...");
                         Console.ReadKey();
@@ -210,7 +210,8 @@ namespace Obligatorio
                 }
                 else
                 {
-                    Console.WriteLine("Formato ingresado incorrecto. Presione cualquier tecla para intentarlo de nuevo...");
+                    Console.WriteLine("Formato ingresado incorrecto. Presione cualquier tecla para volver...");
+                    salir = true;
                     Console.ReadKey();
                 }
             }
