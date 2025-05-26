@@ -11,7 +11,7 @@ namespace Obligatorio
             #region Precarga
             try
             {
-                sistema.PrecargarDatos();
+                //sistema.PrecargarDatos();
             }
             catch (Exception ex)
             {

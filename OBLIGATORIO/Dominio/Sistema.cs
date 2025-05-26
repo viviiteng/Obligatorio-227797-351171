@@ -5,7 +5,16 @@ namespace Dominio
 {
     public class Sistema
     {
-        #region Atributos
+        private static Sistema instancia;
+        public static Sistema ObtenerInstancia()
+        {
+            if (instancia == null)
+            {
+                instancia = new Sistema();
+            }
+            return instancia;
+        }
+        #region Atributos   
         public List<Usuario> Usuarios { get; set; }
         public List<Pasaje> Pasajes { get; set; }
         public List<Vuelo> Vuelos { get; set; }
@@ -23,13 +32,15 @@ namespace Dominio
             Rutas = new List<Ruta>();
             Pasajes = new List<Pasaje>();
             Vuelos = new List<Vuelo>();
+            precargarDatos();
         }
         #endregion
 
         #region Metodos
-        
+
+
         #region Precargas
-        public void PrecargarDatos()
+        private void precargarDatos()
         {
             precargarUsuarios();
             precargarAviones();
@@ -88,98 +99,98 @@ namespace Dominio
         }
         private void precargarRutas()
         {
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MVD"), obtenerAeropuertoSegunIATA("SCL"), 1500.0));   
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MVD"), obtenerAeropuertoSegunIATA("EZE"), 2100.0));   
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SCL"), obtenerAeropuertoSegunIATA("GRU"), 2600.0));   
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("EZE"), obtenerAeropuertoSegunIATA("JFK"), 8500.0));   
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("GRU"), obtenerAeropuertoSegunIATA("LAX"), 9800.0));   
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("JFK"), obtenerAeropuertoSegunIATA("CDG"), 5850.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LAX"), obtenerAeropuertoSegunIATA("LHR"), 8750.0));   
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("CDG"), obtenerAeropuertoSegunIATA("MAD"), 1050.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LHR"), obtenerAeropuertoSegunIATA("FRA"), 1030.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MAD"), obtenerAeropuertoSegunIATA("AMS"), 1480.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("FRA"), obtenerAeropuertoSegunIATA("BCN"), 1330.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("AMS"), obtenerAeropuertoSegunIATA("MIA"), 7800.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("BCN"), obtenerAeropuertoSegunIATA("YYZ"), 7800.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MIA"), obtenerAeropuertoSegunIATA("NRT"), 11000.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("YYZ"), obtenerAeropuertoSegunIATA("SYD"), 15500.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("NRT"), obtenerAeropuertoSegunIATA("DXB"), 8200.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SYD"), obtenerAeropuertoSegunIATA("DOH"), 12100.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("DXB"), obtenerAeropuertoSegunIATA("LIM"), 14600.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("DOH"), obtenerAeropuertoSegunIATA("BOG"), 13800.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SCL"), obtenerAeropuertoSegunIATA("MVD"), 1500.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("JFK"), obtenerAeropuertoSegunIATA("MVD"), 8500.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("GRU"), obtenerAeropuertoSegunIATA("CDG"), 9400.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LAX"), obtenerAeropuertoSegunIATA("EZE"), 9900.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("CDG"), obtenerAeropuertoSegunIATA("MVD"), 10800.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LHR"), obtenerAeropuertoSegunIATA("LAX"), 8750.0));  
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MAD"), obtenerAeropuertoSegunIATA("GRU"), 10200.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("FRA"), obtenerAeropuertoSegunIATA("EZE"), 11200.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("AMS"), obtenerAeropuertoSegunIATA("MVD"), 11400.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("BCN"), obtenerAeropuertoSegunIATA("NRT"), 11700.0)); 
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LIM"), obtenerAeropuertoSegunIATA("MVD"), 3200.0));     
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MVD"), obtenerAeropuertoSegunIATA("SCL"), 1500.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MVD"), obtenerAeropuertoSegunIATA("EZE"), 2100.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SCL"), obtenerAeropuertoSegunIATA("GRU"), 2600.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("EZE"), obtenerAeropuertoSegunIATA("JFK"), 8500.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("GRU"), obtenerAeropuertoSegunIATA("LAX"), 9800.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("JFK"), obtenerAeropuertoSegunIATA("CDG"), 5850.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LAX"), obtenerAeropuertoSegunIATA("LHR"), 8750.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("CDG"), obtenerAeropuertoSegunIATA("MAD"), 1050.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LHR"), obtenerAeropuertoSegunIATA("FRA"), 1030.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MAD"), obtenerAeropuertoSegunIATA("AMS"), 1480.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("FRA"), obtenerAeropuertoSegunIATA("BCN"), 1330.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("AMS"), obtenerAeropuertoSegunIATA("MIA"), 7800.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("BCN"), obtenerAeropuertoSegunIATA("YYZ"), 7800.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MIA"), obtenerAeropuertoSegunIATA("NRT"), 11000.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("YYZ"), obtenerAeropuertoSegunIATA("SYD"), 15500.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("NRT"), obtenerAeropuertoSegunIATA("DXB"), 8200.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SYD"), obtenerAeropuertoSegunIATA("DOH"), 12100.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("DXB"), obtenerAeropuertoSegunIATA("LIM"), 14600.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("DOH"), obtenerAeropuertoSegunIATA("BOG"), 13800.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SCL"), obtenerAeropuertoSegunIATA("MVD"), 1500.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("JFK"), obtenerAeropuertoSegunIATA("MVD"), 8500.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("GRU"), obtenerAeropuertoSegunIATA("CDG"), 9400.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LAX"), obtenerAeropuertoSegunIATA("EZE"), 9900.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("CDG"), obtenerAeropuertoSegunIATA("MVD"), 10800.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LHR"), obtenerAeropuertoSegunIATA("LAX"), 8750.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MAD"), obtenerAeropuertoSegunIATA("GRU"), 10200.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("FRA"), obtenerAeropuertoSegunIATA("EZE"), 11200.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("AMS"), obtenerAeropuertoSegunIATA("MVD"), 11400.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("BCN"), obtenerAeropuertoSegunIATA("NRT"), 11700.0));
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LIM"), obtenerAeropuertoSegunIATA("MVD"), 3200.0));
 
         }
         private void precargarVuelos()
         {
-            AgregarNuevoVuelo(new Vuelo("AR101",obtenerRutaSegunId(0) , obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("UX309",obtenerRutaSegunId(2) , obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("AF450",obtenerRutaSegunId(3) , obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.jueves, Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("IB333",obtenerRutaSegunId(4) , obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.martes }));
-            AgregarNuevoVuelo(new Vuelo("DL220",obtenerRutaSegunId(5) , obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.viernes, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("UA875",obtenerRutaSegunId(6) , obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.jueves, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("LA203",obtenerRutaSegunId(1) , obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.martes, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("LH708",obtenerRutaSegunId(7) , obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.miercoles }));
-            AgregarNuevoVuelo(new Vuelo("KL110",obtenerRutaSegunId(8) , obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.martes, Frecuencia.jueves }));
-            AgregarNuevoVuelo(new Vuelo("AZ556",obtenerRutaSegunId(9) , obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("AC990",obtenerRutaSegunId(10) ,obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("JJ777",obtenerRutaSegunId(11) ,obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.miercoles }));
-            AgregarNuevoVuelo(new Vuelo("NH852",obtenerRutaSegunId(12) ,obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.martes, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("QF908",obtenerRutaSegunId(13) ,obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.lunes }));
-            AgregarNuevoVuelo(new Vuelo("EK202",obtenerRutaSegunId(14), obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("QR118",obtenerRutaSegunId(15) ,obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.jueves }));
-            AgregarNuevoVuelo(new Vuelo("LA515",obtenerRutaSegunId(16) ,obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.viernes, Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("AV300",obtenerRutaSegunId(17) ,obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.lunes }));
-            AgregarNuevoVuelo(new Vuelo("AR132",obtenerRutaSegunId(18) ,obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.martes }));
-            AgregarNuevoVuelo(new Vuelo("IB440",obtenerRutaSegunId(19) ,obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("DL155",obtenerRutaSegunId(20) ,obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("AF621",obtenerRutaSegunId(21) ,obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.jueves, Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("KL205",obtenerRutaSegunId(22) ,obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("BA775",obtenerRutaSegunId(23) ,obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.martes, Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("JJ803",obtenerRutaSegunId(24) ,obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.domingo }));
-            AgregarNuevoVuelo(new Vuelo("AZ313",obtenerRutaSegunId(25) ,obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.miercoles }));
-            AgregarNuevoVuelo(new Vuelo("AC499",obtenerRutaSegunId(26) ,obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.jueves }));
-            AgregarNuevoVuelo(new Vuelo("NH404",obtenerRutaSegunId(27) ,obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.viernes }));
-            AgregarNuevoVuelo(new Vuelo("QF878",obtenerRutaSegunId(28) ,obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.martes, Frecuencia.sabado }));
-            AgregarNuevoVuelo(new Vuelo("EK301",obtenerRutaSegunId(29) ,obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.domingo, Frecuencia.jueves }));
+            AgregarNuevoVuelo(new Vuelo("AR101", obtenerRutaSegunId(0), obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.viernes }));
+            AgregarNuevoVuelo(new Vuelo("UX309", obtenerRutaSegunId(2), obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.domingo }));
+            AgregarNuevoVuelo(new Vuelo("AF450", obtenerRutaSegunId(3), obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.jueves, Frecuencia.domingo }));
+            AgregarNuevoVuelo(new Vuelo("IB333", obtenerRutaSegunId(4), obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.martes }));
+            AgregarNuevoVuelo(new Vuelo("DL220", obtenerRutaSegunId(5), obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.viernes, Frecuencia.sabado }));
+            AgregarNuevoVuelo(new Vuelo("UA875", obtenerRutaSegunId(6), obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.jueves, Frecuencia.viernes }));
+            AgregarNuevoVuelo(new Vuelo("LA203", obtenerRutaSegunId(1), obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.martes, Frecuencia.sabado }));
+            AgregarNuevoVuelo(new Vuelo("LH708", obtenerRutaSegunId(7), obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.miercoles }));
+            AgregarNuevoVuelo(new Vuelo("KL110", obtenerRutaSegunId(8), obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.martes, Frecuencia.jueves }));
+            AgregarNuevoVuelo(new Vuelo("AZ556", obtenerRutaSegunId(9), obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.sabado }));
+            AgregarNuevoVuelo(new Vuelo("AC990", obtenerRutaSegunId(10), obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.domingo }));
+            AgregarNuevoVuelo(new Vuelo("JJ777", obtenerRutaSegunId(11), obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.miercoles }));
+            AgregarNuevoVuelo(new Vuelo("NH852", obtenerRutaSegunId(12), obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.martes, Frecuencia.viernes }));
+            AgregarNuevoVuelo(new Vuelo("QF908", obtenerRutaSegunId(13), obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.lunes }));
+            AgregarNuevoVuelo(new Vuelo("EK202", obtenerRutaSegunId(14), obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.sabado }));
+            AgregarNuevoVuelo(new Vuelo("QR118", obtenerRutaSegunId(15), obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.jueves }));
+            AgregarNuevoVuelo(new Vuelo("LA515", obtenerRutaSegunId(16), obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.viernes, Frecuencia.domingo }));
+            AgregarNuevoVuelo(new Vuelo("AV300", obtenerRutaSegunId(17), obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.lunes }));
+            AgregarNuevoVuelo(new Vuelo("AR132", obtenerRutaSegunId(18), obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.martes }));
+            AgregarNuevoVuelo(new Vuelo("IB440", obtenerRutaSegunId(19), obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.miercoles, Frecuencia.sabado }));
+            AgregarNuevoVuelo(new Vuelo("DL155", obtenerRutaSegunId(20), obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.viernes }));
+            AgregarNuevoVuelo(new Vuelo("AF621", obtenerRutaSegunId(21), obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.jueves, Frecuencia.domingo }));
+            AgregarNuevoVuelo(new Vuelo("KL205", obtenerRutaSegunId(22), obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.sabado }));
+            AgregarNuevoVuelo(new Vuelo("BA775", obtenerRutaSegunId(23), obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.martes, Frecuencia.viernes }));
+            AgregarNuevoVuelo(new Vuelo("JJ803", obtenerRutaSegunId(24), obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.domingo }));
+            AgregarNuevoVuelo(new Vuelo("AZ313", obtenerRutaSegunId(25), obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.miercoles }));
+            AgregarNuevoVuelo(new Vuelo("AC499", obtenerRutaSegunId(26), obtenerAvionSegunModelo("E195-E2"), new List<Frecuencia> { Frecuencia.lunes, Frecuencia.jueves }));
+            AgregarNuevoVuelo(new Vuelo("NH404", obtenerRutaSegunId(27), obtenerAvionSegunModelo("CRJ900"), new List<Frecuencia> { Frecuencia.viernes }));
+            AgregarNuevoVuelo(new Vuelo("QF878", obtenerRutaSegunId(28), obtenerAvionSegunModelo("737 MAX"), new List<Frecuencia> { Frecuencia.martes, Frecuencia.sabado }));
+            AgregarNuevoVuelo(new Vuelo("EK301", obtenerRutaSegunId(29), obtenerAvionSegunModelo("A320neo"), new List<Frecuencia> { Frecuencia.domingo, Frecuencia.jueves }));
         }
         private void precagarPasajes()
         {
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AR101"), new DateTime(2025, 5, 5), obtenerClienteSegunCedula("12345678") , TipoEquipaje.CABINA, 350.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("UX309"), new DateTime(2025, 5, 11), obtenerClienteSegunCedula("67890123") , TipoEquipaje.LIGHT, 280.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AF450"), new DateTime(2025, 5, 8), obtenerClienteSegunCedula("23456789") , TipoEquipaje.BODEGA, 410.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("IB333"), new DateTime(2025, 5, 13), obtenerClienteSegunCedula("78901234") , TipoEquipaje.CABINA, 360.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("DL220"), new DateTime(2025, 5, 16), obtenerClienteSegunCedula("34567890") , TipoEquipaje.LIGHT, 290.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("UA875"), new DateTime(2025, 5, 16), obtenerClienteSegunCedula("89012345") , TipoEquipaje.BODEGA, 430.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("LA203"), new DateTime(2025, 5, 17), obtenerClienteSegunCedula("45678901") , TipoEquipaje.CABINA, 375.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("LH708"), new DateTime(2025, 5, 14), obtenerClienteSegunCedula("90123456") , TipoEquipaje.LIGHT, 300.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("KL110"), new DateTime(2025, 5, 19), obtenerClienteSegunCedula("56789012") , TipoEquipaje.BODEGA, 450.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AZ556"), new DateTime(2025, 5, 17), obtenerClienteSegunCedula("90123456") , TipoEquipaje.CABINA, 360.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AC990"), new DateTime(2025, 5, 18), obtenerClienteSegunCedula("12345678") , TipoEquipaje.LIGHT, 320.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("JJ777"), new DateTime(2025, 5, 21), obtenerClienteSegunCedula("67890123") , TipoEquipaje.BODEGA, 390.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("NH852"), new DateTime(2025, 5, 23), obtenerClienteSegunCedula("23456789") , TipoEquipaje.CABINA, 355.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("QF908"), new DateTime(2025, 5, 26), obtenerClienteSegunCedula("78901234") , TipoEquipaje.LIGHT, 295.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("EK202"), new DateTime(2025, 5, 24), obtenerClienteSegunCedula("34567890") , TipoEquipaje.BODEGA, 460.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("QR118"), new DateTime(2025, 5, 22), obtenerClienteSegunCedula("89012345") , TipoEquipaje.CABINA, 370.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("LA515"), new DateTime(2025, 5, 25), obtenerClienteSegunCedula("45678901") , TipoEquipaje.LIGHT, 310.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AV300"), new DateTime(2025, 5, 26), obtenerClienteSegunCedula("90123456") , TipoEquipaje.BODEGA, 440.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AR132"), new DateTime(2025, 5, 27), obtenerClienteSegunCedula("56789012") , TipoEquipaje.CABINA, 385.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("IB440"), new DateTime(2025, 5, 31), obtenerClienteSegunCedula("90123456") , TipoEquipaje.LIGHT, 305.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("DL155"), new DateTime(2025, 6, 2), obtenerClienteSegunCedula("12345678") , TipoEquipaje.BODEGA, 470.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AF621"), new DateTime(2025, 6, 1), obtenerClienteSegunCedula("67890123") , TipoEquipaje.CABINA, 365.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("KL205"), new DateTime(2025, 6, 7), obtenerClienteSegunCedula("23456789") , TipoEquipaje.LIGHT, 315.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("BA775"), new DateTime(2025, 6, 3), obtenerClienteSegunCedula("78901234") , TipoEquipaje.BODEGA, 425.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("JJ803"), new DateTime(2025, 6, 8), obtenerClienteSegunCedula("34567890") , TipoEquipaje.CABINA, 380.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AR101"), new DateTime(2025, 5, 5), obtenerClienteSegunCedula("12345678"), TipoEquipaje.CABINA, 350.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("UX309"), new DateTime(2025, 5, 11), obtenerClienteSegunCedula("67890123"), TipoEquipaje.LIGHT, 280.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AF450"), new DateTime(2025, 5, 8), obtenerClienteSegunCedula("23456789"), TipoEquipaje.BODEGA, 410.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("IB333"), new DateTime(2025, 5, 13), obtenerClienteSegunCedula("78901234"), TipoEquipaje.CABINA, 360.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("DL220"), new DateTime(2025, 5, 16), obtenerClienteSegunCedula("34567890"), TipoEquipaje.LIGHT, 290.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("UA875"), new DateTime(2025, 5, 16), obtenerClienteSegunCedula("89012345"), TipoEquipaje.BODEGA, 430.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("LA203"), new DateTime(2025, 5, 17), obtenerClienteSegunCedula("45678901"), TipoEquipaje.CABINA, 375.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("LH708"), new DateTime(2025, 5, 14), obtenerClienteSegunCedula("90123456"), TipoEquipaje.LIGHT, 300.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("KL110"), new DateTime(2025, 5, 19), obtenerClienteSegunCedula("56789012"), TipoEquipaje.BODEGA, 450.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AZ556"), new DateTime(2025, 5, 17), obtenerClienteSegunCedula("90123456"), TipoEquipaje.CABINA, 360.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AC990"), new DateTime(2025, 5, 18), obtenerClienteSegunCedula("12345678"), TipoEquipaje.LIGHT, 320.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("JJ777"), new DateTime(2025, 5, 21), obtenerClienteSegunCedula("67890123"), TipoEquipaje.BODEGA, 390.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("NH852"), new DateTime(2025, 5, 23), obtenerClienteSegunCedula("23456789"), TipoEquipaje.CABINA, 355.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("QF908"), new DateTime(2025, 5, 26), obtenerClienteSegunCedula("78901234"), TipoEquipaje.LIGHT, 295.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("EK202"), new DateTime(2025, 5, 24), obtenerClienteSegunCedula("34567890"), TipoEquipaje.BODEGA, 460.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("QR118"), new DateTime(2025, 5, 22), obtenerClienteSegunCedula("89012345"), TipoEquipaje.CABINA, 370.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("LA515"), new DateTime(2025, 5, 25), obtenerClienteSegunCedula("45678901"), TipoEquipaje.LIGHT, 310.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AV300"), new DateTime(2025, 5, 26), obtenerClienteSegunCedula("90123456"), TipoEquipaje.BODEGA, 440.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AR132"), new DateTime(2025, 5, 27), obtenerClienteSegunCedula("56789012"), TipoEquipaje.CABINA, 385.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("IB440"), new DateTime(2025, 5, 31), obtenerClienteSegunCedula("90123456"), TipoEquipaje.LIGHT, 305.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("DL155"), new DateTime(2025, 6, 2), obtenerClienteSegunCedula("12345678"), TipoEquipaje.BODEGA, 470.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AF621"), new DateTime(2025, 6, 1), obtenerClienteSegunCedula("67890123"), TipoEquipaje.CABINA, 365.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("KL205"), new DateTime(2025, 6, 7), obtenerClienteSegunCedula("23456789"), TipoEquipaje.LIGHT, 315.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("BA775"), new DateTime(2025, 6, 3), obtenerClienteSegunCedula("78901234"), TipoEquipaje.BODEGA, 425.00));
+            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("JJ803"), new DateTime(2025, 6, 8), obtenerClienteSegunCedula("34567890"), TipoEquipaje.CABINA, 380.00));
         }
 
         #endregion
@@ -287,20 +298,27 @@ namespace Dominio
         }
         public List<Vuelo> ListarVueloSegunIATA(string codigoIata)
         {
-            string codigoMayus = codigoIata.ToUpper();
             List<Vuelo> listaSegunIata = new List<Vuelo>();
-
-            foreach (Vuelo unVuelo in Vuelos)
+            if (codigoIata == null)
             {
-                if (codigoMayus == unVuelo.Ruta.AeropuertoSalida.CodigoIATA || codigoMayus == unVuelo.Ruta.AeropuertoLlegada.CodigoIATA)
-                {
-                    listaSegunIata.Add(unVuelo);
-                }
+                listaSegunIata = this.Vuelos;
             }
-
-            if (listaSegunIata.Count == 0)
+            else
             {
-                throw new Exception("Error: El codigo IATA ingresado no existe. Intente de nuevo.");
+                string codigoMayus = codigoIata.ToUpper();
+
+                foreach (Vuelo unVuelo in Vuelos)
+                {
+                    if (codigoMayus == unVuelo.Ruta.AeropuertoSalida.CodigoIATA || codigoMayus == unVuelo.Ruta.AeropuertoLlegada.CodigoIATA)
+                    {
+                        listaSegunIata.Add(unVuelo);
+                    }
+                }
+
+                if (listaSegunIata.Count == 0)
+                {
+                    throw new Exception("Error: El codigo IATA ingresado no existe. Intente de nuevo.");
+                }
             }
             return listaSegunIata;
         }
@@ -342,7 +360,7 @@ namespace Dominio
                 }
             }
             throw new Exception($"Error: No existe un avion con modelo [{modelo}]");
-            
+
         }
         #endregion
 
@@ -394,11 +412,11 @@ namespace Dominio
             {
                 if (unAeropuerto.CodigoIATA == codigoIATA)
                 {
-                    return unAeropuerto;  
-                }   
+                    return unAeropuerto;
+                }
             }
             throw new Exception($"Error: No existe un aeropuerto con codigo IATA [{codigoIATA}]");
-    
+
         }
         #endregion
 

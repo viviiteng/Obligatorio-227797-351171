@@ -1,0 +1,54 @@
+﻿
+@using Dominio;
+@model List<Vuelo>;
+
+@{
+    if (Model == null || Model.Count == 0)
+    {
+        <p>No se han encontrado productos</p>
+    }
+    else
+    {
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Numero de Vuelo</th>
+                    <th scope="col">Salida</th>
+                    <th scope="col">Llegada</th>
+                    <th scope="col">Frecuencia</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (Vuelo unVuelo in Model)
+                    {
+                        <tr>
+                            <th scope="row">@unVuelo.NumVuelo</th>
+                            <td>@unVuelo.Ruta.AeropuertoSalida.Ciudad</td>
+                            <td>@unVuelo.Ruta.AeropuertoLlegada.Ciudad</td>
+                            @{
+                                string dias = ""; 
+                                foreach (Frecuencia dia in unVuelo.frecuencias)
+                                {
+                                    dias = dias + dia + " ";
+                                }
+                            }
+                            <td>@dias</td>
+                            <td><input type="button" name="name" value="Comprar"></td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+
+    }
+}
+@* <div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+ *@
