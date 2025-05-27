@@ -1,0 +1,35 @@
+﻿@using Dominio
+@model Vuelo
+
+<h1>Detalles del Vuelo</h1>
+
+<div class="mb-3">
+    <label class="form-label">Numero De Vuelo</label>
+    <input class="form-control" name="NumVuelo" type="text" value=@Model.NumVuelo disabled />
+</div>
+<div class="mb-3">
+    <label class="form-label">Ruta</label>
+    <input class="form-control" name="Ruta" type="text" value=@Model.Ruta.AeropuertoSalida disabled />
+    <input class="form-control" name="Ruta" type="text" value=@Model.Ruta.AeropuertoLlegada disabled />
+</div>
+<div class="mb-3">
+    <label class="form-label">Modelo del Avion</label>
+    <input class="form-control" name="Avion" type="text" value=@Model.Avion.Modelo disabled />
+</div>
+@{
+    string dias = "";
+    foreach (Frecuencia dia in Model.frecuencias)
+    {
+        dias = dias + dia + "-";
+    }
+    dias = dias.TrimEnd('-');
+}
+<div class="mb-3">
+    <label class="form-label">Frecuencias</label>
+    <input class="form-control" name="frecuencias" type="text" value=@dias disabled />
+</div>
+<div class="mb-3">
+    <label class="form-label">Costo por Asiento</label>
+    <input class="form-control" name="Descripcion" type="text" value=@Model.CalcularCostaPorAsiento() disabled />
+</div>
+

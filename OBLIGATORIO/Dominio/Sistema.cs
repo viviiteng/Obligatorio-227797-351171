@@ -166,31 +166,31 @@ namespace Dominio
         }
         private void precagarPasajes()
         {
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AR101"), new DateTime(2025, 5, 5), obtenerClienteSegunCedula("12345678"), TipoEquipaje.CABINA, 350.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("UX309"), new DateTime(2025, 5, 11), obtenerClienteSegunCedula("67890123"), TipoEquipaje.LIGHT, 280.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AF450"), new DateTime(2025, 5, 8), obtenerClienteSegunCedula("23456789"), TipoEquipaje.BODEGA, 410.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("IB333"), new DateTime(2025, 5, 13), obtenerClienteSegunCedula("78901234"), TipoEquipaje.CABINA, 360.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("DL220"), new DateTime(2025, 5, 16), obtenerClienteSegunCedula("34567890"), TipoEquipaje.LIGHT, 290.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("UA875"), new DateTime(2025, 5, 16), obtenerClienteSegunCedula("89012345"), TipoEquipaje.BODEGA, 430.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("LA203"), new DateTime(2025, 5, 17), obtenerClienteSegunCedula("45678901"), TipoEquipaje.CABINA, 375.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("LH708"), new DateTime(2025, 5, 14), obtenerClienteSegunCedula("90123456"), TipoEquipaje.LIGHT, 300.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("KL110"), new DateTime(2025, 5, 19), obtenerClienteSegunCedula("56789012"), TipoEquipaje.BODEGA, 450.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AZ556"), new DateTime(2025, 5, 17), obtenerClienteSegunCedula("90123456"), TipoEquipaje.CABINA, 360.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AC990"), new DateTime(2025, 5, 18), obtenerClienteSegunCedula("12345678"), TipoEquipaje.LIGHT, 320.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("JJ777"), new DateTime(2025, 5, 21), obtenerClienteSegunCedula("67890123"), TipoEquipaje.BODEGA, 390.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("NH852"), new DateTime(2025, 5, 23), obtenerClienteSegunCedula("23456789"), TipoEquipaje.CABINA, 355.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("QF908"), new DateTime(2025, 5, 26), obtenerClienteSegunCedula("78901234"), TipoEquipaje.LIGHT, 295.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("EK202"), new DateTime(2025, 5, 24), obtenerClienteSegunCedula("34567890"), TipoEquipaje.BODEGA, 460.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("QR118"), new DateTime(2025, 5, 22), obtenerClienteSegunCedula("89012345"), TipoEquipaje.CABINA, 370.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("LA515"), new DateTime(2025, 5, 25), obtenerClienteSegunCedula("45678901"), TipoEquipaje.LIGHT, 310.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AV300"), new DateTime(2025, 5, 26), obtenerClienteSegunCedula("90123456"), TipoEquipaje.BODEGA, 440.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AR132"), new DateTime(2025, 5, 27), obtenerClienteSegunCedula("56789012"), TipoEquipaje.CABINA, 385.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("IB440"), new DateTime(2025, 5, 31), obtenerClienteSegunCedula("90123456"), TipoEquipaje.LIGHT, 305.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("DL155"), new DateTime(2025, 6, 2), obtenerClienteSegunCedula("12345678"), TipoEquipaje.BODEGA, 470.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("AF621"), new DateTime(2025, 6, 1), obtenerClienteSegunCedula("67890123"), TipoEquipaje.CABINA, 365.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("KL205"), new DateTime(2025, 6, 7), obtenerClienteSegunCedula("23456789"), TipoEquipaje.LIGHT, 315.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("BA775"), new DateTime(2025, 6, 3), obtenerClienteSegunCedula("78901234"), TipoEquipaje.BODEGA, 425.00));
-            AgregarNuevoPasaje(new Pasaje(obtenerVueloSegunNumVuelo("JJ803"), new DateTime(2025, 6, 8), obtenerClienteSegunCedula("34567890"), TipoEquipaje.CABINA, 380.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("UX309"), new DateTime(2025, 5, 11), obtenerClienteSegunCedula("67890123"), TipoEquipaje.LIGHT, 280.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("AR101"), new DateTime(2025, 5, 5), obtenerClienteSegunCedula("12345678"), TipoEquipaje.CABINA, 350.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("AF450"), new DateTime(2025, 5, 8), obtenerClienteSegunCedula("23456789"), TipoEquipaje.BODEGA, 410.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("IB333"), new DateTime(2025, 5, 13), obtenerClienteSegunCedula("78901234"), TipoEquipaje.CABINA, 360.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("DL220"), new DateTime(2025, 5, 16), obtenerClienteSegunCedula("34567890"), TipoEquipaje.LIGHT, 290.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("UA875"), new DateTime(2025, 5, 16), obtenerClienteSegunCedula("89012345"), TipoEquipaje.BODEGA, 430.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("LA203"), new DateTime(2025, 5, 17), obtenerClienteSegunCedula("45678901"), TipoEquipaje.CABINA, 375.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("LH708"), new DateTime(2025, 5, 14), obtenerClienteSegunCedula("90123456"), TipoEquipaje.LIGHT, 300.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("KL110"), new DateTime(2025, 5, 19), obtenerClienteSegunCedula("56789012"), TipoEquipaje.BODEGA, 450.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("AZ556"), new DateTime(2025, 5, 17), obtenerClienteSegunCedula("90123456"), TipoEquipaje.CABINA, 360.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("AC990"), new DateTime(2025, 5, 18), obtenerClienteSegunCedula("12345678"), TipoEquipaje.LIGHT, 320.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("JJ777"), new DateTime(2025, 5, 21), obtenerClienteSegunCedula("67890123"), TipoEquipaje.BODEGA, 390.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("NH852"), new DateTime(2025, 5, 23), obtenerClienteSegunCedula("23456789"), TipoEquipaje.CABINA, 355.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("QF908"), new DateTime(2025, 5, 26), obtenerClienteSegunCedula("78901234"), TipoEquipaje.LIGHT, 295.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("EK202"), new DateTime(2025, 5, 24), obtenerClienteSegunCedula("34567890"), TipoEquipaje.BODEGA, 460.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("QR118"), new DateTime(2025, 5, 22), obtenerClienteSegunCedula("89012345"), TipoEquipaje.CABINA, 370.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("LA515"), new DateTime(2025, 5, 25), obtenerClienteSegunCedula("45678901"), TipoEquipaje.LIGHT, 310.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("AV300"), new DateTime(2025, 5, 26), obtenerClienteSegunCedula("90123456"), TipoEquipaje.BODEGA, 440.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("AR132"), new DateTime(2025, 5, 27), obtenerClienteSegunCedula("56789012"), TipoEquipaje.CABINA, 385.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("IB440"), new DateTime(2025, 5, 31), obtenerClienteSegunCedula("90123456"), TipoEquipaje.LIGHT, 305.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("DL155"), new DateTime(2025, 6, 2), obtenerClienteSegunCedula("12345678"), TipoEquipaje.BODEGA, 470.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("AF621"), new DateTime(2025, 6, 1), obtenerClienteSegunCedula("67890123"), TipoEquipaje.CABINA, 365.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("KL205"), new DateTime(2025, 6, 7), obtenerClienteSegunCedula("23456789"), TipoEquipaje.LIGHT, 315.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("BA775"), new DateTime(2025, 6, 3), obtenerClienteSegunCedula("78901234"), TipoEquipaje.BODEGA, 425.00));
+            AgregarNuevoPasaje(new Pasaje(ObtenerVueloSegunNumVuelo("JJ803"), new DateTime(2025, 6, 8), obtenerClienteSegunCedula("34567890"), TipoEquipaje.CABINA, 380.00));
         }
 
         #endregion
@@ -376,7 +376,7 @@ namespace Dominio
             }
             return listaFinal;
         }
-        private Vuelo obtenerVueloSegunNumVuelo(string numVuelo)
+        public Vuelo ObtenerVueloSegunNumVuelo(string numVuelo)
         {
             foreach (Vuelo unVuelo in this.Vuelos)
             {

@@ -30,9 +30,18 @@ public class HomeController : Controller
 
     }
 
-    public IActionResult Privacy()
+    public IActionResult ObtenerVuelosSegunNumVuelo(string numVuelo)
     {
-        return View();
+        try
+        {
+            Vuelo unVuelo = sistema.ObtenerVueloSegunNumVuelo(numVuelo);
+            return View(unVuelo);
+        }
+        catch (Exception error)
+        {
+            return View();
+        }
+       
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
