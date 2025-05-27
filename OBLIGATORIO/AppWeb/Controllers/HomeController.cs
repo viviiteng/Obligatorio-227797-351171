@@ -7,6 +7,8 @@ namespace AppWeb.Controllers;
 
 public class HomeController : Controller
 {
+    private Sistema sistema = Sistema.ObtenerInstancia();
+
     private readonly ILogger<HomeController> _logger;
 
     public HomeController(ILogger<HomeController> logger)
@@ -16,8 +18,16 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        List<Vuelo> vuelos = Sistema.ObtenerInstancia().ListarVueloSegunIATA(null);
+        List<Vuelo> vuelos=null;
+        try
+        {
+            vuelos = sistema.ListarVueloSegunIATA(null,null);
+        }
+        catch (Exception ex) 
+        {
+        }
         return View(vuelos);
+
     }
 
     public IActionResult Privacy()

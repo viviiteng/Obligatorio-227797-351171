@@ -28,9 +28,35 @@ namespace Dominio
         #region Metodos
         public virtual void Validar()
         {
+            validarEspaciosVacios();
+            validarFormatoPass();
+            
+        }
+        private void validarEspaciosVacios()
+        {
             if (this.Correo == "" || this.Pass == "")
             {
-                throw new Exception("Error: Debe rellenar todos los campos requeridos");
+                throw new Exception("Error: Debe rellenar todos los campos requeridos.\n");
+            }
+        }
+        private void validarFormatoPass()
+        {
+            string mensaje = "";
+            if (this.Pass.Length < 8)
+            {
+                mensaje += "Error: La contraseña debe tener al menos 8 caracteres.\n";
+            }
+            if (!Sistema.encontrarNumero(this.Pass))
+            {
+                mensaje += "Error: La contraseña debe contener algun numero.\n";
+            }
+            if (!Sistema.encontrarLetra(this.Pass))
+            {
+                mensaje += "Error: La contraseña debe contener alguna letra. ";
+            }
+            if(mensaje != "")
+            {
+                throw new Exception(mensaje);
             }
         }
 

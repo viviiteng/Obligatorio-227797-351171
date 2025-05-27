@@ -51,20 +51,20 @@ namespace Dominio
         }
         private void precargarUsuarios()
         {
-            AgregarNuevoUsuario(new ClientePremium("12345678", "Martín Pérez", "martin.perez@gmail.com", "pass123", "Uruguaya", 1500));
+            AgregarNuevoUsuario(new ClientePremium("12345678", "Martín Pérez", "martin.perez@gmail.com", "pass1234", "Uruguaya", 1500));
             AgregarNuevoUsuario(new ClientePremium("23456789", "Laura Gómez", "laura.gomez@hotmail.com", "laura456", "Argentina", 3200));
             AgregarNuevoUsuario(new ClientePremium("34567890", "Carlos Silva", "carlos.silva@yahoo.com", "silva2023", "Chilena", 2100));
             AgregarNuevoUsuario(new ClientePremium("45678901", "Ana Torres", "ana.torres@gmail.com", "torres321", "Uruguaya", 2750));
             AgregarNuevoUsuario(new ClientePremium("56789012", "Diego Fernández", "diego.fernandez@outlook.com", "dfpass789", "Brasilera", 3900));
 
-            AgregarNuevoUsuario(new ClienteOcasional("67890123", "Valentina Suárez", "valesuarez@gmail.com", "vale123", "Paraguaya"));
+            AgregarNuevoUsuario(new ClienteOcasional("67890123", "Valentina Suárez", "valesuarez@gmail.com", "vale1234", "Paraguaya"));
             AgregarNuevoUsuario(new ClienteOcasional("78901234", "Rodrigo López", "rodrilopez@hotmail.com", "rodri456", "Uruguaya"));
             AgregarNuevoUsuario(new ClienteOcasional("89012345", "María Rivas", "maria.rivas@yahoo.com", "rivas789", "Peruana"));
             AgregarNuevoUsuario(new ClienteOcasional("90123456", "Nicolás Méndez", "nico.mendez@gmail.com", "nicolas321", "Colombiana"));
             AgregarNuevoUsuario(new ClienteOcasional("01234567", "Lucía Figueroa", "lucia.fig@outlook.com", "figpass852", "Boliviana"));
 
-            AgregarNuevoUsuario(new Administrador("Agustin", "agustin@gmail.com", "1234"));
-            AgregarNuevoUsuario(new Administrador("Viviana", "viviana@gmail.com", "4321"));
+            AgregarNuevoUsuario(new Administrador("Agustin", "agustin@gmail.com", "admin1234"));
+            AgregarNuevoUsuario(new Administrador("Viviana", "viviana@gmail.com", "admin4321"));
         }
         private void precargarAviones()
         {
@@ -296,31 +296,85 @@ namespace Dominio
                 throw new Exception("Error: El vuelo ingresado ya existe.");
             }
         }
-        public List<Vuelo> ListarVueloSegunIATA(string codigoIata)
+        //public List<Vuelo> ListarVueloSegunIATA(string codigoIataOrigen, string codigoIataDestino)
+        //{
+        //    codigoIataOrigen = codigoIataOrigen.ToUpper();
+        //    codigoIataDestino = codigoIataOrigen.ToUpper();
+
+        //    List<Vuelo> listaSegunIata = new List<Vuelo>();
+        //    if (codigoIataOrigen == null && codigoIataDestino == null)
+        //    {
+        //        listaSegunIata = this.Vuelos;
+        //    }
+        //    else if (codigoIataOrigen != "" && codigoIataDestino == "")
+        //    {
+
+        //        foreach (Vuelo unVuelo in Vuelos)
+        //        {
+        //            if (codigoIataOrigen == unVuelo.Ruta.AeropuertoSalida.CodigoIATA)
+        //            {
+        //                listaSegunIata.Add(unVuelo);
+        //            }
+        //        }
+
+        //        if (listaSegunIata.Count == 0)
+        //        {
+        //            throw new Exception("Error: El codigo IATA ingresado no existe. Intente de nuevo.");
+        //        }
+        //    }
+        //    else if (codigoIataOrigen != "" && codigoIataDestino == "")
+        //    {
+        //        string codigoMayus = codigoIata.ToUpper();
+
+        //        foreach (Vuelo unVuelo in Vuelos)
+        //        {
+        //            if (codigoMayus == unVuelo.Ruta.AeropuertoSalida.CodigoIATA || codigoMayus == unVuelo.Ruta.AeropuertoLlegada.CodigoIATA)
+        //            {
+        //                listaSegunIata.Add(unVuelo);
+        //            }
+        //        }
+
+        //        if (listaSegunIata.Count == 0)
+        //        {
+        //            throw new Exception("Error: El codigo IATA ingresado no existe. Intente de nuevo.");
+        //        }
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //    return listaSegunIata;
+        //}
+
+        //PRUEBA
+        public List<Vuelo> ListarVueloSegunIATA(string codigoIataOrigen, string codigoIataDestino)
         {
-            List<Vuelo> listaSegunIata = new List<Vuelo>();
-            if (codigoIata == null)
+            
+
+            List<Vuelo> listaFinal = new List<Vuelo>();
+
+            if (codigoIataOrigen == null && codigoIataDestino == null)
             {
-                listaSegunIata = this.Vuelos;
+                listaFinal = this.Vuelos;
             }
             else
             {
-                string codigoMayus = codigoIata.ToUpper();
-
-                foreach (Vuelo unVuelo in Vuelos)
+                codigoIataOrigen = codigoIataOrigen.ToUpper();
+                codigoIataDestino = codigoIataDestino.ToUpper();
+                foreach (Vuelo unVuelo in this.Vuelos)
                 {
-                    if (codigoMayus == unVuelo.Ruta.AeropuertoSalida.CodigoIATA || codigoMayus == unVuelo.Ruta.AeropuertoLlegada.CodigoIATA)
+                    if (codigoIataOrigen == unVuelo.Ruta.AeropuertoSalida.CodigoIATA || codigoIataOrigen == "")
                     {
-                        listaSegunIata.Add(unVuelo);
+                        if (codigoIataDestino == unVuelo.Ruta.AeropuertoLlegada.CodigoIATA || codigoIataDestino == "")
+                        {
+                            listaFinal.Add(unVuelo);
+                        }
+                        //listaSegunOrigen.Add(unVuelo);
                     }
-                }
 
-                if (listaSegunIata.Count == 0)
-                {
-                    throw new Exception("Error: El codigo IATA ingresado no existe. Intente de nuevo.");
                 }
             }
-            return listaSegunIata;
+            return listaFinal;
         }
         private Vuelo obtenerVueloSegunNumVuelo(string numVuelo)
         {
@@ -419,6 +473,46 @@ namespace Dominio
 
         }
         #endregion
+
+        #region Biblioteca
+        public static bool encontrarLetra(string texto)
+        {
+            string abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string textoMayus = texto.ToUpper();
+
+            for (int i = 0; i < textoMayus.Length; i++)
+            {
+                for (int j = 0; j < abecedario.Length; j++)
+                {
+                    if (textoMayus[i] == abecedario[j])
+                    {
+                        return true;
+                    }
+
+                }
+
+            }
+            return false;
+        }
+        public static bool encontrarNumero(string texto)
+        {
+            string numeros = "0123456789";
+            for (int i = 0; i < texto.Length; i++)
+            {
+                for (int j = 0; j < numeros.Length; j++)
+                {
+                    if (texto[i] == numeros[j])
+                    {
+                        return true;
+                    }
+
+                }
+
+            }
+            return false;
+        }
+        #endregion
+
 
         #endregion
     }

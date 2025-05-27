@@ -54,11 +54,11 @@ namespace Dominio
             for (int i = 0; i < this.NumVuelo.Length; i++)
             {
                 char digito = this.NumVuelo[i];
-                if (encontrarLetra(digito))
+                if (contarLetra(digito))
                 {
                     contadorLetra++;
                 }
-                if (encontrarNumero(digito))
+                if (contarNumero(digito))
                 {
                     contadorNumero++;
                 }
@@ -80,9 +80,10 @@ namespace Dominio
                 throw new Exception("Error: La cantidad de digitos tiene que ser de 3 a 7 digitos");
             }
         }
-        private bool encontrarLetra(char letra)
+        public static bool contarLetra(char letra)
         {
             string abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            
             for (int i = 0;i < abecedario.Length; i++)
             {
                 if (letra == abecedario[i])
@@ -92,7 +93,7 @@ namespace Dominio
             }
             return false;
         }
-        private bool encontrarNumero(char numero)
+        public static bool contarNumero(char numero)
         {
             string numeros = "0123456789";
             for (int i = 0; i < numeros.Length; i++)

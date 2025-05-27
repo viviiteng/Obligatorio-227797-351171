@@ -3,6 +3,16 @@
 @model List<Vuelo>;
 
 @{
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">Buscar Vuelos</a>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Origen" aria-label="Origen">
+                <input class="form-control me-2" type="search" placeholder="Destino" aria-label="Destino">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
     if (Model == null || Model.Count == 0)
     {
         <p>No se han encontrado productos</p>
@@ -37,7 +47,7 @@
                                 }
                             }
                             <td>@dias</td>
-                            <td><input type="button" name="name" value="Comprar"></td>
+                            <td>@Html.ActionLink("Ver detalle", "obtenerVueloSegunNumVuelo", "Vuelo", new { numVuelo = unVuelo.NumVuelo }, new {@class="btn btn-outline-success"} )</td>
                         </tr>
                     }
                 }
@@ -47,8 +57,3 @@
 
     }
 }
-@* <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
- *@
