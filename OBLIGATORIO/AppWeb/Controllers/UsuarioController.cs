@@ -27,13 +27,14 @@ namespace AppWeb.Controllers
                 return ViewBag.Error = error.Message;
             }
         }
+
         [HttpPost]
-        public IActionResult RegistrarUsuario(Usuario unUsuario)
+        public IActionResult RegistrarCliente(ClienteOcasional unCliente)
         {
             try
             {
-                sistema.AgregarNuevoUsuario(unUsuario);
-                return Redirect("/Vuelo/Index");
+                sistema.AgregarNuevoUsuario(unCliente);
+                return RedirectToAction("Index");
             }
             catch (Exception error)
             {

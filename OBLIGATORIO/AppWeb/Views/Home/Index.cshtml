@@ -45,9 +45,10 @@
                                 {
                                     dias = dias + dia + " ";
                                 }
+                                dias = dias.TrimEnd('-');
                             }
                             <td>@dias</td>
-                            <td>@Html.ActionLink("Ver detalle", "ObtenerVueloSegunNumVuelo", "Vuelo", new { numVuelo = unVuelo.NumVuelo }, new { @class = "btn btn-outline-success" })</td>
+                            <td>@Html.ActionLink("Ver detalle", "ObtenerVuelosSegunNumVuelo", "Home", new {numVuelo = unVuelo.NumVuelo}, new { @class = "btn btn-outline-success" })</td>
                         </tr>
                     }
                 }
