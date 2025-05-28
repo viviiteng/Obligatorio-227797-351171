@@ -1,60 +1,57 @@
-﻿
-@using Dominio;
-@model List<Vuelo>;
+﻿@using Dominio;
+@model List<Vuelo>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-primary">Buscar Vuelos</a>
+        <form class="d-flex ms-auto">
+            <input class="form-control me-2" type="search" placeholder="Origen" aria-label="Origen">
+            <input class="form-control me-2" type="search" placeholder="Destino" aria-label="Destino">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>
+    </header>
 
-@{
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand">Buscar Vuelos</a>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Origen" aria-label="Origen">
-                <input class="form-control me-2" type="search" placeholder="Destino" aria-label="Destino">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </div>
-    </nav>
-    if (Model == null || Model.Count == 0)
+<div id="hero" class="container-fluid">
+    <h1 class="fw-bold display-4">Bienvenidos a ORT Airlines</h1>
+</div>
+
+<div class="container mt-5">
+    @if (Model == null || Model.Count == 0)
     {
-        <p>No se han encontrado productos</p>
+        <div class="alert alert-warning text-center">
+            No se han encontrado vuelos.
+        </div>
     }
     else
     {
-
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Numero de Vuelo</th>
-                    <th scope="col">Salida</th>
-                    <th scope="col">Llegada</th>
-                    <th scope="col">Frecuencia</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    foreach (Vuelo unVuelo in Model)
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered shadow-sm rounded">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>Vuelo Nº</th>
+                        <th>Salida</th>
+                        <th>Llegada</th>
+                        <th>Frecuencia</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Vuelo unVuelo in Model)
                     {
-                        <tr>
-                            <th scope="row">@unVuelo.NumVuelo</th>
+                        string dias = string.Join(" - ", unVuelo.frecuencias);
+                        <tr class="align-middle text-center">
+                            <td>@unVuelo.NumVuelo</td>
                             <td>@unVuelo.Ruta.AeropuertoSalida.Ciudad</td>
                             <td>@unVuelo.Ruta.AeropuertoLlegada.Ciudad</td>
-                            @{
-                                string dias = ""; 
-                                foreach (Frecuencia dia in unVuelo.frecuencias)
-                                {
-                                    dias = dias + dia + " ";
-                                }
-                                dias = dias.TrimEnd('-');
-                            }
                             <td>@dias</td>
-                            <td>@Html.ActionLink("Ver detalle", "ObtenerVuelosSegunNumVuelo", "Home", new {numVuelo = unVuelo.NumVuelo}, new { @class = "btn btn-outline-success" })</td>
+                            <td>
+                                @Html.ActionLink("Ver detalle", "ObtenerVuelosSegunNumVuelo", "Home", new { numVuelo = unVuelo.NumVuelo }, new { @class = "btn btn-outline-primary btn-sm w-100" })
+                            </td>
                         </tr>
                     }
-                }
-
-            </tbody>
-        </table>
-
+                </tbody>
+            </table>
+        </div>
     }
-}
+</div>
