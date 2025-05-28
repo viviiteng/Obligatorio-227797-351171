@@ -14,6 +14,7 @@ namespace Dominio
         #endregion
 
         #region Constructor
+        public ClienteOcasional() { }
         public ClienteOcasional(string cedula, string nombre, string correo, string pass, string nacionalidad) : base(cedula, nombre, correo, pass, nacionalidad)
         {
             this.EsElegibleRegalo = generarBoolRandom();

@@ -29,7 +29,7 @@ namespace AppWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegistrarCliente(ClienteOcasional unCliente)
+        public IActionResult RegistrarCliente(Cliente unCliente)
         {
             try
             {

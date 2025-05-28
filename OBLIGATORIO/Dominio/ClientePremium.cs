@@ -13,6 +13,7 @@ namespace Dominio
         #endregion
 
         #region Constructor
+        public ClientePremium() { }
         public ClientePremium(string cedula, string nombre, string correo, string pass, string nacionalidad, int puntos) : base(cedula, nombre, correo, pass, nacionalidad)
         {
             this.PuntosAcumulados = puntos;

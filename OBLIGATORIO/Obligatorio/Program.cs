@@ -108,7 +108,7 @@ namespace Obligatorio
                     List<Vuelo> listaFiltrada = new List<Vuelo>();
                     try
                     {
-                        listaFiltrada = sistema.ListarVueloSegunIATA(codigoIngresado);
+                        listaFiltrada = sistema.ListarVueloSegunIATA(codigoIngresado, null);
                         foreach (Vuelo unVuelo in listaFiltrada)
                         {
                             Console.WriteLine(unVuelo);
