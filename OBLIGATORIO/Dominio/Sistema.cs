@@ -296,57 +296,7 @@ namespace Dominio
                 throw new Exception("Error: El vuelo ingresado ya existe.");
             }
         }
-        //public List<Vuelo> ListarVueloSegunIATA(string codigoIataOrigen, string codigoIataDestino)
-        //{
-        //    codigoIataOrigen = codigoIataOrigen.ToUpper();
-        //    codigoIataDestino = codigoIataOrigen.ToUpper();
-
-        //    List<Vuelo> listaSegunIata = new List<Vuelo>();
-        //    if (codigoIataOrigen == null && codigoIataDestino == null)
-        //    {
-        //        listaSegunIata = this.Vuelos;
-        //    }
-        //    else if (codigoIataOrigen != "" && codigoIataDestino == "")
-        //    {
-
-        //        foreach (Vuelo unVuelo in Vuelos)
-        //        {
-        //            if (codigoIataOrigen == unVuelo.Ruta.AeropuertoSalida.CodigoIATA)
-        //            {
-        //                listaSegunIata.Add(unVuelo);
-        //            }
-        //        }
-
-        //        if (listaSegunIata.Count == 0)
-        //        {
-        //            throw new Exception("Error: El codigo IATA ingresado no existe. Intente de nuevo.");
-        //        }
-        //    }
-        //    else if (codigoIataOrigen != "" && codigoIataDestino == "")
-        //    {
-        //        string codigoMayus = codigoIata.ToUpper();
-
-        //        foreach (Vuelo unVuelo in Vuelos)
-        //        {
-        //            if (codigoMayus == unVuelo.Ruta.AeropuertoSalida.CodigoIATA || codigoMayus == unVuelo.Ruta.AeropuertoLlegada.CodigoIATA)
-        //            {
-        //                listaSegunIata.Add(unVuelo);
-        //            }
-        //        }
-
-        //        if (listaSegunIata.Count == 0)
-        //        {
-        //            throw new Exception("Error: El codigo IATA ingresado no existe. Intente de nuevo.");
-        //        }
-        //    }
-        //    else
-        //    {
-
-        //    }
-        //    return listaSegunIata;
-        //}
-
-        //PRUEBA
+        
         public List<Vuelo> ListarVueloSegunIATA(string codigoIataOrigen, string codigoIataDestino)
         {
             

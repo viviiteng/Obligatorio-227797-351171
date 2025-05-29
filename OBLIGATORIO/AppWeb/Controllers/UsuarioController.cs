@@ -29,16 +29,18 @@ namespace AppWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegistrarCliente(Cliente unCliente)
+        public IActionResult RegistrarCliente(ClienteOcasional unCliente)
         {
             try
             {
                 sistema.AgregarNuevoUsuario(unCliente);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
             catch (Exception error)
             {
-                return ViewBag.Error = error.Message;
+                ViewBag.Error = error.Message;
+                ViewBag.OcultarNavbar = true;
+                return View();
             }
         }
     }
