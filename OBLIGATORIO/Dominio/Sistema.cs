@@ -210,6 +210,17 @@ namespace Dominio
             }
         }
 
+        public Cliente ObtenerUsuario(ClienteOcasional unCliente)
+        {
+            if (Usuarios.Contains(unCliente))
+            {
+                return unCliente;
+            }
+            throw new Exception("Usuario o contraseña inválido");
+        }
+
+        
+
         public List<Cliente> ObtenerListadoDeClientes()
         {
             List<Cliente> clientes = new List<Cliente>();

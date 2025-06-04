@@ -8,6 +8,14 @@ namespace AppWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddSession(
+                options =>
+                {
+                    options.IdleTimeout = TimeSpan.FromMinutes(60);
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.IsEssential = true;
+                }
+             );
 
             var app = builder.Build();
 
@@ -29,7 +37,8 @@ namespace AppWeb
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
+            
+            app.UseSession();
             app.Run();
         }
     }

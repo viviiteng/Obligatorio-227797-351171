@@ -8,14 +8,32 @@ namespace AppWeb.Controllers
         private Sistema sistema = Sistema.ObtenerInstancia();
         public IActionResult VerInicioSesion()
         {
+            ViewBag.OcultarNavbar = true;
+            return View();           
+        }
+        
+        public IActionResult CerrarSesion()
+        {
+            HttpContext.Session.Clear();
+            return Redirect("/home/index");
+
+        }
+        [HttpPost]
+        public IActionResult Loguearse(ClienteOcasional unCliente)
+        {
+            ViewBag.OcultarNavbar = true;
             try
             {
-                ViewBag.OcultarNavbar = true;
-                return View();
-            }catch (Exception error)
-            {
-                return ViewBag.Error = error.Message;
+                Usuario usuarioSistema = sistema.ObtenerUsuario(unCliente);
+                HttpContext.Session.SetString("Correo", usuarioSistema.Correo);
+                return Redirect("/home/index");
             }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View("VerInicioSesion");
+            }
+
         }
         public IActionResult VerRegistro()
         {
@@ -43,5 +61,6 @@ namespace AppWeb.Controllers
                 return View();
             }
         }
+
     }
 }

@@ -34,6 +34,20 @@ namespace Dominio
             return $"CLIENTE PREMIUM: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Nacionalidad: {this.Nacionalidad}, Puntos: {this.PuntosAcumulados}";
 
         }
+        public override int ObtenerDescuentoSegunEquipaje(TipoEquipaje equipaje)
+        {
+            int descuento = 0;
+            if (equipaje == TipoEquipaje.BODEGA)
+            {
+                descuento = 5;
+            }
+            else
+            {
+                descuento = 0;
+            }
+
+            return descuento;
+        }
         #endregion
 
 

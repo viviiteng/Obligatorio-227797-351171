@@ -18,7 +18,9 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public Ruta() { }
+        public Ruta() {
+            IdRuta = UltimoIdRuta++;
+        }
 
         public Ruta(Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada,double distanicia)
         {

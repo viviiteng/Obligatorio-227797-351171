@@ -21,14 +21,14 @@
                 <div class="card shadow-lg rounded-4">
                     <div class="card-body p-4">
                         <h2 class="text-center mb-4">Iniciar Sesión</h2>
-                        <form>
+                        <form action="/Usuario/Loguearse" method="post">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="email" placeholder="usuario@ejemplo.com" required>
+                                <input type="email" class="form-control" id="email" name="Correo" placeholder="usuario@ejemplo.com" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                                <input type="password" class="form-control" id="password" name="Pass" placeholder="••••••••" required>
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">Ingresar</button>

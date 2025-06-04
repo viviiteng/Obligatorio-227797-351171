@@ -28,9 +28,16 @@
 								<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 							</li>
 							<div class="container d-flex justify-content-end">
-								<li class="nav-item">
-									<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerInicioSesion">Iniciar sesion</a>
-								</li>
+								@if (Context.Session.GetString("Correo") == null)
+								{
+									<li class="nav-item">
+										<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerInicioSesion">Iniciar sesion</a>
+									</li>
+								}else{
+									<li class="nav-item">
+										<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="CerrarSesion">Cerrar Sesion</a>
+									</li>
+								}
 							</div>
 							</ul>
 						</div>

@@ -29,6 +29,9 @@ namespace Dominio
         #endregion
 
         #region Metodos
+
+        public abstract int ObtenerDescuentoSegunEquipaje(TipoEquipaje equipaje);
+        
         public override void Validar()
         {
             base.Validar();

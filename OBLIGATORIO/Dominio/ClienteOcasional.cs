@@ -14,7 +14,9 @@ namespace Dominio
         #endregion
 
         #region Constructor
-        public ClienteOcasional() { }
+        public ClienteOcasional() {
+            this.EsElegibleRegalo = generarBoolRandom();
+        }
         public ClienteOcasional(string cedula, string nombre, string correo, string pass, string nacionalidad) : base(cedula, nombre, correo, pass, nacionalidad)
         {
             this.EsElegibleRegalo = generarBoolRandom();
@@ -39,6 +41,24 @@ namespace Dominio
             }
 
             return resultado;
+        }
+
+        public override int ObtenerDescuentoSegunEquipaje(TipoEquipaje equipaje)
+        {
+            int descuento = 0;
+            if (equipaje == TipoEquipaje.BODEGA)
+            {
+                descuento = 20;
+            }else if(equipaje == TipoEquipaje.CABINA)
+            {
+                descuento = 10;
+            }
+            else
+            {
+                descuento = 0;
+            }
+
+            return descuento;
         }
         #endregion
     }

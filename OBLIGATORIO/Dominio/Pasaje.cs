@@ -15,7 +15,7 @@ namespace Dominio
         public static int UltimoIdPasaje { get; set; }
         public Vuelo Vuelo { get; set; }
         public DateTime FechaDeVuelo { get; set; }
-        public Usuario Pasajero { get; set; }
+        public Cliente Pasajero { get; set; }
         public TipoEquipaje Equipaje { get; set; }
         public double PrecioPasaje { get; set; }
         #endregion 
@@ -23,9 +23,9 @@ namespace Dominio
         #region Constructor
         public Pasaje()
         {
-
+            IdPasaje = UltimoIdPasaje++;
         }
-        public Pasaje(Vuelo vuelo, DateTime fechaDeVuelo, Usuario pasajero, TipoEquipaje equipaje, double precioPasaje)
+        public Pasaje(Vuelo vuelo, DateTime fechaDeVuelo, Cliente pasajero, TipoEquipaje equipaje, double precioPasaje)
         {
             this.IdPasaje = UltimoIdPasaje++;
             this.Vuelo = vuelo;
@@ -66,6 +66,12 @@ namespace Dominio
             {
                 throw new Exception("Error: El dia de la fecha del pasaje no coincide con la frecuencia del vuelo");
             }
+        }
+        public double CalcularPasaje()
+        {
+            double precioPasaje;
+            precioPasaje = this.Vuelo.CalcularCostaPorAsiento() * (1 + (25 + this.Pasajero.ObtenerDescuentoSegunEquipaje(this.Equipaje) / 100) + this.Vuelo.Ruta.AeropuertoSalida.CostoTasas + this.Vuelo.Ruta.AeropuertoLlegada.CostoTasas);
+            return Math.Round(precioPasaje);
         }
         public override bool Equals(object? obj)
         {
