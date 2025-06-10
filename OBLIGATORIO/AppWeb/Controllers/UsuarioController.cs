@@ -26,6 +26,8 @@ namespace AppWeb.Controllers
             {
                 Usuario usuarioSistema = sistema.ObtenerUsuario(unCliente);
                 HttpContext.Session.SetString("Correo", usuarioSistema.Correo);
+                HttpContext.Session.SetString("Rol", usuarioSistema.ObtenerRolUsuario());
+
                 return Redirect("/home/index");
             }
             catch (Exception ex)

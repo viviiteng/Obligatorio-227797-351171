@@ -49,6 +49,10 @@ namespace Dominio
                 }
             }
         }
+        public override string ObtenerRolUsuario()
+        {
+            return Rol.ADMIN.ToString();
+        }
 
         #endregion
 

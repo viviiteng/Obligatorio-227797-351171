@@ -44,6 +44,10 @@ namespace Dominio
         {
             return this.Nombre;
         }
+        public override string ObtenerRolUsuario()
+        {
+            return Rol.CLIENTE.ToString();
+        }
         #endregion
     }
 }

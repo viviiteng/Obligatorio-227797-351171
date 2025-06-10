@@ -62,6 +62,8 @@ namespace Dominio
 
         public abstract string ObtenerDatosUsuario();
 
+        public abstract string ObtenerRolUsuario();
+
         public override bool Equals(object? obj)
         {
             Usuario otro = (Usuario)obj;
