@@ -16,33 +16,22 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string iataOrigen, string iataDestino)
     {
-        List<Vuelo> vuelos=null;
         try
         {
-            vuelos = sistema.ListarVueloSegunIATA(null,null);
+            return View(sistema.ListarVueloSegunIATA(iataOrigen,iataDestino));
+
         }
         catch (Exception ex) 
         {
-        }
-        return View(vuelos);
-
-    }
-
-    public IActionResult ObtenerVuelosSegunNumVuelo(string numVuelo)
-    {
-        try
-        {
-            Vuelo unVuelo = sistema.ObtenerVueloSegunNumVuelo(numVuelo);
-            return View(unVuelo);
-        }
-        catch (Exception error)
-        {
             return View();
         }
-       
+        
+
     }
+
+   
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

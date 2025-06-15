@@ -1,0 +1,106 @@
+﻿@using Dominio
+@model Vuelo
+
+<div class="container-fluid mt-5" style="max-width: 720px;">
+	<h2 class="text-center mb-4">✈️ Detalles del Vuelo</h2>
+	<form action="/Pasaje/ComprarPasaje" method="post">
+
+		<div class="card shadow rounded-4 p-4">
+			<div class="row mb-3">
+				<div class="col-md-6">
+					<label class="form-label">Número de Vuelo</label>
+					<input type="text" class="form-control" name="numVuelo" value="@Model.NumVuelo" readonly />
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Modelo del Avión</label>
+					<input type="text" class="form-control" value="@Model.Avion.Modelo" disabled />
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-md-6">
+					<label class="form-label">Origen</label>
+					<input type="text" class="form-control" value="@Model.Ruta.AeropuertoSalida.Ciudad" disabled />
+				</div>
+				<div class="col-md-6">
+					<label class="form-label">Destino</label>
+					<input type="text" class="form-control" value="@Model.Ruta.AeropuertoLlegada.Ciudad" disabled />
+				</div>
+			</div>
+
+			@{
+				string dias = "";
+				if (Model.frecuencias != null)
+				{
+					foreach (var dia in Model.frecuencias)
+					{
+						dias += dia.ToString() + " - ";
+					}
+					dias = dias.TrimEnd('-', ' ');
+				}
+			}
+
+			<div class="row mb-3">
+				<div class="col-md-12">
+					<label class="form-label">Frecuencias</label>
+					<input type="text" class="form-control" value="@dias" disabled />
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-md-12">
+
+					<label for="fecha" class="form-label">Seleccione una fecha</label>
+					<input type="date" id="fecha" name="fechaDeVuelo" class="form-control">
+				</div>
+			</div>
+
+			<div class="row mb-3">
+				<div class="col-md-12">
+					@{
+						List<TipoEquipaje> equipajes = Enum.GetValues(typeof(TipoEquipaje)).Cast<TipoEquipaje>().ToList();
+					}
+					<select name="equipaje" class="form-control">
+						<option value="-1">Seleccione su equipaje...</option>
+						@foreach(TipoEquipaje unEquipaje in equipajes)
+						{
+							<option value="@unEquipaje">@unEquipaje</option>
+						}
+					</select>
+				</div>
+			</div>
+
+			@* <div class="row mb-3">
+				<div class="col-md-12">
+					<label class="form-label">Costo por Asiento</label>
+					<input type="text" class="form-control" value="@Model.CalcularCostaPorAsiento().ToString("C2")" disabled />
+				</div>
+			</div> *@
+
+			<div class="row m-1 mt-3">
+				<input type="submit" class="col-md-12 btn btn-primary" value="Comprar" />	
+			</div>
+
+			@* <div class="row m-1 mt-3">
+				@if (Context.Session.GetString("Correo") == null)
+				{
+					@Html.ActionLink("Comprar", "VerInicioSesion", "Usuario", null, new { @class = "col-md-12 btn btn-primary" })
+				}
+				else
+				{
+					<input type="submit" class="col-md-12 btn btn-primary" value="Comprar" />
+
+				}
+			</div> *@
+			
+
+		</div>
+	</form>
+	@{if (ViewBag.Error != null)
+	{
+		<div class="alert alert-danger" role="alert">
+			<p>@ViewBag.Error</p>
+		</div>
+	}
+	}
+</div>

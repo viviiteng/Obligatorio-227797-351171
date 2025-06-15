@@ -23,16 +23,16 @@ namespace Dominio
         #region Constructor
         public Pasaje()
         {
-            IdPasaje = UltimoIdPasaje++;
+            this.IdPasaje = UltimoIdPasaje++;
         }
-        public Pasaje(Vuelo vuelo, DateTime fechaDeVuelo, Cliente pasajero, TipoEquipaje equipaje, double precioPasaje)
+        public Pasaje(Vuelo vuelo, DateTime fechaDeVuelo, Cliente pasajero, TipoEquipaje equipaje)
         {
             this.IdPasaje = UltimoIdPasaje++;
             this.Vuelo = vuelo;
             this.FechaDeVuelo = fechaDeVuelo;
             this.Pasajero = pasajero;
             this.Equipaje = equipaje;
-            this.PrecioPasaje = precioPasaje;
+            this.PrecioPasaje = CalcularPrecioPasaje();
         }
         #endregion
 
@@ -42,10 +42,11 @@ namespace Dominio
         {
             validarFecha();
             validarContenido();
+            validarEquipaje();
         }
         private void validarContenido()
         {
-            if (this.Vuelo == null || this.Pasajero == null || this.PrecioPasaje < 0)
+            if (this.Vuelo == null || this.Pasajero == null)
             {
                 throw new Exception("Error al validar los datos del pasaje.");
             }
@@ -67,11 +68,18 @@ namespace Dominio
                 throw new Exception("Error: El dia de la fecha del pasaje no coincide con la frecuencia del vuelo");
             }
         }
-        public double CalcularPasaje()
+        private void validarEquipaje()
+        {
+            if (!(this.Equipaje is TipoEquipaje))
+            {
+                throw new Exception("Error: Debe ingresar el tipo de equipaje deseado.");
+            }
+        }
+        public double CalcularPrecioPasaje()
         {
             double precioPasaje;
             precioPasaje = this.Vuelo.CalcularCostaPorAsiento() * (1 + (25 + this.Pasajero.ObtenerDescuentoSegunEquipaje(this.Equipaje) / 100) + this.Vuelo.Ruta.AeropuertoSalida.CostoTasas + this.Vuelo.Ruta.AeropuertoLlegada.CostoTasas);
-            return Math.Round(precioPasaje);
+            return Math.Round(precioPasaje,2);
         }
         public override bool Equals(object? obj)
         {
