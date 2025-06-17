@@ -16,22 +16,13 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index(string iataOrigen, string iataDestino)
+    public IActionResult Index()
     {
-        try
-        {
-            return View(sistema.ListarVueloSegunIATA(iataOrigen,iataDestino));
-
-        }
-        catch (Exception ex) 
-        {
-            return View();
-        }
+        return View();
         
 
     }
-
-   
+    
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

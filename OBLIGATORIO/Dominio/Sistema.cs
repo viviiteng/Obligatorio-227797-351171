@@ -210,16 +210,19 @@ namespace Dominio
             }
         }
 
-        public Cliente ObtenerUsuario(ClienteOcasional unCliente)
+        public Usuario ObtenerUsuarioSegunCorreoYPass(string correo, string contrasena)
         {
-            if (Usuarios.Contains(unCliente))
-            {
-                return unCliente;
+            foreach (Usuario unUsuario in this.Usuarios) { 
+                if (correo == unUsuario.Correo && contrasena == unUsuario.Pass)
+                {
+                    return unUsuario;
+                }
             }
             throw new Exception("Usuario o contraseña inválido");
         }
 
-        public Cliente ObtenerUsuarioSegunCorreo(string correo)
+
+        public Cliente ObtenerClienteSegunCorreo(string correo)
         {
             foreach (Cliente unCliente in this.Usuarios)
             {

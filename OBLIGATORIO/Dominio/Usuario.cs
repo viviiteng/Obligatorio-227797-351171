@@ -67,7 +67,7 @@ namespace Dominio
         public override bool Equals(object? obj)
         {
             Usuario otro = (Usuario)obj;
-            return this.Correo == otro.Correo && this.Pass == otro.Pass;
+            return this.Correo == otro.Correo;
         }
         #endregion
 

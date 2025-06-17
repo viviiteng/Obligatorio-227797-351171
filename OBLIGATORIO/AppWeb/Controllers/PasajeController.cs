@@ -45,11 +45,11 @@ namespace AppWeb.Controllers
             {
                 try 
                 {
-                    sistema.AgregarNuevoPasaje(new Pasaje(sistema.ObtenerVueloSegunNumVuelo(numVuelo), fechaDeVuelo, sistema.ObtenerUsuarioSegunCorreo(correoLogueado), equipaje));
+                    sistema.AgregarNuevoPasaje(new Pasaje(sistema.ObtenerVueloSegunNumVuelo(numVuelo), fechaDeVuelo, sistema.ObtenerClienteSegunCorreo(correoLogueado), equipaje));
                     return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
-                {
+                 {
                     ViewBag.Error = ex.Message;
                     return View("MostrarDetalleVueloSegunNumVuelo", sistema.ObtenerVueloSegunNumVuelo(numVuelo));
                 }

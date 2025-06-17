@@ -70,7 +70,7 @@ namespace Dominio
         }
         private void validarEquipaje()
         {
-            if (!(this.Equipaje is TipoEquipaje))
+            if (this.Equipaje == 0)
             {
                 throw new Exception("Error: Debe ingresar el tipo de equipaje deseado.");
             }

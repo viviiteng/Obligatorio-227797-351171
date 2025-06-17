@@ -1,56 +1,9 @@
-﻿@using Dominio;
-@model List<Vuelo>
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded mb-4">
-    <div class="container-fluid">
-        <a class="navbar-brand fw-bold text-primary">Buscar Vuelos</a>
-        <form class="d-flex ms-auto" method="post" action="/Home/Index">
-            <input class="form-control me-2" type="search" name="iataOrigen" placeholder="Origen" aria-label="Origen">
-            <input class="form-control me-2" type="search" name="iataDestino" placeholder="Destino" aria-label="Destino">
-            <button class="btn btn-primary" type="submit">Buscar</button>
-        </form>
-    </div>
-</nav>
-
+﻿
+<section>
 <div id="hero" class="container-fluid">
-    <h1 class="fw-bold display-6" >Bienvenidos a ORT Airlines</h1>
+    <h1 class="fw-bold display-6">Bienvenidos a ORT Airlines</h1>
 </div>
-
-<div class="container mt-5">
-    @if (Model == null || Model.Count == 0)
-    {
-        <div class="alert alert-warning text-center">
-            No se han encontrado vuelos.
-        </div>
-    }
-    else
-    {
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered shadow-sm rounded">
-                <thead class="table-primary text-center">
-                    <tr>
-                        <th>Vuelo Nº</th>
-                        <th>Salida</th>
-                        <th>Llegada</th>
-                        <th>Frecuencia</th>
-                        <th>Acción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (Vuelo unVuelo in Model)
-                    {
-                        string dias = string.Join(" - ", unVuelo.frecuencias);
-                        <tr class="align-middle text-center">
-                            <td>@unVuelo.NumVuelo</td>
-                            <td>@unVuelo.Ruta.AeropuertoSalida.Ciudad</td>
-                            <td>@unVuelo.Ruta.AeropuertoLlegada.Ciudad</td>
-                            <td>@dias</td>
-                            <td>
-                                @Html.ActionLink("Ver detalle", "MostrarDetalleVueloSegunNumVuelo", "Pasaje", new { numVuelo = unVuelo.NumVuelo }, new { @class = "btn btn-outline-primary btn-sm w-100" })
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    }
-</div>
+<button class = "btn btn-outline-primary btn-lg w-100">
+    @Html.ActionLink("Ver todos los vuelos", "ListarVuelos", "Vuelo")
+</button>
+</section>
