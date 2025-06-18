@@ -1,0 +1,39 @@
+﻿@using Dominio
+@model List<Pasaje>
+
+<div class="container mt-5">
+    @if (Model == null || Model.Count == 0)
+    {
+        <div class="alert alert-warning text-center">
+            No se han encontrado pasajes.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered shadow-sm rounded">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>Id Pasaje</th>
+                        <th>Nombre Pasajero</th>
+                        <th>Numero Vuelo</th>
+                        <th>Fecha de Vuelo</th>
+                        <th>Precio Pasaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Pasaje unPasaje in Model)
+                    {
+                        <tr class="align-middle text-center">
+                            <td>@unPasaje.IdPasaje</td>
+                            <td>@unPasaje.Pasajero</td>
+                            <td>@unPasaje.Vuelo.NumVuelo</td>
+                            <td>@unPasaje.FechaDeVuelo.ToString("dd/MM/yyyy")</td>
+                            <td>@unPasaje.PrecioPasaje</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

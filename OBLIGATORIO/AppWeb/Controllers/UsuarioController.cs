@@ -12,7 +12,7 @@ namespace AppWeb.Controllers
         }
         private bool usuarioLogueadoEsCliente()
         {
-            return (HttpContext.Session.GetString("Rol") != "ADMIN");
+            return (HttpContext.Session.GetString("Rol") != Rol.ADMIN.ToString());
         }
 
         public IActionResult VerPerfil()

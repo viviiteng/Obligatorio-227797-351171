@@ -8,7 +8,7 @@ using Microsoft.VisualBasic;
 
 namespace Dominio
 {
-    public class Pasaje : IValidable
+    public class Pasaje : IValidable, IComparable
     {
         #region Atributo
         public int IdPasaje { get; set; }
@@ -24,6 +24,7 @@ namespace Dominio
         public Pasaje()
         {
             this.IdPasaje = UltimoIdPasaje++;
+            this.PrecioPasaje = calcularPrecioPasaje(); 
         }
         public Pasaje(Vuelo vuelo, DateTime fechaDeVuelo, Cliente pasajero, TipoEquipaje equipaje)
         {
@@ -89,6 +90,16 @@ namespace Dominio
         public override string ToString()
         {
             return $"Id del Pasaje: {this.IdPasaje}, Pasajero: {this.Pasajero}, Precio del pasaje: {this.PrecioPasaje}, Fecha del vuelo: {this.FechaDeVuelo.ToString("dd/MM/yyyy")}, Vuelo: {this.Vuelo.NumVuelo}. ";
+        }
+
+        public int CompareTo(object? obj)
+        {
+            Pasaje unPasaje = (Pasaje)obj;
+            if (unPasaje.FechaDeVuelo.CompareTo(this.FechaDeVuelo) == 0)
+            {
+                return this.IdPasaje.CompareTo(unPasaje.IdPasaje);
+            }
+            return unPasaje.FechaDeVuelo.CompareTo(this.FechaDeVuelo);
         }
 
         #endregion

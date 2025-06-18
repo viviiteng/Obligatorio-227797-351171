@@ -6,20 +6,26 @@ html {
   html {
     font-size: 16px;
   }
+  #hero {
+      height: 80rem; 
+  }
 }
 
 #hero {
-    background: url(/img/ORTArilines.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 30rem;
-    color: black;
+    background: url(/img/amancer.jpg);
+    background-size:cover;
+    background-position: top;
+    background-repeat: no-repeat;/*
+    background-attachment: fixed;*/
+    height: 100vh;
+    color: antiquewhite;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-top:8rem;
+    align-items: center;
+    padding-top: 8rem;
     text-align: center;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {

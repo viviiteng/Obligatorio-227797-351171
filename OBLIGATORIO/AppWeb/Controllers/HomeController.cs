@@ -17,8 +17,11 @@ public class HomeController : Controller
     }
 
     public IActionResult Index()
-    {
-        return View();
+    {    
+        if(HttpContext.Session.GetString("Correo") != null){
+            ViewBag.UsuarioCorreo = sistema.ObtenerUsuarioSegunCorreo(HttpContext.Session.GetString("Correo")).Correo;
+        }
+        return View();  
         
 
     }

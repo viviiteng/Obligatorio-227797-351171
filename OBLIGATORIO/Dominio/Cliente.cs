@@ -9,7 +9,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Dominio
 {
-    public abstract class Cliente : Usuario
+    public abstract class Cliente : Usuario, IComparable
     {
         #region Atributo
         public string Cedula { get; set; }
@@ -45,6 +45,11 @@ namespace Dominio
             return this.Nombre;
         }
         
+        public int CompareTo(object?obj)
+        {
+            Cliente auxiliar = (Cliente)obj;
+            return this.Cedula.CompareTo(auxiliar.Cedula);
+        }
         #endregion
     }
 }

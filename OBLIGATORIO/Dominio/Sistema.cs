@@ -16,12 +16,12 @@ namespace Dominio
             return instancia;
         }
         #region Atributos   
-        public List<Usuario> Usuarios { get; set; }
-        public List<Pasaje> Pasajes { get; set; }
-        public List<Vuelo> Vuelos { get; set; }
-        public List<Ruta> Rutas { get; set; }
-        public List<Avion> Aviones { get; set; }
-        public List<Aeropuerto> Aeropuertos { get; set; }
+        private List<Usuario> Usuarios { get; set; }
+        private List<Pasaje> pasajes { get; set; }
+        private List<Vuelo> Vuelos { get; set; }
+        private List<Ruta> Rutas { get; set; }
+        private List<Avion> Aviones { get; set; }
+        private List<Aeropuerto> Aeropuertos { get; set; }
         #endregion
 
         #region Constructor      
@@ -31,7 +31,7 @@ namespace Dominio
             Aviones = new List<Avion>();
             Aeropuertos = new List<Aeropuerto>();
             Rutas = new List<Ruta>();
-            Pasajes = new List<Pasaje>();
+            pasajes = new List<Pasaje>();
             Vuelos = new List<Vuelo>();
             precargarDatos();
         }
@@ -276,12 +276,12 @@ namespace Dominio
         {
             unPasaje.Validar();
             validarExistenciaPasaje(unPasaje);
-            Pasajes.Add(unPasaje);
+            pasajes.Add(unPasaje);
         }
 
         private void validarExistenciaPasaje(Pasaje unPasaje)
         {
-            if (Pasajes.Contains(unPasaje))
+            if (pasajes.Contains(unPasaje))
             {
                 throw new Exception("Error: El pasaje ingresado ya existe.");
             }
@@ -295,7 +295,7 @@ namespace Dominio
                 throw new Exception("Error: la fecha final debe ser mayor o igual a inicial. Intente de nuevo...");
             }
 
-            foreach (Pasaje unPasaje in Pasajes)
+            foreach (Pasaje unPasaje in pasajes)
             {
                 if (fechaUno <= unPasaje.FechaDeVuelo && fechaDos >= unPasaje.FechaDeVuelo)
                 {
@@ -313,7 +313,7 @@ namespace Dominio
         {
             List<Pasaje> pasajesUsuario = new List<Pasaje>();
 
-            foreach (Pasaje unPasaje in Pasajes)
+            foreach (Pasaje unPasaje in pasajes)
             {
                 if (unPasaje.Pasajero == unUsuario)
                 {
@@ -322,6 +322,16 @@ namespace Dominio
             }
             //pasajesUsuario.Sort();//aca hay que hacer que los ordene por precio
             return pasajesUsuario;
+        }
+        public List <Pasaje> ObtenerListadoPasajesAdmin()
+        {
+            List<Pasaje> pasajeCopia = new List<Pasaje>();
+            foreach (Pasaje unPasaje in pasajes)
+            {
+                pasajeCopia.Add(unPasaje);
+            }
+            pasajeCopia.Sort();
+            return pasajeCopia;
         }
 
         #endregion

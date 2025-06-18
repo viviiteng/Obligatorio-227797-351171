@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AppWeb.Controllers
 {
@@ -45,6 +46,21 @@ namespace AppWeb.Controllers
             return Redirect("/LogIn/VerInicioSesion");
         }
 
-        
+        public IActionResult VerListadoPasajes()
+        {
+            try
+            {
+                if (HayUsuarioLogueado() && HttpContext.Session.GetString("Rol") == Rol.ADMIN.ToString())
+                {
+                    List<Pasaje> pasajes = sistema.ObtenerListadoPasajesAdmin();
+                    return View(pasajes);
+                }
+            }
+            catch (Exception error)
+            {
+                return View(error);
+            }
+            return Redirect("/LogIn/VerInicioSesion");
+        }    
     }
 }

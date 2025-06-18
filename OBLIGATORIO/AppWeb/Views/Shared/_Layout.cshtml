@@ -29,7 +29,7 @@
 				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
 					<div class="container-fluid">
 
-						<ul class="navbar-nav flex-grow-1">
+						<ul class="navbar-nav flex-grow-1 container">
 							<div class="container d-flex align-items-center justify-content-start">
 								<li class="nav-item">
 									<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ORT Airlines</a>
@@ -40,32 +40,36 @@
 								</li>
 							</div>
 
-							<div class="container d-flex justify-content-center">
-
-								<li class="nav-item">
-									@if (hayUsuarioLogueado)
-									{
-										<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@(UsuarioLogueado + Context.Session.GetString("Rol"))</a>
-									}
-								</li>
-							</div>
-
 							<div class="container d-flex justify-content-end">
 								@if (hayUsuarioLogueado)
 								{
-									if (esCliente)
+									@* <li class="nav-item d-flex justify-content-center">
+										<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@(UsuarioLogueado + Context.Session.GetString("Rol"))</a>
+									</li> *@
+									
+									@if (esCliente)
 									{
 										<li class="nav-item">
 											<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerPasajesComprados">Mis pasajes</a>
+										</li>			
+										
+										<li class="nav-item">
+												<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerPerfil">Mi perfil</a>
+										</li>
+
+									}
+									else
+									{
+										<li class="nav-item">
+										<a class="nav-link text-dark" asp-area="" asp-controller="Pasaje" asp-action="VerListadoPasajes">Listado Pasajes</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerPerfil">Mi perfil</a>
-										</li>							
-									}
+										<a class="nav-link text-dark" asp-area="" asp-controller="Administrador" asp-action="VerListadoClientes">Listado Clientes</a>
+										</li>
+									}								
 									<li class="nav-item">
 										<a class="nav-link text-dark" asp-area="" asp-controller="LogIn" asp-action="VerConfirmarLogOut">Cerrar Sesion</a>
 									</li>
-									
 								}
 								else
 								{
