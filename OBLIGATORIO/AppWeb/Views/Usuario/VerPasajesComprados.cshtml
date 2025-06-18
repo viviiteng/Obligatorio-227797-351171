@@ -1,0 +1,43 @@
+﻿@using Dominio
+@model List<Pasaje>
+
+<div class="container mt-5">
+    @if (Model == null)
+    {
+        <div class="alert alert-warning text-center">
+            No se han encontrado vuelos.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered shadow-sm rounded">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>Nº Vuelo</th>
+                        <th>Avion</th>
+                        <th>Salida</th>
+                        <th>Llegada</th>
+                        <th>Fecha</th>
+                        <th>Equipaje</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Pasaje unPasaje in Model)
+                    {
+                        <tr class="align-middle text-center">
+                            <td>@unPasaje.Vuelo.NumVuelo</td>
+                            <td>@($"{unPasaje.Vuelo.Avion.Fabricante} - {unPasaje.Vuelo.Avion.Modelo}")</td>
+                            <td>@unPasaje.Vuelo.Ruta.AeropuertoSalida.Ciudad</td>
+                            <td>@unPasaje.Vuelo.Ruta.AeropuertoLlegada.Ciudad</td>
+                            <td>@unPasaje.FechaDeVuelo.ToString("dd/MM/yyyy")</td>
+                            <td>@unPasaje.Equipaje</td>
+                            <td>U$D @unPasaje.PrecioPasaje</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

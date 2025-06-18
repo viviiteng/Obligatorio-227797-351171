@@ -1,7 +1,79 @@
 ﻿@using Dominio
-@model Usuario
+@model Cliente
 
 <section>
-    <h1>Mi perfil</h1>
+	<div class="container mt-5">
+		@if (Model == null)
+		{
+			<div class="alert alert-warning text-center">
+				No se han encontrado el usuario.
+			</div>
+		}
+		else
+		{
+			<form class="m-3" id="perfilForm">
+				<h1>Mi perfil</h1>
+
+				<div class="mb-3">
+					<label for="nombreCompletoPerfil" class="form-label">Nombre completo</label>
+					<input type="text" id="nombreCompletoPerfil" class="form-control" value="@Model.Nombre" disabled>
+				</div>
+				<div class="mb-3">
+					<label for="correoPerfil" class="form-label">Correo</label>
+					<input type="email" id="correoPerfil" class="form-control" value="@Model.Correo" name="Correo" disabled>
+				</div>
+				<div class="mb-3">
+					<label for="cedulaPerfil" class="form-label">Cédula</label>
+					<input type="text" id="cedulaPerfil" class="form-control" value="@Model.Cedula" name="Cedula" disabled>
+				</div>
+				<div class="mb-3">
+					<label for="nacionalidadPerfil" class="form-label">Nacionalidad</label>
+					<input type="text" id="nacionalidadPerfil" class="form-control" value="@Model.Nacionalidad" name="Nacionalidad" disabled>
+				</div>
+				@if (Model is ClientePremium unClientePremium)
+				{
+					<div class="mb-3">
+						<label for="puntosPerfil" class="form-label">Puntos</label>
+						<input type="text" id="puntosPerfil" class="form-control" value="@unClientePremium.PuntosAcumulados" name="Cedula" disabled>
+					</div>
+				}
+				<div class="mb-3">
+					<label for="passPerfil" class="form-label">Contraseña</label>
+					<input type="password" id="passPerfil" class="form-control" name="Pass" value="*************" disabled>
+				</div>
+			</form>
+
+		}
+	</div>
 
 </section>
+
+
+
+@* <div class="table-responsive">
+	<table class="table table-hover table-bordered shadow-sm rounded">
+		<thead class="table-primary text-center">
+			<tr>
+				<th>Nombre</th>
+				<th>Correo</th>
+				<th>Cedula</th>
+				@if (Model is ClientePremium)
+				{
+					<th>Puntos</th>
+				}
+			</tr>
+		</thead>
+		<tbody>
+			string dias = string.Join(" - ", unVuelo.frecuencias);
+			<tr class="align-middle text-center">
+				<td>@Model.Nombre</td>
+				<td>@Model.Correo</td>
+				<td>@Model.Cedula</td>
+				@if (Model is ClientePremium unClientePremium)
+				{
+					<td>@unClientePremium.PuntosAcumulados</td>
+				}
+			</tr>
+		</tbody>
+	</table>
+</div> *@

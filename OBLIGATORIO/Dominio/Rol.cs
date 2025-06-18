@@ -9,6 +9,7 @@ namespace Dominio
     public enum Rol
     {
         ADMIN,
-        CLIENTE
+        CLIENTEPREMIUM,
+        CLIENTEOCASIONAL
     }
 }

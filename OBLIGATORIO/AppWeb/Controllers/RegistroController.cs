@@ -6,12 +6,13 @@ namespace AppWeb.Controllers
     public class RegistroController : Controller
     {
         private Sistema sistema = Sistema.ObtenerInstancia();
-
+        private bool HayUsuarioLogueado()
+        {
+            return (HttpContext.Session.GetString("Correo") != null);
+        }
         public IActionResult VerRegistro()
         {
-            string correoLogueado = HttpContext.Session.GetString("Correo");
-
-            if (correoLogueado != null)
+            if (HayUsuarioLogueado())
             {
                 return Redirect("/home/index");
             }
@@ -20,7 +21,6 @@ namespace AppWeb.Controllers
                 ViewBag.OcultarNavbar = true;
                 return View();
             }
-
         }
 
         [HttpPost]
@@ -29,7 +29,7 @@ namespace AppWeb.Controllers
             try
             {
                 sistema.AgregarNuevoUsuario(unClienteOcasional);
-                return RedirectToAction("Index", "Home");
+                return Redirect("/Home/Index");
             }
             catch (Exception error)
             {

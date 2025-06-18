@@ -70,30 +70,23 @@
 				</div>
 			</div>
 
-			@* <div class="row mb-3">
+			<div class="row mb-3">
 				<div class="col-md-12">
 					<label class="form-label">Costo por Asiento</label>
-					<input type="text" class="form-control" value="@Model.CalcularCostaPorAsiento().ToString("C2")" disabled />
+					<input type="text" class="form-control" value="@Model.CalcularCostoPorAsiento().ToString("C2")" disabled />
 				</div>
-			</div> *@
+			</div> 
+
+			<div class="row mb-3">
+				<div class="col-md-12">
+					<label class="form-label">Precio pasaje</label>
+					<input type="text" class="form-control" value="@ViewBag.PrecioPasaje" disabled />
+				</div>
+			</div>
 
 			<div class="row m-1 mt-3">
 				<input type="submit" class="col-md-12 btn btn-primary" value="Comprar" />	
 			</div>
-
-			@* <div class="row m-1 mt-3">
-				@if (Context.Session.GetString("Correo") == null)
-				{
-					@Html.ActionLink("Comprar", "VerInicioSesion", "Usuario", null, new { @class = "col-md-12 btn btn-primary" })
-				}
-				else
-				{
-					<input type="submit" class="col-md-12 btn btn-primary" value="Comprar" />
-
-				}
-			</div> *@
-			
-
 		</div>
 	</form>
 	@{if (ViewBag.Error != null)

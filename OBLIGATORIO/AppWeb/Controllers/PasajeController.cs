@@ -7,54 +7,44 @@ namespace AppWeb.Controllers
     {
         private Sistema sistema = Sistema.ObtenerInstancia();
 
-        public IActionResult MostrarDetalleVueloSegunNumVuelo(string numVuelo)
+        private bool HayUsuarioLogueado()
         {
-            try
-            {
-                Vuelo unVuelo = sistema.ObtenerVueloSegunNumVuelo(numVuelo);
-
-                return View(unVuelo);
-            }
-            catch (Exception error)
-            {
-                return View();
-            }
-
+            return (HttpContext.Session.GetString("Correo")!=null);
         }
-
         public IActionResult VerCompraPasaje(string numVuelo)
-        {
-            try
+        {          
+            if (HayUsuarioLogueado())
             {
-                Vuelo unVuelo = sistema.ObtenerVueloSegunNumVuelo(numVuelo);
-
-                return View(unVuelo);
+                try
+                {
+                    Vuelo unVuelo = sistema.ObtenerVueloSegunNumVuelo(numVuelo);
+                    return View(unVuelo);
+                }
+                catch (Exception error)
+                {
+                    return View(error);
+                }
             }
-            catch (Exception ex)
-            {
-                return View();
-            }
+            return Redirect("/LogIn/VerInicioSesion");
         }
-
-
         public IActionResult ComprarPasaje(string numVuelo, DateTime fechaDeVuelo, TipoEquipaje equipaje)
         {
-            string correoLogueado = HttpContext.Session.GetString("Correo");
-
-            if (correoLogueado != null) 
+            if (HayUsuarioLogueado())
             {
-                try 
+                try
                 {
-                    sistema.AgregarNuevoPasaje(new Pasaje(sistema.ObtenerVueloSegunNumVuelo(numVuelo), fechaDeVuelo, sistema.ObtenerClienteSegunCorreo(correoLogueado), equipaje));
-                    return RedirectToAction("Index", "Home");
+                    sistema.AgregarNuevoPasaje(new Pasaje(sistema.ObtenerVueloSegunNumVuelo(numVuelo), fechaDeVuelo, sistema.ObtenerClienteSegunCorreo(HttpContext.Session.GetString("Correo")), equipaje));
+                    return Redirect("/Home/Index");
                 }
                 catch (Exception ex)
-                 {
+                {
                     ViewBag.Error = ex.Message;
-                    return View("MostrarDetalleVueloSegunNumVuelo", sistema.ObtenerVueloSegunNumVuelo(numVuelo));
+                    return View("VerCompraPasaje", sistema.ObtenerVueloSegunNumVuelo(numVuelo));
                 }
             }
-            return RedirectToAction("VerInicioSesion","Usuario");
+            return Redirect("/LogIn/VerInicioSesion");
         }
+
+        
     }
 }

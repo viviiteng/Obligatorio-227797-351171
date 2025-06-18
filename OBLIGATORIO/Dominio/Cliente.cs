@@ -30,7 +30,7 @@ namespace Dominio
 
         #region Metodos
 
-        public abstract int ObtenerDescuentoSegunEquipaje(TipoEquipaje equipaje);
+        public abstract int CalcularRecargoPorEquipaje(TipoEquipaje equipaje);
         
         public override void Validar()
         {
@@ -44,10 +44,7 @@ namespace Dominio
         {
             return this.Nombre;
         }
-        public override string ObtenerRolUsuario()
-        {
-            return Rol.CLIENTE.ToString();
-        }
+        
         #endregion
     }
 }

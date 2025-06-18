@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Http;
 
 namespace Dominio
 {
@@ -68,10 +69,10 @@ namespace Dominio
         }
         private void precargarAviones()
         {
-            AgregarNuevoAvion(new Avion("Boeing", "737 MAX", 178, 65700.0, 8500.00));
-            AgregarNuevoAvion(new Avion("Airbus", "A320neo", 180, 63000.0, 8200.00));
-            AgregarNuevoAvion(new Avion("Embraer", "E195-E2", 132, 48000.0, 7200.00));
-            AgregarNuevoAvion(new Avion("Bombardier", "CRJ900", 90, 29560.0, 5400.00));
+            AgregarNuevoAvion(new Avion("Boeing", "737 MAX", 178, 16000.0, 20.00));
+            AgregarNuevoAvion(new Avion("Airbus", "A320neo", 180, 16500.0, 7.00));
+            AgregarNuevoAvion(new Avion("Embraer", "E195-E2", 132, 17200.0, 4.50));
+            AgregarNuevoAvion(new Avion("Bombardier", "CRJ900", 90, 16300.0, 3.3));
 
         }
         private void precargaAeropuertos()
@@ -98,38 +99,37 @@ namespace Dominio
             AgregarNuevoAeropuerto(new Aeropuerto("BOG", "Bogotá", 1380.90, 295.50));
         }
         private void precargarRutas()
-        {
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MVD"), obtenerAeropuertoSegunIATA("SCL"), 1500.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MVD"), obtenerAeropuertoSegunIATA("EZE"), 2100.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SCL"), obtenerAeropuertoSegunIATA("GRU"), 2600.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("EZE"), obtenerAeropuertoSegunIATA("JFK"), 8500.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("GRU"), obtenerAeropuertoSegunIATA("LAX"), 9800.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("JFK"), obtenerAeropuertoSegunIATA("CDG"), 5850.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LAX"), obtenerAeropuertoSegunIATA("LHR"), 8750.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("CDG"), obtenerAeropuertoSegunIATA("MAD"), 1050.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LHR"), obtenerAeropuertoSegunIATA("FRA"), 1030.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MAD"), obtenerAeropuertoSegunIATA("AMS"), 1480.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("FRA"), obtenerAeropuertoSegunIATA("BCN"), 1330.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("AMS"), obtenerAeropuertoSegunIATA("MIA"), 7800.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("BCN"), obtenerAeropuertoSegunIATA("YYZ"), 7800.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MIA"), obtenerAeropuertoSegunIATA("NRT"), 11000.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("YYZ"), obtenerAeropuertoSegunIATA("SYD"), 15500.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("NRT"), obtenerAeropuertoSegunIATA("DXB"), 8200.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SYD"), obtenerAeropuertoSegunIATA("DOH"), 12100.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("DXB"), obtenerAeropuertoSegunIATA("LIM"), 14600.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("DOH"), obtenerAeropuertoSegunIATA("BOG"), 13800.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SCL"), obtenerAeropuertoSegunIATA("MVD"), 1500.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("JFK"), obtenerAeropuertoSegunIATA("MVD"), 8500.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("GRU"), obtenerAeropuertoSegunIATA("CDG"), 9400.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LAX"), obtenerAeropuertoSegunIATA("EZE"), 9900.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("CDG"), obtenerAeropuertoSegunIATA("MVD"), 10800.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LHR"), obtenerAeropuertoSegunIATA("LAX"), 8750.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MAD"), obtenerAeropuertoSegunIATA("GRU"), 10200.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("FRA"), obtenerAeropuertoSegunIATA("EZE"), 11200.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("AMS"), obtenerAeropuertoSegunIATA("MVD"), 11400.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("BCN"), obtenerAeropuertoSegunIATA("NRT"), 11700.0));
-            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LIM"), obtenerAeropuertoSegunIATA("MVD"), 3200.0));
-
+        {        
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MVD"), obtenerAeropuertoSegunIATA("SCL"), 1370.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MVD"), obtenerAeropuertoSegunIATA("EZE"), 205.0));    
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SCL"), obtenerAeropuertoSegunIATA("GRU"), 2615.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("EZE"), obtenerAeropuertoSegunIATA("JFK"), 8520.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("GRU"), obtenerAeropuertoSegunIATA("LAX"), 9900.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("JFK"), obtenerAeropuertoSegunIATA("CDG"), 5840.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LAX"), obtenerAeropuertoSegunIATA("LHR"), 8755.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("CDG"), obtenerAeropuertoSegunIATA("MAD"), 1050.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LHR"), obtenerAeropuertoSegunIATA("FRA"), 655.0));    
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MAD"), obtenerAeropuertoSegunIATA("AMS"), 1480.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("FRA"), obtenerAeropuertoSegunIATA("BCN"), 1135.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("AMS"), obtenerAeropuertoSegunIATA("MIA"), 7470.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("BCN"), obtenerAeropuertoSegunIATA("YYZ"), 6360.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MIA"), obtenerAeropuertoSegunIATA("NRT"), 11750.0));  
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("YYZ"), obtenerAeropuertoSegunIATA("SYD"), 15500.0));  
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("NRT"), obtenerAeropuertoSegunIATA("DXB"), 7930.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SYD"), obtenerAeropuertoSegunIATA("DOH"), 12140.0));  
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("DXB"), obtenerAeropuertoSegunIATA("LIM"), 14560.0));  
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("DOH"), obtenerAeropuertoSegunIATA("BOG"), 13470.0));  
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("SCL"), obtenerAeropuertoSegunIATA("MVD"), 1370.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("JFK"), obtenerAeropuertoSegunIATA("MVD"), 8480.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("GRU"), obtenerAeropuertoSegunIATA("CDG"), 8750.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LAX"), obtenerAeropuertoSegunIATA("EZE"), 9860.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("CDG"), obtenerAeropuertoSegunIATA("MVD"), 10830.0));  
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LHR"), obtenerAeropuertoSegunIATA("LAX"), 8755.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("MAD"), obtenerAeropuertoSegunIATA("GRU"), 8180.0));   
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("FRA"), obtenerAeropuertoSegunIATA("EZE"), 11330.0));  
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("AMS"), obtenerAeropuertoSegunIATA("MVD"), 11370.0));  
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("BCN"), obtenerAeropuertoSegunIATA("NRT"), 10790.0));  
+            AgregarNuevaRuta(new Ruta(obtenerAeropuertoSegunIATA("LIM"), obtenerAeropuertoSegunIATA("MVD"), 3130.0));   
         }
         private void precargarVuelos()
         {
@@ -210,15 +210,16 @@ namespace Dominio
             }
         }
 
-        public Usuario ObtenerUsuarioSegunCorreoYPass(string correo, string contrasena)
+        public Usuario ObtenerUsuarioSegunCorreo(string correo)
         {
-            foreach (Usuario unUsuario in this.Usuarios) { 
-                if (correo == unUsuario.Correo && contrasena == unUsuario.Pass)
+            foreach (Usuario unUsuario in this.Usuarios)
+            {
+                if (correo == unUsuario.Correo)
                 {
                     return unUsuario;
                 }
             }
-            throw new Exception("Usuario o contraseña inválido");
+            throw new Exception("Error: Usuario no registrado");
         }
 
 
@@ -226,8 +227,8 @@ namespace Dominio
         {
             foreach (Cliente unCliente in this.Usuarios)
             {
-                if (unCliente.Correo==correo) 
-                { 
+                if (unCliente.Correo == correo)
+                {
                     return unCliente;
                 }
             }
@@ -261,6 +262,12 @@ namespace Dominio
                 }
             }
             throw new Exception($"Error: No existe un cliente con cedula [{cedula}]");
+        }
+        public void ValidarPassDeUsuario(Usuario unUsuario, string pass)
+        {
+            if (pass != unUsuario.Pass) { 
+            throw new Exception("Error: Usuario o contraseña inválido");
+            }
         }
         #endregion
 
@@ -302,7 +309,20 @@ namespace Dominio
             }
             return listaSegunFecha;
         }
+        public List<Pasaje> ObtenerListadoPasajesSegunUsuario(Usuario unUsuario)
+        {
+            List<Pasaje> pasajesUsuario = new List<Pasaje>();
 
+            foreach (Pasaje unPasaje in Pasajes)
+            {
+                if (unPasaje.Pasajero == unUsuario)
+                {
+                    pasajesUsuario.Add(unPasaje);
+                }
+            }
+            //pasajesUsuario.Sort();//aca hay que hacer que los ordene por precio
+            return pasajesUsuario;
+        }
 
         #endregion
 
@@ -320,7 +340,7 @@ namespace Dominio
                 throw new Exception("Error: El vuelo ingresado ya existe.");
             }
         }
-        
+
         public List<Vuelo> ListarVueloSegunIATA(string? codigoIataOrigen, string? codigoIataDestino)
         {
 
@@ -332,7 +352,7 @@ namespace Dominio
             }
             else
             {
-                if (codigoIataOrigen != null) 
+                if (codigoIataOrigen != null)
                 {
                     codigoIataOrigen = codigoIataOrigen.ToUpper();
 
@@ -490,7 +510,7 @@ namespace Dominio
             return false;
         }
 
-        
+
         #endregion
 
 

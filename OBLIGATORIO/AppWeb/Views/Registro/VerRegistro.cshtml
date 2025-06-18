@@ -6,33 +6,33 @@
 		<h2 class="mt-5 m-2">Registrar nuevo cliente</h2>
 		<form class="m-3" id="registroForm" action="/Registro/RegistrarCliente" method="post">
 			<div class="mb-3">
-				<label for="nombreCompleto" class="form-label">Nombre completo</label>
+				<label for="nombreRegistro" class="form-label">Nombre completo</label>
 				<input type="text" class="form-control" name="Nombre" required>
 			</div>
 
 			<div class="mb-3">
-				<label for="nacionalidad" class="form-label">Nacionalidad</label>
+				<label for="nacionalidadRegistro" class="form-label">Nacionalidad</label>
 				<input type="text" class="form-control" name="Nacionalidad" required>
 			</div>
 
 			<div class="mb-3">
-				<label for="exampleInputEmail1" class="form-label">Correo</label>
+				<label for="correoRegistro" class="form-label">Correo</label>
 				<input type="email" class="form-control" name="Correo" required>
 			</div>
 			<div class="mb-3">
-				<label for="exampleInputCedula" class="form-label">Cédula</label>
+				<label for="cedulaRegistro" class="form-label">Cédula</label>
 				<input type="number" class="form-control" name="Cedula" required minlength="8">
 			</div>
 			<div class="mb-3">
-				<label for="exampleInputPassword1" class="form-label">Contraseña</label>
+				<label for="passRegistro" class="form-label">Contraseña</label>
 				<input type="password" class="form-control" name="Pass" required minlength="8">
 			</div>
 			<div class="mb-3">
-				<label for="exampleInputPassword2" class="form-label">Repetir contraseña</label>
+				<label for="pass2Registro" class="form-label">Repetir contraseña</label>
 				<input type="password" class="form-control" required minlength="8">
 			</div>
 			<button type="submit" class="btn btn-primary">Confirmar</button>
-			<a class="btn btn-primary" href="/Usuario/VerInicioSesion">Volver</a>
+			<a class="btn btn-primary" href="/LogIn/VerInicioSesion">Volver</a>
 		</form>
 		@{
 			if (ViewBag.Error!=null)

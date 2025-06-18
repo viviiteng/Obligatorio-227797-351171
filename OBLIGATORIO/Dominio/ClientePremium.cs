@@ -34,7 +34,7 @@ namespace Dominio
             return $"CLIENTE PREMIUM: Cedula: {this.Cedula}, Nombre: {this.Nombre}, Correo: {this.Correo}, Nacionalidad: {this.Nacionalidad}, Puntos: {this.PuntosAcumulados}";
 
         }
-        public override int ObtenerDescuentoSegunEquipaje(TipoEquipaje equipaje)
+        public override int CalcularRecargoPorEquipaje(TipoEquipaje equipaje)
         {
             int descuento = 0;
             if (equipaje == TipoEquipaje.BODEGA)
@@ -47,6 +47,10 @@ namespace Dominio
             }
 
             return descuento;
+        }
+        public override string ObtenerRolUsuario()
+        {
+            return Rol.CLIENTEPREMIUM.ToString();
         }
         #endregion
 

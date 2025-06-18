@@ -5,37 +5,45 @@ namespace AppWeb.Controllers
 {
     public class LogInController : Controller
     {
-        
+
         private Sistema sistema = Sistema.ObtenerInstancia();
+        private bool HayUsuarioLogueado()
+        {
+            return (HttpContext.Session.GetString("Correo") != null);
+        }
         public IActionResult VerInicioSesion()
         {
-            string correoLogueado = HttpContext.Session.GetString("Correo");
-
-            if (correoLogueado != null) 
+            if (HayUsuarioLogueado())
             {
                 return Redirect("/home/index");
 
             }
-            else
+            ViewBag.OcultarNavbar = true;
+            return View();      
+        }
+        public IActionResult VerConfirmarLogOut()
+        {
+            if (HayUsuarioLogueado())
             {
                 ViewBag.OcultarNavbar = true;
                 return View();
             }
+            return Redirect("/home/index");
         }
-
         public IActionResult CerrarSesion()
         {
             HttpContext.Session.Clear();
             return Redirect("/home/index");
-
         }
+
         [HttpPost]
         public IActionResult Loguearse(string Correo, string Pass)
         {
             ViewBag.OcultarNavbar = true;
             try
             {
-                Usuario usuarioSistema = sistema.ObtenerUsuarioSegunCorreoYPass(Correo, Pass);
+                Usuario usuarioSistema = sistema.ObtenerUsuarioSegunCorreo(Correo);
+                sistema.ValidarPassDeUsuario(usuarioSistema, Pass);
                 HttpContext.Session.SetString("Correo", usuarioSistema.Correo);
                 HttpContext.Session.SetString("Rol", usuarioSistema.ObtenerRolUsuario());
 

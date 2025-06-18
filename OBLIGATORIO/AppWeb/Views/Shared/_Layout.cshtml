@@ -1,13 +1,22 @@
 ﻿<!DOCTYPE html>
+@using Dominio
 @{
 	string UsuarioLogueado = Context.Session.GetString("Correo");
+	Sistema sistema = Sistema.ObtenerInstancia();
+	bool hayUsuarioLogueado = UsuarioLogueado != null;
+	bool esCliente=false;
+	bool esAdmin = false;
+	if(hayUsuarioLogueado){
+		esCliente = sistema.ObtenerUsuarioSegunCorreo(UsuarioLogueado) is Cliente;
+		esAdmin = sistema.ObtenerUsuarioSegunCorreo(UsuarioLogueado) is Administrador;
+	}
 }
 <html lang="en">
 
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - AppWeb</title>
+	<title>@ViewData["Title"]ORT Airlines</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/AppWeb.styles.css" asp-append-version="true" />
@@ -25,7 +34,7 @@
 								<li class="nav-item">
 									<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ORT Airlines</a>
 								</li>
-							
+
 								<li class="nav-item">
 									<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
 								</li>
@@ -34,25 +43,36 @@
 							<div class="container d-flex justify-content-center">
 
 								<li class="nav-item">
-									@if (UsuarioLogueado != null)
+									@if (hayUsuarioLogueado)
 									{
-									<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@(UsuarioLogueado + Context.Session.GetString("Rol"))</a>
+										<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@(UsuarioLogueado + Context.Session.GetString("Rol"))</a>
 									}
 								</li>
 							</div>
-							
+
 							<div class="container d-flex justify-content-end">
-								@if (UsuarioLogueado == null)
+								@if (hayUsuarioLogueado)
 								{
+									if (esCliente)
+									{
+										<li class="nav-item">
+											<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerPasajesComprados">Mis pasajes</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerPerfil">Mi perfil</a>
+										</li>							
+									}
 									<li class="nav-item">
-										<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerInicioSesion">Iniciar sesion</a>
+										<a class="nav-link text-dark" asp-area="" asp-controller="LogIn" asp-action="VerConfirmarLogOut">Cerrar Sesion</a>
 									</li>
+									
 								}
 								else
 								{
 									<li class="nav-item">
-										<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="CerrarSesion">Cerrar Sesion</a>
+										<a class="nav-link text-dark" asp-area="" asp-controller="LogIn" asp-action="VerInicioSesion">Iniciar sesion</a>
 									</li>
+									
 								}
 							</div>
 						</ul>

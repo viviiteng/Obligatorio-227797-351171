@@ -32,7 +32,7 @@ namespace Dominio
             this.FechaDeVuelo = fechaDeVuelo;
             this.Pasajero = pasajero;
             this.Equipaje = equipaje;
-            this.PrecioPasaje = CalcularPrecioPasaje();
+            this.PrecioPasaje = calcularPrecioPasaje();
         }
         #endregion
 
@@ -75,10 +75,10 @@ namespace Dominio
                 throw new Exception("Error: Debe ingresar el tipo de equipaje deseado.");
             }
         }
-        public double CalcularPrecioPasaje()
+        private double calcularPrecioPasaje()
         {
             double precioPasaje;
-            precioPasaje = this.Vuelo.CalcularCostaPorAsiento() * (1 + (25 + this.Pasajero.ObtenerDescuentoSegunEquipaje(this.Equipaje) / 100) + this.Vuelo.Ruta.AeropuertoSalida.CostoTasas + this.Vuelo.Ruta.AeropuertoLlegada.CostoTasas);
+            precioPasaje = (this.Vuelo.CalcularCostoPorAsiento() * (1.0 + (25.0 + this.Pasajero.CalcularRecargoPorEquipaje(this.Equipaje)) / 100.0)) + this.Vuelo.Ruta.AeropuertoSalida.CostoTasas + this.Vuelo.Ruta.AeropuertoLlegada.CostoTasas;
             return Math.Round(precioPasaje,2);
         }
         public override bool Equals(object? obj)

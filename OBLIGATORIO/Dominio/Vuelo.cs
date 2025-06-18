@@ -112,7 +112,7 @@ namespace Dominio
                 throw new Exception("Error: El alance del avion no es suficiente para cubrir la distancia de ruta.");
             }
         }
-        public double CalcularCostaPorAsiento()
+        public double CalcularCostoPorAsiento()
         {
             return (this.Avion.CostoOperacionPorKm * this.Ruta.Distancia + this.Ruta.AeropuertoSalida.CostoOperacion + this.Ruta.AeropuertoLlegada.CostoOperacion) / this.Avion.CantAsientos;
         }

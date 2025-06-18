@@ -43,7 +43,7 @@ namespace Dominio
             return resultado;
         }
 
-        public override int ObtenerDescuentoSegunEquipaje(TipoEquipaje equipaje)
+        public override int CalcularRecargoPorEquipaje(TipoEquipaje equipaje)
         {
             int descuento = 0;
             if (equipaje == TipoEquipaje.BODEGA)
@@ -59,6 +59,10 @@ namespace Dominio
             }
 
             return descuento;
+        }
+        public override string ObtenerRolUsuario()
+        {
+            return Rol.CLIENTEOCASIONAL.ToString();
         }
         #endregion
     }

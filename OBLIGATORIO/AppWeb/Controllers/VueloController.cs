@@ -6,11 +6,13 @@ namespace AppWeb.Controllers
     public class VueloController : Controller
     {
         private Sistema sistema = Sistema.ObtenerInstancia();
+        private bool HayUsuarioLogueado()
+        {
+            return (HttpContext.Session.GetString("Correo") != null);
+        }
         public IActionResult ListarVuelos(string iataOrigen, string iataDestino)
         {
-            string correoLogueado = HttpContext.Session.GetString("Correo");
-
-            if (correoLogueado != null)
+            if (HayUsuarioLogueado())
             {
                 try
                 {
@@ -21,11 +23,8 @@ namespace AppWeb.Controllers
                 {
                     return View();
                 }
-            }
-            else
-            {
-                return Redirect("/Usuario/VerInicioSesion");
-            }
+            }       
+            return Redirect("/LogIn/VerInicioSesion");
                 
         }
     }
