@@ -47,8 +47,8 @@ namespace Dominio
         
         public int CompareTo(object?obj)
         {
-            Cliente auxiliar = (Cliente)obj;
-            return this.Cedula.CompareTo(auxiliar.Cedula);
+            Cliente otro = (Cliente)obj;
+            return this.Cedula.CompareTo(otro.Cedula);
         }
         #endregion
     }

@@ -95,11 +95,11 @@ namespace Dominio
         public int CompareTo(object? obj)
         {
             Pasaje unPasaje = (Pasaje)obj;
-            if (unPasaje.FechaDeVuelo.CompareTo(this.FechaDeVuelo) == 0)
+            if (this.FechaDeVuelo.CompareTo(unPasaje.FechaDeVuelo) == 0)
             {
                 return this.IdPasaje.CompareTo(unPasaje.IdPasaje);
             }
-            return unPasaje.FechaDeVuelo.CompareTo(this.FechaDeVuelo);
+            return this.FechaDeVuelo.CompareTo(unPasaje.FechaDeVuelo);
         }
 
         #endregion

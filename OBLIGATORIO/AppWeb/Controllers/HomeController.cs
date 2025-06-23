@@ -20,6 +20,7 @@ public class HomeController : Controller
     {    
         if(HttpContext.Session.GetString("Correo") != null){
             ViewBag.UsuarioCorreo = sistema.ObtenerUsuarioSegunCorreo(HttpContext.Session.GetString("Correo")).Correo;
+            ViewBag.TipoUsuario = HttpContext.Session.GetString("Rol");
         }
         return View();  
         

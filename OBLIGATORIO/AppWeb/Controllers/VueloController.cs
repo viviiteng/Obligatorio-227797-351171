@@ -12,7 +12,7 @@ namespace AppWeb.Controllers
         }
         public IActionResult ListarVuelos(string iataOrigen, string iataDestino)
         {
-            if (HayUsuarioLogueado())
+            if (HayUsuarioLogueado() && HttpContext.Session.GetString("Rol")!=Rol.ADMIN.ToString())
             {
                 try
                 {

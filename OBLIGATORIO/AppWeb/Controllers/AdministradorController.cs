@@ -23,6 +23,8 @@ namespace AppWeb.Controllers
             }
             return Redirect("/LogIn/VerInicioSesion");
         }
+
+        //[HttpPost]
         //public IActionResult VerEditarCliente()
         //{
 

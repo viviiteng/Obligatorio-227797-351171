@@ -5,7 +5,7 @@
     @if (Model == null || Model.Count == 0)
     {
         <div class="alert alert-warning text-center">
-            No se han encontrado pasajes.
+            No se han encontrado pasajes comprados.
         </div>
     }
     else
@@ -14,10 +14,11 @@
             <table class="table table-hover table-bordered shadow-sm rounded">
                 <thead class="table-primary text-center">
                     <tr>
-                        <th>Id Pasaje</th>
-                        <th>Nombre Pasajero</th>
                         <th>Numero Vuelo</th>
+                        <th>Correo Pasajero</th>
+                        <th>Ruta</th>
                         <th>Fecha de Vuelo</th>
+                        <th>Tipo Equipaje</th>
                         <th>Precio Pasaje</th>
                     </tr>
                 </thead>
@@ -25,10 +26,11 @@
                     @foreach (Pasaje unPasaje in Model)
                     {
                         <tr class="align-middle text-center">
-                            <td>@unPasaje.IdPasaje</td>
-                            <td>@unPasaje.Pasajero</td>
                             <td>@unPasaje.Vuelo.NumVuelo</td>
+                            <td>@unPasaje.Pasajero.Correo</td>
+                            <td>@unPasaje.Vuelo.Ruta.AeropuertoSalida.CodigoIATA - @unPasaje.Vuelo.Ruta.AeropuertoLlegada.CodigoIATA</td>
                             <td>@unPasaje.FechaDeVuelo.ToString("dd/MM/yyyy")</td>
+                            <td>@unPasaje.Equipaje</td>
                             <td>@unPasaje.PrecioPasaje</td>
                         </tr>
                     }
