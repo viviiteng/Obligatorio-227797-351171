@@ -11,6 +11,12 @@
 		}
 		else
 		{
+			@if (ViewBag.Error != null)
+			{
+				<div class="alert alert-danger" role="alert">
+					@ViewBag.Error
+				</div>
+			}
 			<form class="m-3" id="perfilForm">
 				<h1>Mi perfil</h1>
 
@@ -36,11 +42,7 @@
 						<label for="puntosPerfil" class="form-label">Puntos</label>
 						<input type="text" id="puntosPerfil" class="form-control" value="@unClientePremium.PuntosAcumulados" name="Cedula" disabled>
 					</div>
-				}
-				<div class="mb-3">
-					<label for="passPerfil" class="form-label">Contraseña</label>
-					<input type="password" id="passPerfil" class="form-control" name="Pass" value="*************" disabled>
-				</div>
+				}				
 			</form>
 
 		}

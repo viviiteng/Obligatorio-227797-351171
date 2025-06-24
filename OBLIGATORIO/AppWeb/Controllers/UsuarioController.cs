@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AppWeb.Controllers
 {
-    public class ClienteController : Controller
+    public class UsuarioController : Controller
     {
         private Sistema sistema = Sistema.ObtenerInstancia();
         private bool hayUsuarioLogueado()
@@ -18,32 +18,18 @@ namespace AppWeb.Controllers
 
         public IActionResult VerPerfil()
         {
-            if (hayUsuarioLogueado() && usuarioLogueadoEsCliente()) { 
+            if (hayUsuarioLogueado() && usuarioLogueadoEsCliente())
+            {
                 try
                 {
                     Cliente clienteLogueado = sistema.ObtenerClienteSegunCorreo(HttpContext.Session.GetString("Correo"));
                     return View(clienteLogueado);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    
+                    ViewBag.Error = ex.Message;
                     return View();
-                }               
-            }
-            if (!usuarioLogueadoEsCliente())
-            {
-                return Redirect("/Home/Index");
-            }
-            return Redirect("/LogIn/VerInicioSesion");
-        }
-
-        public IActionResult VerPasajesComprados()
-        {
-            if (hayUsuarioLogueado() && usuarioLogueadoEsCliente())
-            {
-                Usuario usuarioLogueado = sistema.ObtenerUsuarioSegunCorreo(HttpContext.Session.GetString("Correo"));
-                List<Pasaje> pasajes = sistema.ObtenerListadoPasajesOrdenadoPrecio(usuarioLogueado);
-                return View(pasajes);
+                }
             }
             if (!usuarioLogueadoEsCliente())
             {
@@ -63,9 +49,10 @@ namespace AppWeb.Controllers
                     return View(clientes);
 
                 }
-                catch (Exception error)
+                catch (Exception ex)
                 {
-                    return View(error);
+                    ViewBag.Error = ex.Message;
+                    return View();
                 }
             }
             return Redirect("/LogIn/VerInicioSesion");
@@ -73,23 +60,35 @@ namespace AppWeb.Controllers
 
 
         [HttpPost]
-        public IActionResult ModificarCliente(ClienteViewModel vm)
+        public IActionResult ModificarCliente(UsuarioViewModel vm)
         {
-            if (vm.PuntosAcumulados == null)
+            if (hayUsuarioLogueado() && !usuarioLogueadoEsCliente())
             {
-                ClienteOcasional clienteOc = new ClienteOcasional();
-                clienteOc.Correo = vm.Correo;
-                sistema.ModificarCliente(clienteOc);
-            }
-            else
-            {
-                ClientePremium clientePre = new ClientePremium();
-                clientePre.Correo = vm.Correo;
-                clientePre.PuntosAcumulados = vm.PuntosAcumulados.Value;
-                sistema.ModificarCliente(clientePre);
+                try
+                {
+                    if (vm.PuntosAcumulados == null)
+                    {
+                        ClienteOcasional clienteOc = new ClienteOcasional();
+                        clienteOc.Correo = vm.Correo;
+                        sistema.ModificarCliente(clienteOc);
+                    }
+                    else
+                    {
+                        ClientePremium clientePre = new ClientePremium();
+                        clientePre.Correo = vm.Correo;
+                        clientePre.PuntosAcumulados = vm.PuntosAcumulados.Value;
+                        sistema.ModificarCliente(clientePre);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    TempData["Error"] = ex.Message;
+                    return RedirectToAction("VerListadoClientes");
+                }
             }
 
-            return Redirect("/Administrador/VerListadoClientes");
+            return RedirectToAction("VerListadoClientes");
         }
     }
 }

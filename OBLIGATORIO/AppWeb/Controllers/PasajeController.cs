@@ -65,5 +65,20 @@ namespace AppWeb.Controllers
             }
             return Redirect("/LogIn/VerInicioSesion");
         }
+
+        public IActionResult VerPasajesComprados()
+        {
+            if (hayUsuarioLogueado() && usuarioLogueadoEsCliente())
+            {
+                Usuario usuarioLogueado = sistema.ObtenerUsuarioSegunCorreo(HttpContext.Session.GetString("Correo"));
+                List<Pasaje> pasajes = sistema.ObtenerListadoPasajesOrdenadoPrecio(usuarioLogueado);
+                return View(pasajes);
+            }
+            if (!usuarioLogueadoEsCliente())
+            {
+                return Redirect("/Home/Index");
+            }
+            return Redirect("/LogIn/VerInicioSesion");
+        }
     }
 }

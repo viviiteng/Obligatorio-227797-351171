@@ -15,10 +15,15 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
+    private bool hayUsuarioLogueado()
+    {
+        return (HttpContext.Session.GetString("Correo") != null);
+    }
 
     public IActionResult Index()
     {    
-        if(HttpContext.Session.GetString("Correo") != null){
+        if(hayUsuarioLogueado())
+        {
             ViewBag.UsuarioCorreo = sistema.ObtenerUsuarioSegunCorreo(HttpContext.Session.GetString("Correo")).Correo;
             ViewBag.TipoUsuario = HttpContext.Session.GetString("Rol");
         }

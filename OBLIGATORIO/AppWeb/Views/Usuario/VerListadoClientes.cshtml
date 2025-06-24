@@ -10,6 +10,14 @@
     }
     else
     {
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["Error"]
+            </div>
+        }
+
         <div class="table-responsive">
             <table class="table table-hover table-bordered shadow-sm rounded">
                 <thead class="table-primary text-center">
@@ -26,7 +34,7 @@
                     
                         @foreach (Cliente unCliente in Model)
                         {
-                        <form action="/Administrador/ModificarCliente" method="post">
+                        <form action="/Usuario/ModificarCliente" method="post">
                             <tr class="align-middle text-center">
                                 <td>
                                     @unCliente.Cedula
@@ -38,11 +46,11 @@
                                 </td>
                                 <td>
                                     @unCliente.ObtenerRolUsuario()
-                                <input type="hidden" class="form-label" name="ObtenerRolUsuario()" disabled>
+                                <input type="hidden" class="form-label" disabled>
                                 </td>
                                 <td>
                                     @unCliente.Correo
-                                <input type="hidden" class="form-label" name="Correo" readonly>
+                                <input type="hidden" class="form-label" name="Correo" value="@unCliente.Correo" readonly>
                                 </td>
 
                                 @{
@@ -60,7 +68,8 @@
                                     }else
                                     {
                                         ClientePremium unClientePremium = (ClientePremium)unCliente;
-                                    <td><input type="number" name="PuntosAcumulados" value="@unClientePremium.PuntosAcumulados">
+                                    <td>
+                                        <input type="number" name="PuntosAcumulados" value="@unClientePremium.PuntosAcumulados">
                                     </td>                                        
                                     }
 

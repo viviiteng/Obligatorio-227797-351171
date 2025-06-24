@@ -211,7 +211,7 @@ namespace Dominio
             }
         }
 
-        public Usuario ObtenerUsuarioSegunCorreo(string correo)
+        public Usuario? ObtenerUsuarioSegunCorreo(string correo)
         {
             foreach (Usuario unUsuario in this.Usuarios)
             {
@@ -220,11 +220,11 @@ namespace Dominio
                     return unUsuario;
                 }
             }
-            throw new Exception("Error: Usuario no registrado");
+            return null;
         }
 
 
-        public Cliente ObtenerClienteSegunCorreo(string correo)
+        public Cliente? ObtenerClienteSegunCorreo(string correo)
         {
             foreach (Usuario unUsuario in this.Usuarios)
             {
@@ -236,11 +236,11 @@ namespace Dominio
                     }
                     else
                     {
-                        throw new Exception("Este perfil no tiene instancias en esta seccion");
+                        throw new Exception("Este usuario no es un cliente");
                     }
                 }
             }
-            throw new Exception("No se encontro ese correo en los usuarios registrados.");
+            return null;
         }
 
         public void ModificarCliente(ClienteOcasional clienteOcasionalExt)
@@ -256,14 +256,13 @@ namespace Dominio
                 {
                     clienteOcasional.EsElegibleRegalo = true;
                 }
-            }
-            
+            }   
         }
 
 
         public void ModificarCliente(ClientePremium clientePremiumExt)
         {
-            if (clientePremiumExt.PuntosAcumulados < 0) { 
+            if (clientePremiumExt.PuntosAcumulados >= 0) { 
                 Cliente unCliente = this.ObtenerClienteSegunCorreo(clientePremiumExt.Correo);
 
                 if (unCliente is ClientePremium clientePremium) {
@@ -272,7 +271,10 @@ namespace Dominio
 
                 }
             }
-            throw new Exception("Error: No se puede ingresar puntos menores a 0.");
+            else 
+            { 
+                throw new Exception("Error: No se puede ingresar puntos menores a 0.");
+            }
 
         }
 
