@@ -1,0 +1,81 @@
+﻿@using Dominio
+@model List<Cliente>
+
+<div class="container mt-5">
+    @if (Model == null || Model.Count == 0)
+    {
+        <div class="alert alert-warning text-center">
+            No se han encontrado clientes.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered shadow-sm rounded">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th>Cedula</th>
+                        <th>Nombre Pasajero</th>
+                        <th>Tipo Cliente</th>
+                        <th>Correo</th>
+                        <th>Puntos o es elegible</th>
+                        <th>Modificar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        @foreach (Cliente unCliente in Model)
+                        {
+                        <form action="/Administrador/ModificarCliente" method="post">
+                            <tr class="align-middle text-center">
+                                <td>
+                                    @unCliente.Cedula
+                                <input type="hidden" class="form-label" name="Cedula" disabled>
+                                </td>
+                                <td>
+                                    @unCliente.Nombre
+                                <input type="hidden" class="form-label" name="Nombre" disabled>
+                                </td>
+                                <td>
+                                    @unCliente.ObtenerRolUsuario()
+                                <input type="hidden" class="form-label" name="ObtenerRolUsuario()" disabled>
+                                </td>
+                                <td>
+                                    @unCliente.Correo
+                                <input type="hidden" class="form-label" name="Correo" readonly>
+                                </td>
+
+                                @{
+                                    if (unCliente.ObtenerRolUsuario()==Rol.CLIENTEOCASIONAL.ToString())
+                                    {
+                                        ClienteOcasional unClienteOcasional = (ClienteOcasional)unCliente;
+                                        if (unClienteOcasional.EsElegibleRegalo)
+                                        {
+                                            <td>Es Elegible de Regalo</td>
+                                        }
+                                        else
+                                        {
+                                            <td>No es Elegible de Regalo</td>
+                                        }
+                                    }else
+                                    {
+                                        ClientePremium unClientePremium = (ClientePremium)unCliente;
+                                    <td><input type="number" name="PuntosAcumulados" value="@unClientePremium.PuntosAcumulados">
+                                    </td>                                        
+                                    }
+
+                                }
+
+                            <td>
+                                <input type="submit" value="Modificar" class="btn btn-outline-primary btn-sm w-100">
+                                @* @Html.ActionLink("Modificar", "ModificarCliente", "Administrador", new { @class = "btn btn-outline-primary btn-sm w-100" }) *@</td>
+                            </tr>
+                        </form>
+                        }
+                    
+
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

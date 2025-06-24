@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.comparer;
 using Dominio.interfaces;
 using Microsoft.VisualBasic;
 
 namespace Dominio
 {
-    public class Pasaje : IValidable, IComparable
+    public class Pasaje : IValidable, IComparable<Pasaje>
     {
         #region Atributo
         public int IdPasaje { get; set; }
@@ -92,9 +93,8 @@ namespace Dominio
             return $"Id del Pasaje: {this.IdPasaje}, Pasajero: {this.Pasajero}, Precio del pasaje: {this.PrecioPasaje}, Fecha del vuelo: {this.FechaDeVuelo.ToString("dd/MM/yyyy")}, Vuelo: {this.Vuelo.NumVuelo}. ";
         }
 
-        public int CompareTo(object? obj)
+        public int CompareTo(Pasaje? unPasaje)
         {
-            Pasaje unPasaje = (Pasaje)obj;
             if (this.FechaDeVuelo.CompareTo(unPasaje.FechaDeVuelo) == 0)
             {
                 return this.IdPasaje.CompareTo(unPasaje.IdPasaje);

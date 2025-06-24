@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Http;
+using Dominio.comparer;
 
 namespace Dominio
 {
@@ -225,14 +226,54 @@ namespace Dominio
 
         public Cliente ObtenerClienteSegunCorreo(string correo)
         {
-            foreach (Cliente unCliente in this.Usuarios)
+            foreach (Usuario unUsuario in this.Usuarios)
             {
-                if (unCliente.Correo == correo)
+                if (unUsuario.Correo == correo)
                 {
-                    return unCliente;
+                    if(unUsuario is Cliente unCliente)
+                    { 
+                        return unCliente;
+                    }
+                    else
+                    {
+                        throw new Exception("Este perfil no tiene instancias en esta seccion");
+                    }
                 }
             }
             throw new Exception("No se encontro ese correo en los usuarios registrados.");
+        }
+
+        public void ModificarCliente(ClienteOcasional clienteOcasionalExt)
+        {
+            Cliente unCliente = this.ObtenerClienteSegunCorreo(clienteOcasionalExt.Correo);
+            if (unCliente is ClienteOcasional clienteOcasional)
+            {
+                if (clienteOcasional.EsElegibleRegalo)
+                {
+                    clienteOcasional.EsElegibleRegalo = false;
+                }
+                else
+                {
+                    clienteOcasional.EsElegibleRegalo = true;
+                }
+            }
+            
+        }
+
+
+        public void ModificarCliente(ClientePremium clientePremiumExt)
+        {
+            if (clientePremiumExt.PuntosAcumulados < 0) { 
+                Cliente unCliente = this.ObtenerClienteSegunCorreo(clientePremiumExt.Correo);
+
+                if (unCliente is ClientePremium clientePremium) {
+
+                clientePremium.PuntosAcumulados = clientePremiumExt.PuntosAcumulados;
+
+                }
+            }
+            throw new Exception("Error: No se puede ingresar puntos menores a 0.");
+
         }
 
         public List<Cliente> ObtenerListadoDeClientes()
@@ -309,6 +350,7 @@ namespace Dominio
             }
             return listaSegunFecha;
         }
+        //Ordena por fecha
         public List<Pasaje> ObtenerListadoPasajesSegunUsuario(Usuario unUsuario)
         {
             List<Pasaje> pasajesUsuario = new List<Pasaje>();
@@ -320,9 +362,28 @@ namespace Dominio
                     pasajesUsuario.Add(unPasaje);
                 }
             }
-            //pasajesUsuario.Sort();//aca hay que hacer que los ordene por precio
+            pasajesUsuario.Sort();//aca hay que hacer que los ordene por precio
             return pasajesUsuario;
         }
+
+
+        //Ordena por precio
+        public List<Pasaje> ObtenerListadoPasajesOrdenadoPrecio(Usuario unUsuario)
+        {
+            List<Pasaje> pasajesUsuario = new List<Pasaje>();
+
+            foreach (Pasaje unPasaje in pasajes)
+            {
+                if (unPasaje.Pasajero == unUsuario)
+                {
+                    pasajesUsuario.Add(unPasaje);
+                }
+            }
+            pasajesUsuario.Sort(new PasajeComparer());
+            return pasajesUsuario;
+        }
+
+
         public List <Pasaje> ObtenerListadoPasajesAdmin()
         {
             List<Pasaje> pasajeCopia = new List<Pasaje>();

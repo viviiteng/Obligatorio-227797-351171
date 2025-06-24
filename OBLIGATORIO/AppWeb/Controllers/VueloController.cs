@@ -6,13 +6,17 @@ namespace AppWeb.Controllers
     public class VueloController : Controller
     {
         private Sistema sistema = Sistema.ObtenerInstancia();
-        private bool HayUsuarioLogueado()
+        private bool hayUsuarioLogueado()
         {
             return (HttpContext.Session.GetString("Correo") != null);
         }
+        private bool usuarioLogueadoEsCliente()
+        {
+            return (HttpContext.Session.GetString("Rol") != Rol.ADMIN.ToString());
+        }
         public IActionResult ListarVuelos(string iataOrigen, string iataDestino)
         {
-            if (HayUsuarioLogueado() && HttpContext.Session.GetString("Rol")!=Rol.ADMIN.ToString())
+            if (hayUsuarioLogueado() && usuarioLogueadoEsCliente())
             {
                 try
                 {

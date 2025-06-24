@@ -7,14 +7,17 @@ namespace AppWeb.Controllers
     public class PasajeController : Controller
     {
         private Sistema sistema = Sistema.ObtenerInstancia();
-
-        private bool HayUsuarioLogueado()
+        private bool hayUsuarioLogueado()
         {
-            return (HttpContext.Session.GetString("Correo")!=null);
+            return (HttpContext.Session.GetString("Correo") != null);
+        }
+        private bool usuarioLogueadoEsCliente()
+        {
+            return (HttpContext.Session.GetString("Rol") != Rol.ADMIN.ToString());
         }
         public IActionResult VerCompraPasaje(string numVuelo)
-        {          
-            if (HayUsuarioLogueado())
+        {
+            if (hayUsuarioLogueado())
             {
                 try
                 {
@@ -30,7 +33,7 @@ namespace AppWeb.Controllers
         }
         public IActionResult ComprarPasaje(string numVuelo, DateTime fechaDeVuelo, TipoEquipaje equipaje)
         {
-            if (HayUsuarioLogueado())
+            if (hayUsuarioLogueado() && usuarioLogueadoEsCliente())
             {
                 try
                 {
@@ -48,19 +51,19 @@ namespace AppWeb.Controllers
 
         public IActionResult VerListadoPasajes()
         {
-            try
+            if (hayUsuarioLogueado() && !usuarioLogueadoEsCliente())
             {
-                if (HayUsuarioLogueado() && HttpContext.Session.GetString("Rol") == Rol.ADMIN.ToString())
+                try
                 {
                     List<Pasaje> pasajes = sistema.ObtenerListadoPasajesAdmin();
                     return View(pasajes);
                 }
-            }
-            catch (Exception error)
-            {
-                return View(error);
+                catch (Exception error)
+                {
+                    return View(error);
+                }
             }
             return Redirect("/LogIn/VerInicioSesion");
-        }    
+        }
     }
 }

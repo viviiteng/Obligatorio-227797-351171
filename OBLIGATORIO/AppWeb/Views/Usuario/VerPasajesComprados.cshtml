@@ -2,10 +2,10 @@
 @model List<Pasaje>
 
 <div class="container mt-5">
-    @if (Model == null)
+    @if (Model == null || Model.Count == 0)
     {
         <div class="alert alert-warning text-center">
-            No se han encontrado vuelos.
+            No se han encontrado pasajes.
         </div>
     }
     else
