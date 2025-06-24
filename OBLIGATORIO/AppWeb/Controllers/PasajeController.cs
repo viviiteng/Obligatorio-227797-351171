@@ -31,6 +31,8 @@ namespace AppWeb.Controllers
             }
             return Redirect("/LogIn/VerInicioSesion");
         }
+
+        [HttpPost]
         public IActionResult ComprarPasaje(string numVuelo, DateTime fechaDeVuelo, TipoEquipaje equipaje)
         {
             if (hayUsuarioLogueado() && usuarioLogueadoEsCliente())

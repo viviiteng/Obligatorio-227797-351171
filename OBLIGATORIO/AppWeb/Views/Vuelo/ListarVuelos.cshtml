@@ -25,6 +25,7 @@
                 <thead class="table-primary text-center">
                     <tr>
                         <th>Vuelo Nº</th>
+                        <th>Modelo del Avion</th>
                         <th>Salida</th>
                         <th>Llegada</th>
                         <th>Frecuencia</th>
@@ -37,6 +38,7 @@
                         string dias = string.Join(" - ", unVuelo.frecuencias);
                         <tr class="align-middle text-center">
                             <td>@unVuelo.NumVuelo</td>
+                            <td>@unVuelo.Avion.Modelo</td>
                             <td>@unVuelo.Ruta.AeropuertoSalida.Ciudad</td>
                             <td>@unVuelo.Ruta.AeropuertoLlegada.Ciudad</td>
                             <td>@dias</td>

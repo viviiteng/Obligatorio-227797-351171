@@ -34,7 +34,7 @@ namespace AppWeb.Controllers
             {
                 ViewBag.Error = error.Message;
                 ViewBag.OcultarNavbar = true;
-                return View();
+                return View("VerRegistro");
             }
         }
     }

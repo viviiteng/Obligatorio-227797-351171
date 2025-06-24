@@ -46,12 +46,15 @@
 					<input type="text" class="form-control" value="@dias" disabled />
 				</div>
 			</div>
+			@{
+				string hoy = DateTime.Today.ToString("yyyy-MM-dd");
+			}
 
 			<div class="row mb-3">
 				<div class="col-md-12">
 
 					<label for="fecha" class="form-label">Seleccione una fecha</label>
-					<input type="date" id="fecha" name="fechaDeVuelo" class="form-control">
+					<input type="date" id="fecha" name="fechaDeVuelo" class="form-control" min="@hoy">
 				</div>
 			</div>
 

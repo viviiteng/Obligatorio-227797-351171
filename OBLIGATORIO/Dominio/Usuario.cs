@@ -46,11 +46,11 @@ namespace Dominio
             {
                 mensaje += "Error: La contraseña debe tener al menos 8 caracteres.\n";
             }
-            if (!Sistema.encontrarNumero(this.Pass))
+            if (!encontrarNumero(this.Pass))
             {
                 mensaje += "Error: La contraseña debe contener algun numero.\n";
             }
-            if (!Sistema.encontrarLetra(this.Pass))
+            if (!encontrarLetra(this.Pass))
             {
                 mensaje += "Error: La contraseña debe contener alguna letra. ";
             }
@@ -58,6 +58,43 @@ namespace Dominio
             {
                 throw new Exception(mensaje);
             }
+        }
+
+        private static bool encontrarLetra(string texto)
+        {
+            string abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string textoMayus = texto.ToUpper();
+
+            for (int i = 0; i < textoMayus.Length; i++)
+            {
+                for (int j = 0; j < abecedario.Length; j++)
+                {
+                    if (textoMayus[i] == abecedario[j])
+                    {
+                        return true;
+                    }
+
+                }
+
+            }
+            return false;
+        }
+        private static bool encontrarNumero(string texto)
+        {
+            string numeros = "0123456789";
+            for (int i = 0; i < texto.Length; i++)
+            {
+                for (int j = 0; j < numeros.Length; j++)
+                {
+                    if (texto[i] == numeros[j])
+                    {
+                        return true;
+                    }
+
+                }
+
+            }
+            return false;
         }
 
         public abstract string ObtenerDatosUsuario();

@@ -545,48 +545,6 @@ namespace Dominio
         }
         #endregion
 
-        #region Biblioteca
-        public static bool encontrarLetra(string texto)
-        {
-            string abecedario = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            string textoMayus = texto.ToUpper();
-
-            for (int i = 0; i < textoMayus.Length; i++)
-            {
-                for (int j = 0; j < abecedario.Length; j++)
-                {
-                    if (textoMayus[i] == abecedario[j])
-                    {
-                        return true;
-                    }
-
-                }
-
-            }
-            return false;
-        }
-        public static bool encontrarNumero(string texto)
-        {
-            string numeros = "0123456789";
-            for (int i = 0; i < texto.Length; i++)
-            {
-                for (int j = 0; j < numeros.Length; j++)
-                {
-                    if (texto[i] == numeros[j])
-                    {
-                        return true;
-                    }
-
-                }
-
-            }
-            return false;
-        }
-
-
-        #endregion
-
-
         #endregion
     }
 

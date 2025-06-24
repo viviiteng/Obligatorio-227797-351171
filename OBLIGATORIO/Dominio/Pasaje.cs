@@ -53,6 +53,13 @@ namespace Dominio
                 throw new Exception("Error al validar los datos del pasaje.");
             }
         }
+        //public void ValidarCalendario(DateTime unaFecha)
+        //{
+        //    if (this.FechaDeVuelo < DateTime.Today)
+        //    {
+        //        throw new Exception("Error: No existen vuelos");
+        //    }
+        //}preguntar
         private void validarFecha()
         {
             int diaVuelo = (int)this.FechaDeVuelo.DayOfWeek;
