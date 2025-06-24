@@ -288,10 +288,6 @@ namespace Dominio
                     clientes.Add(unCliente);
                 }
             }
-            if (clientes.Count == 0)
-            {
-                throw new Exception("Error: no existe ningun cliente registrado.");
-            }
             return clientes;
         }
         private Cliente obtenerClienteSegunCedula(string cedula)
@@ -308,7 +304,7 @@ namespace Dominio
         }
         public void ValidarPassDeUsuario(Usuario unUsuario, string pass)
         {
-            if (pass != unUsuario.Pass) { 
+            if (unUsuario==null || pass != unUsuario.Pass) { 
             throw new Exception("Error: Usuario o contraseña inválido");
             }
         }
@@ -345,13 +341,9 @@ namespace Dominio
                     listaSegunFecha.Add(unPasaje);
                 }
             }
-
-            if (listaSegunFecha.Count == 0)
-            {
-                throw new Exception("Error: No se ha encontrado ningun pasaje dentro de las fechas ingresadas. Intente de nuevo...");
-            }
             return listaSegunFecha;
         }
+
         //Ordena por fecha
         public List<Pasaje> ObtenerListadoPasajesSegunUsuario(Usuario unUsuario)
         {
@@ -364,7 +356,7 @@ namespace Dominio
                     pasajesUsuario.Add(unPasaje);
                 }
             }
-            pasajesUsuario.Sort();//aca hay que hacer que los ordene por precio
+            pasajesUsuario.Sort();
             return pasajesUsuario;
         }
 
@@ -384,7 +376,6 @@ namespace Dominio
             pasajesUsuario.Sort(new PasajeComparer());
             return pasajesUsuario;
         }
-
 
         public List <Pasaje> ObtenerListadoPasajesAdmin()
         {
@@ -418,20 +409,29 @@ namespace Dominio
         {
 
             List<Vuelo> listaFinal = new List<Vuelo>();
-
+            
             if (codigoIataOrigen == "" && codigoIataDestino == "" || codigoIataOrigen == null && codigoIataDestino == null)
             {
                 listaFinal = this.Vuelos;
             }
             else
             {
+                
                 if (codigoIataOrigen != null)
                 {
+                    if (codigoIataOrigen.Length != 3)
+                    {
+                        throw new Exception("Error: Codigo IATA ingresado no cumple con el formato de 3 letras");
+                    }
                     codigoIataOrigen = codigoIataOrigen.ToUpper();
 
                 }
                 if (codigoIataDestino != null)
                 {
+                    if (codigoIataDestino.Length != 3)
+                    {
+                        throw new Exception("Error: Codigo IATA ingresado no cumple con el formato de 3 letras");
+                    }
                     codigoIataDestino = codigoIataDestino.ToUpper();
                 }
                 foreach (Vuelo unVuelo in this.Vuelos)

@@ -5,7 +5,7 @@
     @if (Model == null || Model.Count == 0)
     {
         <div class="alert alert-warning text-center">
-            No se han encontrado clientes.
+            Error: no existe ningun cliente registrado.
         </div>
     }
     else
@@ -76,8 +76,7 @@
                                 }
 
                             <td>
-                                <input type="submit" value="Modificar" class="btn btn-outline-primary btn-sm w-100">
-                                @* @Html.ActionLink("Modificar", "ModificarCliente", "Administrador", new { @class = "btn btn-outline-primary btn-sm w-100" }) *@</td>
+                                <input type="submit" value="Modificar" class="btn btn-outline-primary btn-sm w-100"></td>
                             </tr>
                         </form>
                         }

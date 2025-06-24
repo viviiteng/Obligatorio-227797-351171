@@ -35,20 +35,6 @@ namespace Dominio
             return $"Apodo: {this.Apodo}, Correo: {this.Correo}.";
         }
 
-        public void ModificarDatosCliente(Cliente unCliente)
-        {
-            if (unCliente is ClienteOcasional ocasional)
-            {
-                if (ocasional.EsElegibleRegalo == true)
-                {
-                    ocasional.EsElegibleRegalo = false;
-                }
-                else
-                {
-                    ocasional.EsElegibleRegalo = true;
-                }
-            }
-        }
         public override string ObtenerRolUsuario()
         {
             return Rol.ADMIN.ToString();

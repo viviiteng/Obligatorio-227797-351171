@@ -34,9 +34,11 @@
                         <div class="mt-2 text-center">
                             <span>¿No tenés cuenta? <a href="/Registro/VerRegistro">Registrate</a></span>
                         </div>
-                        <div class="mt-2 text-center text-danger">
-                            <p>@ViewBag.Error</p>
-                        </div>
+                        @if (ViewBag.Error != null){
+                            <div class="mt-2 text-center text-danger">
+                                <p>@ViewBag.Error</p>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

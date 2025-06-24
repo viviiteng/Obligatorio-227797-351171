@@ -83,11 +83,7 @@ namespace Dominio
         {
             Aeropuerto otro = (Aeropuerto)obj;
             return this.CodigoIATA.ToUpper() == otro.CodigoIATA.ToUpper();
-        }
-
-
-
-        
+        }        
         #endregion
     }
 }

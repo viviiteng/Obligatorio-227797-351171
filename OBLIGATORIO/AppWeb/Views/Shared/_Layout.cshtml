@@ -42,11 +42,7 @@
 
 							<div class="container d-flex justify-content-end">
 								@if (hayUsuarioLogueado)
-								{
-									@* <li class="nav-item d-flex justify-content-center">
-										<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@(UsuarioLogueado + Context.Session.GetString("Rol"))</a>
-									</li> *@
-									
+								{									
 									@if (esCliente)
 									{
 										<li class="nav-item">
@@ -94,7 +90,7 @@
 
 	<footer class="border-top footer text-muted">
 		<div class="container">
-			&copy; 2025 - AppWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+			<a class="nav-link text-dark text-center" asp-area="" asp-controller="Home" asp-action="Index">Obligatorio - Agustin Feijoo y Viviana Teng</a>
 		</div>
 	</footer>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
