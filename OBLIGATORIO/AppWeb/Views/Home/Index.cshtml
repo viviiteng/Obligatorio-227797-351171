@@ -1,20 +1,37 @@
-﻿
-@using Dominio
+﻿@using Dominio
 
-<section id="hero" class="container-fluid">
-    <div class="row justify-content-center text-center">
-        @if(ViewBag.UsuarioCorreo != null){
-            <h1 class="fw-bold display-4 mb-4 col-12">¡Welcome @ViewBag.UsuarioCorreo!</h1>
-        }
-        else
-        {
-            <h1 class="fw-bold display-4 mb-4 col-12">¡Bienvenidos a ORT Airlines!</h1>  
-            <h2 class="fw-bold mb-4 col-12">Inicie sesión para acceder a los vuelos</h2>
-        }
-        @if (ViewBag.TipoUsuario != null && ViewBag.TipoUsuario != Rol.ADMIN.ToString()) { 
-            <div class="col-6">
-                <a href="@Url.Action("ListarVuelos", "Vuelo")" class="btn btn-primary btn-lg">Ver todos los vuelos</a>
-            </div>
-        }
-    </div>
-</section>
+<body>
+	<section id="hero" class="container-fluid">
+		<div class="row justify-content-center">
+
+			@if (TempData["CompraExitosa"] != null)
+			{
+				<div class="class="row justify-content-center text-center">
+					<div class="alert alert-success text-center mx-auto" style="max-width: 600px;">
+						@TempData["CompraExitosa"]
+					</div>
+				</div>
+			}
+			<div class="row justify-content-center text-center">
+				@if (ViewBag.UsuarioCorreo != null)
+				{
+
+					<h1 class="fw-bold display-4 mb-4 col-12">¡Welcome @ViewBag.UsuarioCorreo!</h1>
+				}
+				else
+				{
+
+					<h1 class="fw-bold display-4 mb-4 col-12">¡Bienvenidos a ORT Airlines!</h1>
+					<h2 class="fw-bold mb-4 col-12">Inicie sesión para acceder a los vuelos</h2>
+				}
+				@if (ViewBag.TipoUsuario != null && ViewBag.TipoUsuario != Rol.ADMIN.ToString())
+				{
+					<div class="col-6">
+						<a href="@Url.Action("ListarVuelos", "Vuelo")" class="btn btn-primary btn-lg">Ver todos los vuelos</a>
+					</div>
+				}
+			</div>
+		</div>
+
+	</section>
+</body>

@@ -220,7 +220,7 @@ namespace Dominio
                     return unUsuario;
                 }
             }
-            return null;
+            throw new Exception("No se encontro usuario con ese correo.");
         }
 
 
@@ -240,7 +240,8 @@ namespace Dominio
                     }
                 }
             }
-            return null;
+            throw new Exception("No se encontro cliente con ese correo.");
+
         }
 
         public void ModificarCliente(ClienteOcasional clienteOcasionalExt)
@@ -380,7 +381,7 @@ namespace Dominio
         public List <Pasaje> ObtenerListadoPasajesAdmin()
         {
             List<Pasaje> pasajeCopia = new List<Pasaje>();
-            foreach (Pasaje unPasaje in pasajes)
+            foreach (Pasaje unPasaje in this.pasajes)
             {
                 pasajeCopia.Add(unPasaje);
             }
