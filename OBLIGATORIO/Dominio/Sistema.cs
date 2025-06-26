@@ -344,7 +344,7 @@ namespace Dominio
             return listaSegunFecha;
         }
 
-        //Ordena por fecha
+
         public List<Pasaje> ObtenerListadoPasajesSegunUsuario(Usuario unUsuario)
         {
             List<Pasaje> pasajesUsuario = new List<Pasaje>();
@@ -361,7 +361,6 @@ namespace Dominio
         }
 
 
-        //Ordena por precio
         public List<Pasaje> ObtenerListadoPasajesOrdenadoPrecio(Usuario unUsuario)
         {
             List<Pasaje> pasajesUsuario = new List<Pasaje>();
