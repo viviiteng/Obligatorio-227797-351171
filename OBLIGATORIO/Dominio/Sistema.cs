@@ -211,7 +211,7 @@ namespace Dominio
             }
         }
 
-        public Usuario? ObtenerUsuarioSegunCorreo(string correo)
+        public Usuario ObtenerUsuarioSegunCorreo(string correo)
         {
             foreach (Usuario unUsuario in this.Usuarios)
             {
@@ -220,11 +220,11 @@ namespace Dominio
                     return unUsuario;
                 }
             }
-            return null;
+            throw new Exception("No existe un usuario registrado con ese correo.");
         }
 
 
-        public Cliente? ObtenerClienteSegunCorreo(string correo)
+        public Cliente ObtenerClienteSegunCorreo(string correo)
         {
             foreach (Usuario unUsuario in this.Usuarios)
             {
@@ -240,7 +240,7 @@ namespace Dominio
                     }
                 }
             }
-            return null;
+            throw new Exception("No existe un cliente registrado con ese correo.");
         }
 
         public void ModificarCliente(ClienteOcasional clienteOcasionalExt)
