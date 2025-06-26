@@ -34,7 +34,7 @@ namespace Dominio
         }
         private void validarEspaciosVacios()
         {
-            if (this.Correo == "" || this.Pass == "")
+            if (this.Pass == null || this.Correo == null || this.Correo == "" || this.Pass == "")
             {
                 throw new Exception("Error: Debe rellenar todos los campos requeridos.\n");
             }

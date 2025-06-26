@@ -220,7 +220,7 @@ namespace Dominio
                     return unUsuario;
                 }
             }
-            throw new Exception("No se encontro usuario con ese correo.");
+            return null;
         }
 
 
@@ -240,8 +240,7 @@ namespace Dominio
                     }
                 }
             }
-            throw new Exception("No se encontro cliente con ese correo.");
-
+            return null;
         }
 
         public void ModificarCliente(ClienteOcasional clienteOcasionalExt)
@@ -345,7 +344,7 @@ namespace Dominio
             return listaSegunFecha;
         }
 
-        //Ordena por fecha
+
         public List<Pasaje> ObtenerListadoPasajesSegunUsuario(Usuario unUsuario)
         {
             List<Pasaje> pasajesUsuario = new List<Pasaje>();
@@ -362,7 +361,6 @@ namespace Dominio
         }
 
 
-        //Ordena por precio
         public List<Pasaje> ObtenerListadoPasajesOrdenadoPrecio(Usuario unUsuario)
         {
             List<Pasaje> pasajesUsuario = new List<Pasaje>();
@@ -381,7 +379,7 @@ namespace Dominio
         public List <Pasaje> ObtenerListadoPasajesAdmin()
         {
             List<Pasaje> pasajeCopia = new List<Pasaje>();
-            foreach (Pasaje unPasaje in this.pasajes)
+            foreach (Pasaje unPasaje in pasajes)
             {
                 pasajeCopia.Add(unPasaje);
             }

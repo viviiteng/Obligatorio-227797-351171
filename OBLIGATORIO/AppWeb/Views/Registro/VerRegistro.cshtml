@@ -1,49 +1,55 @@
-﻿@using Dominio;
+﻿@using Dominio
 
+<div class="container d-flex align-items-center justify-content-center my-5" style="min-height: 100vh;">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">Registrar nuevo cliente</h2>
 
-@{
-	<div class="container">
-		<h2 class="mt-5 m-2">Registrar nuevo cliente</h2>
-		<form class="m-3" id="registroForm" action="/Registro/RegistrarCliente" method="post">
-			<div class="mb-3">
-				<label for="nombreRegistro" class="form-label">Nombre completo</label>
-				<input type="text" class="form-control" name="Nombre" required>
-			</div>
+                <form id="registroForm" action="/Registro/RegistrarCliente" method="post" novalidate>
+                    <div class="mb-3">
+                        <label for="nombreRegistro" class="form-label">Nombre completo</label>
+                        <input type="text" class="form-control" name="Nombre" id="nombreRegistro" required>
+                    </div>
 
-			<div class="mb-3">
-				<label for="nacionalidadRegistro" class="form-label">Nacionalidad</label>
-				<input type="text" class="form-control" name="Nacionalidad" required>
-			</div>
+                    <div class="mb-3">
+                        <label for="nacionalidadRegistro" class="form-label">Nacionalidad</label>
+                        <input type="text" class="form-control" name="Nacionalidad" id="nacionalidadRegistro" required>
+                    </div>
 
-			<div class="mb-3">
-				<label for="correoRegistro" class="form-label">Correo</label>
-				<input type="email" class="form-control" name="Correo" required>
-			</div>
-			<div class="mb-3">
-				<label for="cedulaRegistro" class="form-label">Cédula</label>
-				<input type="number" class="form-control" name="Cedula" required minlength="8">
-			</div>
-			<div class="mb-3">
-				<label for="passRegistro" class="form-label">Contraseña</label>
-				<input type="password" class="form-control" name="Pass" required minlength="8">
-			</div>
-			<div class="mb-3">
-				<label for="pass2Registro" class="form-label">Repetir contraseña</label>
-				<input type="password" class="form-control" required minlength="8">
-			</div>
-			<button type="submit" class="btn btn-primary">Confirmar</button>
-			<a class="btn btn-primary" href="/LogIn/VerInicioSesion">Volver</a>
-		</form>
-		@{
-			if (ViewBag.Error!=null)
-			{
-				<div class="alert alert-danger" role="alert">
-					<p>@ViewBag.Error</p>
-				</div>
-			}
-		}
-	</div>
+                    <div class="mb-3">
+                        <label for="correoRegistro" class="form-label">Correo</label>
+                        <input type="email" class="form-control" name="Correo" id="correoRegistro" required>
+                    </div>
 
+                    <div class="mb-3">
+                        <label for="cedulaRegistro" class="form-label">Cédula</label>
+                        <input type="number" class="form-control" name="Cedula" id="cedulaRegistro" required minlength="8">
+                    </div>
 
+                    <div class="mb-3">
+                        <label for="passRegistro" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" name="Pass" id="passRegistro" required minlength="8">
+                    </div>
 
-}
+                    <div class="mb-4">
+                        <label for="pass2Registro" class="form-label">Repetir contraseña</label>
+                        <input type="password" class="form-control" id="pass2Registro" required minlength="8">
+                    </div>
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger text-center" role="alert">
+                            @ViewBag.Error
+                        </div>
+                    }
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg">Confirmar</button>
+                        <a href="/LogIn/VerInicioSesion" class="btn btn-outline-secondary btn-lg">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -80,6 +80,14 @@
 	</form>
 	@{if (ViewBag.Error != null)
 	{
+		// if((bool)ViewBag.HuboError == true) {
+  //               <div class="alert alert-danger" role="alert">
+  //                   @ViewBag.Mensaje
+  //               </div>
+  //           } else {
+  //               <div class="alert alert-success" role="alert">
+  //                   @ViewBag.Mensaje
+        
 		<div class="alert alert-danger" role="alert">
 			<p>@ViewBag.Error</p>
 		</div>

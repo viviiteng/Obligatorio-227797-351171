@@ -4,15 +4,15 @@
 	string UsuarioLogueado = Context.Session.GetString("Correo");
 	Sistema sistema = Sistema.ObtenerInstancia();
 	bool hayUsuarioLogueado = UsuarioLogueado != null;
-	bool esCliente=false;
+	bool esCliente = false;
 	bool esAdmin = false;
-	if(hayUsuarioLogueado){
+	if (hayUsuarioLogueado)
+	{
 		esCliente = sistema.ObtenerUsuarioSegunCorreo(UsuarioLogueado) is Cliente;
 		esAdmin = sistema.ObtenerUsuarioSegunCorreo(UsuarioLogueado) is Administrador;
 	}
 }
 <html lang="en">
-
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,63 +25,63 @@
 	<header>
 		@if (ViewBag.OcultarNavbar != true)
 		{
-			<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-					<div class="container-fluid">
+			<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3">
+				<div class="container-fluid">
+					<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ORT Airlines</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+							aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
 
-						<ul class="navbar-nav flex-grow-1 container">
-							<div class="container d-flex align-items-center justify-content-start">
-								<li class="nav-item">
-									<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ORT Airlines</a>
-								</li>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+							</li>
 
-								<li class="nav-item">
-									<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-								</li>
-							</div>
-
-							<div class="container d-flex justify-content-end">
-								@if (hayUsuarioLogueado)
-								{									
-									@if (esCliente)
-									{
-										<li class="nav-item">
-											<a class="nav-link text-dark" asp-area="" asp-controller="Pasaje" asp-action="VerPasajesComprados">Mis pasajes</a>
-										</li>			
-										
-										<li class="nav-item">
-												<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerPerfil">Mi perfil</a>
-										</li>
-
-									}
-									else
-									{
-										<li class="nav-item">
-										<a class="nav-link text-dark" asp-area="" asp-controller="Pasaje" asp-action="VerListadoPasajes">Listado Pasajes</a>
-										</li>
-										<li class="nav-item">
-										<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerListadoClientes">Listado Clientes</a>
-										</li>
-									}								
+							@if (hayUsuarioLogueado)
+							{
+								if (esCliente)
+								{
 									<li class="nav-item">
-										<a class="nav-link text-dark" asp-area="" asp-controller="LogIn" asp-action="VerConfirmarLogOut">Cerrar Sesion</a>
+										<a class="nav-link text-dark" asp-area="" asp-controller="Pasaje" asp-action="VerPasajesComprados">Mis pasajes</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerPerfil">Mi perfil</a>
 									</li>
 								}
 								else
 								{
 									<li class="nav-item">
-										<a class="nav-link text-dark" asp-area="" asp-controller="LogIn" asp-action="VerInicioSesion">Iniciar sesion</a>
+										<a class="nav-link text-dark" asp-area="" asp-controller="Pasaje" asp-action="VerListadoPasajes">Listado Pasajes</a>
 									</li>
-									
+									<li class="nav-item">
+										<a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="VerListadoClientes">Listado Clientes</a>
+									</li>
 								}
-							</div>
+							}
+						</ul>
+
+						<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+							@if (hayUsuarioLogueado)
+							{
+								<li class="nav-item">
+									<a class="nav-link text-dark" asp-area="" asp-controller="LogIn" asp-action="VerConfirmarLogOut">Cerrar Sesión</a>
+								</li>
+							}
+							else
+							{
+								<li class="nav-item">
+									<a class="nav-link text-dark" asp-area="" asp-controller="LogIn" asp-action="VerInicioSesion">Iniciar sesión</a>
+								</li>
+							}
 						</ul>
 					</div>
-
-				</div>			
+				</div>
 			</nav>
 		}
 	</header>
+
 	<div class="container">
 		<main role="main" class="pb-3">
 			@RenderBody()
@@ -90,9 +90,12 @@
 
 	<footer class="border-top footer text-muted">
 		<div class="container">
-			<a class="nav-link text-dark text-center" asp-area="" asp-controller="Home" asp-action="Index">Obligatorio - Agustin Feijoo y Viviana Teng</a>
+			<a class="nav-link text-dark text-center" asp-area="" asp-controller="Home" asp-action="Index">
+				Obligatorio - Agustin Feijoo y Viviana Teng
+			</a>
 		</div>
 	</footer>
+
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>

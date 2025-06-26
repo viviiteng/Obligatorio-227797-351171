@@ -39,6 +39,7 @@ namespace AppWeb.Controllers
             {
                 try
                 {
+
                     sistema.AgregarNuevoPasaje(new Pasaje(sistema.ObtenerVueloSegunNumVuelo(numVuelo), fechaDeVuelo, sistema.ObtenerClienteSegunCorreo(HttpContext.Session.GetString("Correo")), equipaje));
                     TempData["CompraExitosa"] = "Pasaje comprado exitosamente.";
                     return Redirect("/Home/Index");
